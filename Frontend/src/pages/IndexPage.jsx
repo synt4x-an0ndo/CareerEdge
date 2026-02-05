@@ -266,7 +266,7 @@ const Hero = () => {
           Practice with AI-generated questions, get real-time feedback, and
           track your progress.
           <br />
-          ConfidenSee helps you build confidence for your dream job interview.
+          CareerEdge helps you build confidence for your dream job interview.
         </motion.p>
 
         <motion.div
@@ -493,7 +493,7 @@ const Testimonials = () => {
   const testimonials = [
     {
       quote:
-        "ConfidenSee completely transformed my interview preparation. The AI feedback was incredibly accurate and helped me identify my weak spots. I landed my dream job at Google thanks to this platform!",
+        "CareerEdge completely transformed my interview preparation. The AI feedback was incredibly accurate and helped me identify my weak spots. I landed my dream job at Google thanks to this platform!",
       name: "Sarah Johnson",
       role: "Software Engineer at Google",
     },
@@ -505,7 +505,7 @@ const Testimonials = () => {
     },
     {
       quote:
-        "As someone who struggled with interview anxiety, ConfidenSee gave me the practice and confidence I needed. The performance analytics helped me track my progress. Highly recommend to anyone job hunting!",
+        "As someone who struggled with interview anxiety, CareerEdge gave me the practice and confidence I needed. The performance analytics helped me track my progress. Highly recommend to anyone job hunting!",
       name: "Emily Rodriguez",
       role: "Data Scientist at Netflix",
     },
@@ -524,7 +524,7 @@ const Testimonials = () => {
             What Our Users Say
           </h2>
           <p className="text-gray-600 text-lg">
-            Hear from professionals who landed their dream jobs with ConfidenSee
+            Hear from professionals who landed their dream jobs with CareerEdge
           </p>
         </motion.div>
 
@@ -686,7 +686,7 @@ const Footer = () => {
         <div className="gap-12 grid lg:grid-cols-4 mb-12">
           <div className="lg:col-span-1">
             <div className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 font-bold text-transparent text-2xl">
-              ConfidenSee
+              CareerEdge
             </div>
             <p className="mb-6 max-w-xs text-gray-400">
               Master your interview skills with AI-powered practice and
@@ -756,7 +756,7 @@ const Footer = () => {
 
         <div className="pt-8 border-gray-800 border-t text-center">
           <p className="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} ConfidenSee. All rights reserved.
+            &copy; {new Date().getFullYear()} CareerEdge. All rights reserved.
           </p>
         </div>
       </div>

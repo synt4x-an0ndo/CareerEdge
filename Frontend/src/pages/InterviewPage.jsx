@@ -73,7 +73,7 @@ const InterviewPage = () => {
     };
 
     useEffect(() => {
-        document.title = 'Interview Practice - ConfidenSee';
+        document.title = 'Interview Practice - CareerEdge';
     }, []);
 
     useEffect(() => {

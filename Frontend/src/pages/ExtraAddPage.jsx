@@ -227,7 +227,7 @@ Requirements:
     };
 
     useEffect(() => {
-        document.title = 'New Practice Session - ConfidenSee';
+        document.title = 'New Practice Session - CareerEdge';
     }, []);
 
     const handleJobSelect = (jobName) => {

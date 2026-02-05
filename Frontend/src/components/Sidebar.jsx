@@ -31,13 +31,13 @@ const Sidebar = ({ activePage }) => {
             <img
               src="/img/logo3.png"
               style={{ width: "40px", height: "40px", objectFit: "contain" }}
-              alt="ConfidenSee Logo"
+              alt="CareerEdge Logo"
             />
           ) : (
             <img
               src="/img/logo3.png"
               style={{ width: "100%" }}
-              alt="ConfidenSee Logo"
+              alt="CareerEdge Logo"
             />
           )}
         </Link>

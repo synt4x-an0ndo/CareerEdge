@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: 'bot', text: 'Hello! I\'m here to help you with any questions about ConfidenSee. How can I assist you today?' },
+    { sender: 'bot', text: 'Hello! I\'m here to help you with any questions about CareerEdge. How can I assist you today?' },
   ]);
   const [inputValue, setInputValue] = useState('');
 
@@ -25,33 +25,33 @@ const Chatbot = () => {
     setMessages([...messages, { sender: 'user', text }]);
     // Simulate bot response
     setTimeout(() => {
-        setMessages(prevMessages => [...prevMessages, { sender: 'bot', text: `You asked about: \"${text}\". Here is some information...` }]);
-      }, 1000);
+      setMessages(prevMessages => [...prevMessages, { sender: 'bot', text: `You asked about: \"${text}\". Here is some information...` }]);
+    }, 1000);
   }
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
-      <div onClick={toggleChatbot} className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl cursor-pointer shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-2xl relative">
+    <div className="right-8 bottom-8 z-50 fixed">
+      <div onClick={toggleChatbot} className="relative flex justify-center items-center bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-2xl rounded-full w-16 h-16 text-white text-2xl hover:scale-110 transition-all duration-300 cursor-pointer">
         <i className="fas fa-comments"></i>
-        <span className="absolute top-1 right-1 w-3 h-3 bg-success rounded-full border-2 border-white animate-pulse"></span>
+        <span className="top-1 right-1 absolute bg-success border-2 border-white rounded-full w-3 h-3 animate-pulse"></span>
       </div>
 
       {isOpen && (
-        <div className="absolute bottom-20 right-0 w-96 h-[32rem] bg-lighter-bg rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden backdrop-blur-lg animate-slideUp">
-          <div className="flex items-center p-4 bg-gradient-to-r from-primary/10 to-secondary/10 border-b border-gray-200">
-            <div className="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white mr-3">
+        <div className="right-0 bottom-20 absolute flex flex-col bg-lighter-bg shadow-2xl backdrop-blur-lg border border-gray-200 rounded-2xl w-96 h-[32rem] overflow-hidden animate-slideUp">
+          <div className="flex items-center bg-gradient-to-r from-primary/10 to-secondary/10 p-4 border-gray-200 border-b">
+            <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary mr-3 rounded-full w-10 h-10 text-white">
               <i className="fas fa-robot"></i>
             </div>
             <div>
-              <h4 className="m-0 text-base font-semibold text-text-dark">Support Team</h4>
-              <p className="m-0 text-sm text-text-gray">We're online and ready to help!</p>
+              <h4 className="m-0 font-semibold text-text-dark text-base">Support Team</h4>
+              <p className="m-0 text-text-gray text-sm">We're online and ready to help!</p>
             </div>
-            <button onClick={toggleChatbot} className="bg-transparent border-none text-text-gray cursor-pointer ml-auto p-2 rounded-md transition-all duration-300 hover:bg-black/5 hover:text-text-dark">
+            <button onClick={toggleChatbot} className="bg-transparent hover:bg-black/5 ml-auto p-2 border-none rounded-md text-text-gray hover:text-text-dark transition-all duration-300 cursor-pointer">
               <i className="fas fa-times"></i>
             </button>
           </div>
 
-          <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-4">
+          <div className="flex flex-col flex-1 gap-4 p-4 overflow-y-auto">
             {messages.map((msg, index) => (
               <div key={index} className={`flex gap-3 max-w-[85%] ${msg.sender === 'bot' ? 'self-start' : 'self-end flex-row-reverse'}`}>
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm flex-shrink-0 ${msg.sender === 'bot' ? 'bg-gradient-to-r from-primary to-secondary text-white' : 'bg-text-gray text-white'}`}>
@@ -65,23 +65,23 @@ const Chatbot = () => {
             ))}
           </div>
 
-          <div className="px-4 flex flex-wrap gap-2 mb-4">
-            <button onClick={() => handleSuggestion('How does it work?')} className="bg-primary/10 border border-gray-200 text-primary py-2 px-4 rounded-full text-sm cursor-pointer transition-all duration-300 hover:bg-primary hover:text-white hover:-translate-y-px">How does it work?</button>
-            <button onClick={() => handleSuggestion('Pricing plans')} className="bg-primary/10 border border-gray-200 text-primary py-2 px-4 rounded-full text-sm cursor-pointer transition-all duration-300 hover:bg-primary hover:text-white hover:-translate-y-px">Pricing plans</button>
-            <button onClick={() => handleSuggestion('Technical issues')} className="bg-primary/10 border border-gray-200 text-primary py-2 px-4 rounded-full text-sm cursor-pointer transition-all duration-300 hover:bg-primary hover:text-white hover:-translate-y-px">Technical issues</button>
+          <div className="flex flex-wrap gap-2 mb-4 px-4">
+            <button onClick={() => handleSuggestion('How does it work?')} className="bg-primary/10 hover:bg-primary px-4 py-2 border border-gray-200 rounded-full text-primary hover:text-white text-sm transition-all hover:-translate-y-px duration-300 cursor-pointer">How does it work?</button>
+            <button onClick={() => handleSuggestion('Pricing plans')} className="bg-primary/10 hover:bg-primary px-4 py-2 border border-gray-200 rounded-full text-primary hover:text-white text-sm transition-all hover:-translate-y-px duration-300 cursor-pointer">Pricing plans</button>
+            <button onClick={() => handleSuggestion('Technical issues')} className="bg-primary/10 hover:bg-primary px-4 py-2 border border-gray-200 rounded-full text-primary hover:text-white text-sm transition-all hover:-translate-y-px duration-300 cursor-pointer">Technical issues</button>
           </div>
 
-          <div className="p-4 border-t border-gray-200">
+          <div className="p-4 border-gray-200 border-t">
             <div className="relative flex items-center">
-              <input type="text" placeholder="Type your message here..." value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} className="w-full py-3 pr-12 pl-4 rounded-full border border-gray-200 bg-white/70 text-sm transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
-              <button onClick={handleSend} className="absolute right-1.5 w-9 h-9 bg-gradient-to-r from-primary to-secondary border-none rounded-full text-white cursor-pointer transition-all duration-300 flex items-center justify-center hover:scale-110">
+              <input type="text" placeholder="Type your message here..." value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} className="bg-white/70 py-3 pr-12 pl-4 border border-gray-200 focus:border-primary rounded-full focus:outline-none focus:ring-2 focus:ring-primary/20 w-full text-sm transition-all duration-300" />
+              <button onClick={handleSend} className="right-1.5 absolute flex justify-center items-center bg-gradient-to-r from-primary to-secondary border-none rounded-full w-9 h-9 text-white hover:scale-110 transition-all duration-300 cursor-pointer">
                 <i className="fas fa-paper-plane"></i>
               </button>
             </div>
           </div>
         </div>
       )}
-       <style>
+      <style>
         {`
           @keyframes slideUp {
             from {

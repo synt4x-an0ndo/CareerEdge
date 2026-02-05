@@ -30,49 +30,49 @@ const MainContent = ({ openSidebar }) => {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-light-bg">
-      <div className="bg-white/95 backdrop-blur-lg p-6 flex items-center gap-6 border-b border-gray-200">
+    <div className="flex flex-col flex-1 bg-light-bg">
+      <div className="flex items-center gap-6 bg-white/95 backdrop-blur-lg p-6 border-gray-200 border-b">
         <button onClick={openSidebar} className="lg:hidden bg-none border-none text-text-gray">
           <i className="fas fa-bars"></i>
         </button>
-        <div className="flex-1 relative max-w-md">
-          <i className="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-text-gray"></i>
-          <input placeholder="Search..." className="w-full py-3 pl-11 pr-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray" />
+        <div className="relative flex-1 max-w-md">
+          <i className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2 fas fa-search"></i>
+          <input placeholder="Search..." className="bg-white/70 py-3 pr-4 pl-11 border border-gray-200 rounded-lg w-full placeholder-text-gray text-text-dark" />
         </div>
       </div>
 
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">Language Settings</h1>
+            <h1 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-3xl">Language Settings</h1>
             <p className="text-text-gray">Customize your language preferences for interface and AI feedback</p>
           </div>
         </div>
 
-        <div className="bg-white/90 p-6 rounded-2xl mb-6 border border-gray-200 shadow-lg">
-          <h3 className="mb-4 text-xl font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Language Preview</h3>
-          <div className="flex flex-col lg:flex-row gap-6">
-            <div className="flex-1 p-4 bg-white/50 rounded-lg border border-gray-200">
+        <div className="bg-white/90 shadow-lg mb-6 p-6 border border-gray-200 rounded-2xl">
+          <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 font-semibold text-transparent text-xl">Language Preview</h3>
+          <div className="flex lg:flex-row flex-col gap-6">
+            <div className="flex-1 bg-white/50 p-4 border border-gray-200 rounded-lg">
               <h4 className="mb-2 text-primary">Interface Language</h4>
-              <p className="text-text-gray text-sm">Welcome to ConfidenSee! This is how the interface will look in your selected language.</p>
+              <p className="text-text-gray text-sm">Welcome to CareerEdge! This is how the interface will look in your selected language.</p>
             </div>
-            <div className="flex-1 p-4 bg-white/50 rounded-lg border border-gray-200">
+            <div className="flex-1 bg-white/50 p-4 border border-gray-200 rounded-lg">
               <h4 className="mb-2 text-primary">AI Feedback Language</h4>
               <p className="text-text-gray text-sm">Great job on your interview response! Your communication skills are improving steadily.</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white/90 p-6 rounded-2xl mb-6 border border-gray-200 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-          <h3 className="mb-4 text-xl font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Interface Language</h3>
-          <p className="text-text-gray mb-4">Choose the language you prefer for the user interface</p>
+        <div className="bg-white/90 shadow-lg hover:shadow-2xl mb-6 p-6 border border-gray-200 rounded-2xl transition-all hover:-translate-y-1 duration-300">
+          <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 font-semibold text-transparent text-xl">Interface Language</h3>
+          <p className="mb-4 text-text-gray">Choose the language you prefer for the user interface</p>
           <div className="flex flex-col gap-4">
             {interfaceLanguages.map(lang => (
               <div key={lang.lang} onClick={() => setSelectedInterfaceLang(lang.lang)} className={`flex items-center p-4 bg-white/50 rounded-xl border cursor-pointer transition-all duration-300 ${selectedInterfaceLang === lang.lang ? 'bg-primary/10 border-primary shadow-lg' : 'border-gray-200'}`}>
-                <div className="w-8 h-8 rounded-full mr-3 flex items-center justify-center text-lg">{lang.flag}</div>
+                <div className="flex justify-center items-center mr-3 rounded-full w-8 h-8 text-lg">{lang.flag}</div>
                 <div className="flex-1">
-                  <div className="font-semibold mb-1">{lang.name}</div>
-                  <div className="text-sm text-text-gray">{lang.details}</div>
+                  <div className="mb-1 font-semibold">{lang.name}</div>
+                  <div className="text-text-gray text-sm">{lang.details}</div>
                 </div>
                 <div className={`text-success text-lg transition-all duration-300 ${selectedInterfaceLang === lang.lang ? 'opacity-100' : 'opacity-0'}`}><i className="fas fa-check-circle"></i></div>
               </div>
@@ -80,16 +80,16 @@ const MainContent = ({ openSidebar }) => {
           </div>
         </div>
 
-        <div className="bg-white/90 p-6 rounded-2xl mb-6 border border-gray-200 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-          <h3 className="mb-4 text-xl font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">AI Feedback Language</h3>
-          <p className="text-text-gray mb-4">Choose the language the AI will use when providing feedback</p>
+        <div className="bg-white/90 shadow-lg hover:shadow-2xl mb-6 p-6 border border-gray-200 rounded-2xl transition-all hover:-translate-y-1 duration-300">
+          <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 font-semibold text-transparent text-xl">AI Feedback Language</h3>
+          <p className="mb-4 text-text-gray">Choose the language the AI will use when providing feedback</p>
           <div className="flex flex-col gap-4">
             {aiLanguages.map(lang => (
               <div key={lang.lang} onClick={() => setSelectedAILang(lang.lang)} className={`flex items-center p-4 bg-white/50 rounded-xl border cursor-pointer transition-all duration-300 ${selectedAILang === lang.lang ? 'bg-primary/10 border-primary shadow-lg' : 'border-gray-200'}`}>
-                <div className="w-8 h-8 rounded-full mr-3 flex items-center justify-center text-lg">{lang.flag}</div>
+                <div className="flex justify-center items-center mr-3 rounded-full w-8 h-8 text-lg">{lang.flag}</div>
                 <div className="flex-1">
-                  <div className="font-semibold mb-1">{lang.name}</div>
-                  <div className="text-sm text-text-gray">{lang.details}</div>
+                  <div className="mb-1 font-semibold">{lang.name}</div>
+                  <div className="text-text-gray text-sm">{lang.details}</div>
                 </div>
                 <div className={`text-success text-lg transition-all duration-300 ${selectedAILang === lang.lang ? 'opacity-100' : 'opacity-0'}`}><i className="fas fa-check-circle"></i></div>
               </div>
@@ -97,27 +97,27 @@ const MainContent = ({ openSidebar }) => {
           </div>
         </div>
 
-        <div className="bg-white/90 p-6 rounded-2xl mb-6 border border-gray-200 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-          <h3 className="mb-4 text-xl font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Additional Language Settings</h3>
-          <p className="text-text-gray mb-4">Fine-tune your language preferences</p>
+        <div className="bg-white/90 shadow-lg hover:shadow-2xl mb-6 p-6 border border-gray-200 rounded-2xl transition-all hover:-translate-y-1 duration-300">
+          <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 font-semibold text-transparent text-xl">Additional Language Settings</h3>
+          <p className="mb-4 text-text-gray">Fine-tune your language preferences</p>
           <div className="mb-4">
-            <label className="block text-text-gray mb-2 text-sm">Speech Recognition Language</label>
-            <select className="w-full p-3 rounded-lg bg-white/70 border border-gray-200 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+            <label className="block mb-2 text-text-gray text-sm">Speech Recognition Language</label>
+            <select className="bg-white/70 p-3 border border-gray-200 focus:border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all duration-300">
               <option value="en-US">English (United States)</option>
               <option value="bn-BD">Bangla (Bangladesh)</option>
             </select>
           </div>
           <div className="mb-4">
-            <label className="block text-text-gray mb-2 text-sm">Text-to-Speech Voice</label>
-            <select className="w-full p-3 rounded-lg bg-white/70 border border-gray-200 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+            <label className="block mb-2 text-text-gray text-sm">Text-to-Speech Voice</label>
+            <select className="bg-white/70 p-3 border border-gray-200 focus:border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all duration-300">
               <option value="en-US-1">English Voice 1 (Female)</option>
               <option value="en-US-2">English Voice 2 (Male)</option>
               <option value="bn-BD-1">Bangla Voice 1 (Female)</option>
             </select>
           </div>
           <div>
-            <label className="block text-text-gray mb-2 text-sm">Translation Preferences</label>
-            <select className="w-full p-3 rounded-lg bg-white/70 border border-gray-200 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+            <label className="block mb-2 text-text-gray text-sm">Translation Preferences</label>
+            <select className="bg-white/70 p-3 border border-gray-200 focus:border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all duration-300">
               <option value="auto">Auto-detect language</option>
               <option value="manual">Always ask for translation</option>
               <option value="none">Never translate</option>
@@ -125,8 +125,8 @@ const MainContent = ({ openSidebar }) => {
           </div>
         </div>
 
-        <div className="text-right mt-4">
-        <button onClick={handleSave} disabled={isSaving || isSaved} className={`py-3 px-5 bg-gradient-to-r from-primary to-secondary border-none rounded-lg text-white font-semibold cursor-pointer inline-flex gap-2 items-center transition-all duration-300 relative overflow-hidden hover:-translate-y-0.5 hover:shadow-lg ${isSaving || isSaved ? 'bg-gradient-to-r from-success to-primary' : ''}`}>
+        <div className="mt-4 text-right">
+          <button onClick={handleSave} disabled={isSaving || isSaved} className={`py-3 px-5 bg-gradient-to-r from-primary to-secondary border-none rounded-lg text-white font-semibold cursor-pointer inline-flex gap-2 items-center transition-all duration-300 relative overflow-hidden hover:-translate-y-0.5 hover:shadow-lg ${isSaving || isSaved ? 'bg-gradient-to-r from-success to-primary' : ''}`}>
             {isSaving ? (
               <><i className="fas fa-spinner fa-spin"></i> Saving...</>
             ) : isSaved ? (

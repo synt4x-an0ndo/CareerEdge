@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { test, expect } from '@jest/globals';
 import App from './App';
 
-test('renders ConfidenSee title', () => {
+test('renders CareerEdge title', () => {
   render(<App />);
-  const titleElement = screen.getByText(/ConfidenSee/i);
+  const titleElement = screen.getByText(/CareerEdge/i);
   expect(titleElement).toBeInTheDocument();
 });
 

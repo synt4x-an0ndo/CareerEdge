@@ -35,7 +35,7 @@ const CreateCVPage = () => {
   });
 
   useEffect(() => {
-    document.title = 'Create Your Professional CV - ConfidenSee';
+    document.title = 'Create Your Professional CV - CareerEdge';
   }, []);
 
   const toggleSidebar = () => {
@@ -173,12 +173,12 @@ const CreateCVPage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="mb-6">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
                 Choose Your Template
               </h2>
               <p className="text-text-gray">Select a template that best represents your professional style</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="gap-6 grid grid-cols-1 md:grid-cols-3">
               {templates.map((template) => (
                 <motion.div
                   key={template.id}
@@ -194,11 +194,11 @@ const CreateCVPage = () => {
                   <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${template.color} flex items-center justify-center mb-4`}>
                     <i className={`fas ${template.icon} text-white text-2xl`}></i>
                   </div>
-                  <h3 className="font-bold text-lg mb-2">{template.name}</h3>
+                  <h3 className="mb-2 font-bold text-lg">{template.name}</h3>
                   <p className="text-text-gray text-sm">{template.description}</p>
                   {selectedTemplate === template.id && (
-                    <div className="mt-4 flex items-center text-primary font-medium">
-                      <i className="fas fa-check-circle mr-2"></i>
+                    <div className="flex items-center mt-4 font-medium text-primary">
+                      <i className="mr-2 fas fa-check-circle"></i>
                       Selected
                     </div>
                   )}
@@ -216,91 +216,91 @@ const CreateCVPage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="mb-6">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
                 Personal Information
               </h2>
               <p className="text-text-gray">Tell us about yourself</p>
             </div>
-            <div className="bg-white/90 rounded-2xl p-6 border border-gray-100 shadow-lg">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
+              <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <i className="fas fa-user mr-2 text-primary"></i>Full Name *
+                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                    <i className="mr-2 text-primary fas fa-user"></i>Full Name *
                   </label>
                   <input
                     type="text"
-                    className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                     value={formData.fullName}
                     onChange={(e) => handleInputChange(e, 'fullName')}
                     placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <i className="fas fa-briefcase mr-2 text-primary"></i>Job Title *
+                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                    <i className="mr-2 text-primary fas fa-briefcase"></i>Job Title *
                   </label>
                   <input
                     type="text"
-                    className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                     value={formData.jobTitle}
                     onChange={(e) => handleInputChange(e, 'jobTitle')}
                     placeholder="Software Engineer"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <i className="fas fa-envelope mr-2 text-primary"></i>Email *
+                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                    <i className="mr-2 text-primary fas fa-envelope"></i>Email *
                   </label>
                   <input
                     type="email"
-                    className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                     value={formData.email}
                     onChange={(e) => handleInputChange(e, 'email')}
                     placeholder="john.doe@example.com"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <i className="fas fa-phone mr-2 text-primary"></i>Phone
+                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                    <i className="mr-2 text-primary fas fa-phone"></i>Phone
                   </label>
                   <input
                     type="tel"
-                    className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                     value={formData.phone}
                     onChange={(e) => handleInputChange(e, 'phone')}
                     placeholder="+1 (555) 123-4567"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <i className="fas fa-map-marker-alt mr-2 text-primary"></i>Location
+                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                    <i className="mr-2 text-primary fas fa-map-marker-alt"></i>Location
                   </label>
                   <input
                     type="text"
-                    className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                     value={formData.location}
                     onChange={(e) => handleInputChange(e, 'location')}
                     placeholder="New York, NY"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <i className="fab fa-linkedin mr-2 text-primary"></i>LinkedIn Profile
+                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                    <i className="mr-2 text-primary fab fa-linkedin"></i>LinkedIn Profile
                   </label>
                   <input
                     type="url"
-                    className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                     value={formData.linkedinProfile}
                     onChange={(e) => handleInputChange(e, 'linkedinProfile')}
                     placeholder="linkedin.com/in/johndoe"
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <i className="fas fa-align-left mr-2 text-primary"></i>Professional Summary
+                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                    <i className="fa-align-left mr-2 text-primary fas"></i>Professional Summary
                   </label>
                   <textarea
-                    className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all resize-none"
                     rows="4"
                     value={formData.professionalSummary}
                     onChange={(e) => handleInputChange(e, 'professionalSummary')}
@@ -321,14 +321,14 @@ const CreateCVPage = () => {
           >
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+                <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
                   Work Experience
                 </h2>
                 <p className="text-text-gray">Add your professional experience</p>
               </div>
               <button
                 onClick={addExperience}
-                className="py-2 px-4 bg-gradient-to-r from-primary to-secondary text-white rounded-lg cursor-pointer font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg flex items-center gap-2"
+                className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2 rounded-lg font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
                 <i className="fas fa-plus"></i>
                 Add Experience
@@ -340,30 +340,30 @@ const CreateCVPage = () => {
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-white/90 rounded-2xl p-6 border border-gray-100 shadow-lg"
+                  className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl"
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                        <i className="fas fa-building text-white"></i>
+                      <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
+                        <i className="text-white fas fa-building"></i>
                       </div>
                       <h3 className="font-bold text-lg">Experience {index + 1}</h3>
                     </div>
                     {formData.experiences.length > 1 && (
                       <button
                         onClick={() => removeExperience(index)}
-                        className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-all"
+                        className="hover:bg-red-50 p-2 rounded-lg text-red-500 hover:text-red-700 transition-all"
                       >
                         <i className="fas fa-trash"></i>
                       </button>
                     )}
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Job Title</label>
+                      <label className="block mb-2 font-medium text-gray-700 text-sm">Job Title</label>
                       <input
                         type="text"
-                        className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                         value={exp.jobTitle}
                         onChange={(e) => {
                           const newExperiences = [...formData.experiences];
@@ -374,10 +374,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Company</label>
+                      <label className="block mb-2 font-medium text-gray-700 text-sm">Company</label>
                       <input
                         type="text"
-                        className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                         value={exp.company}
                         onChange={(e) => {
                           const newExperiences = [...formData.experiences];
@@ -388,10 +388,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+                      <label className="block mb-2 font-medium text-gray-700 text-sm">Start Date</label>
                       <input
                         type="month"
-                        className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all"
                         value={exp.startDate}
                         onChange={(e) => {
                           const newExperiences = [...formData.experiences];
@@ -401,10 +401,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+                      <label className="block mb-2 font-medium text-gray-700 text-sm">End Date</label>
                       <input
                         type="month"
-                        className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all"
                         value={exp.endDate}
                         onChange={(e) => {
                           const newExperiences = [...formData.experiences];
@@ -418,7 +418,7 @@ const CreateCVPage = () => {
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
                           type="checkbox"
-                          className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                          className="border-gray-300 rounded focus:ring-primary w-4 h-4 text-primary"
                           checked={exp.currentlyWorking}
                           onChange={(e) => {
                             const newExperiences = [...formData.experiences];
@@ -426,13 +426,13 @@ const CreateCVPage = () => {
                             setFormData({ ...formData, experiences: newExperiences });
                           }}
                         />
-                        <span className="text-sm text-gray-700">I currently work here</span>
+                        <span className="text-gray-700 text-sm">I currently work here</span>
                       </label>
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                      <label className="block mb-2 font-medium text-gray-700 text-sm">Description</label>
                       <textarea
-                        className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all resize-none"
                         rows="3"
                         value={exp.description}
                         onChange={(e) => {
@@ -459,14 +459,14 @@ const CreateCVPage = () => {
           >
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+                <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
                   Education
                 </h2>
                 <p className="text-text-gray">Add your educational background</p>
               </div>
               <button
                 onClick={addEducation}
-                className="py-2 px-4 bg-gradient-to-r from-primary to-secondary text-white rounded-lg cursor-pointer font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg flex items-center gap-2"
+                className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2 rounded-lg font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
                 <i className="fas fa-plus"></i>
                 Add Education
@@ -478,30 +478,30 @@ const CreateCVPage = () => {
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-white/90 rounded-2xl p-6 border border-gray-100 shadow-lg"
+                  className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl"
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
-                        <i className="fas fa-graduation-cap text-white"></i>
+                      <div className="flex justify-center items-center bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg w-10 h-10">
+                        <i className="text-white fas fa-graduation-cap"></i>
                       </div>
                       <h3 className="font-bold text-lg">Education {index + 1}</h3>
                     </div>
                     {formData.education.length > 1 && (
                       <button
                         onClick={() => removeEducation(index)}
-                        className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-all"
+                        className="hover:bg-red-50 p-2 rounded-lg text-red-500 hover:text-red-700 transition-all"
                       >
                         <i className="fas fa-trash"></i>
                       </button>
                     )}
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Degree</label>
+                      <label className="block mb-2 font-medium text-gray-700 text-sm">Degree</label>
                       <input
                         type="text"
-                        className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                         value={edu.degree}
                         onChange={(e) => {
                           const newEducation = [...formData.education];
@@ -512,10 +512,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Institution</label>
+                      <label className="block mb-2 font-medium text-gray-700 text-sm">Institution</label>
                       <input
                         type="text"
-                        className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                         value={edu.institution}
                         onChange={(e) => {
                           const newEducation = [...formData.education];
@@ -526,10 +526,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                      <label className="block mb-2 font-medium text-gray-700 text-sm">Location</label>
                       <input
                         type="text"
-                        className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                         value={edu.location}
                         onChange={(e) => {
                           const newEducation = [...formData.education];
@@ -540,10 +540,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Graduation Year</label>
+                      <label className="block mb-2 font-medium text-gray-700 text-sm">Graduation Year</label>
                       <input
                         type="number"
-                        className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
                         value={edu.graduationYear}
                         onChange={(e) => {
                           const newEducation = [...formData.education];
@@ -568,37 +568,37 @@ const CreateCVPage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="mb-6">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
                 Skills & Expertise
               </h2>
               <p className="text-text-gray">Highlight your key skills and competencies</p>
             </div>
-            <div className="bg-white/90 rounded-2xl p-6 border border-gray-100 shadow-lg">
+            <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  <i className="fas fa-tools mr-2 text-primary"></i>Technical Skills
+                <label className="block mb-2 font-medium text-gray-700 text-sm">
+                  <i className="mr-2 text-primary fas fa-tools"></i>Technical Skills
                 </label>
                 <textarea
-                  className="w-full py-3 px-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                  className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all resize-none"
                   rows="4"
                   value={formData.skills}
                   onChange={(e) => handleInputChange(e, 'skills')}
                   placeholder="JavaScript, Python, React, Node.js, SQL, Git, AWS..."
                 />
-                <p className="text-text-gray text-sm mt-2">
-                  <i className="fas fa-info-circle mr-1"></i>
+                <p className="mt-2 text-text-gray text-sm">
+                  <i className="mr-1 fas fa-info-circle"></i>
                   Separate skills with commas for best formatting
                 </p>
               </div>
               
-              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-4 border border-primary/20">
+              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 border border-primary/20 rounded-xl">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center flex-shrink-0">
-                    <i className="fas fa-lightbulb text-white"></i>
+                  <div className="flex flex-shrink-0 justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
+                    <i className="text-white fas fa-lightbulb"></i>
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-800 mb-1">Pro Tips for Skills</h4>
-                    <ul className="text-sm text-text-gray space-y-1">
+                    <h4 className="mb-1 font-bold text-gray-800">Pro Tips for Skills</h4>
+                    <ul className="space-y-1 text-text-gray text-sm">
                       <li>• Include both technical and soft skills</li>
                       <li>• Match skills with the job description you're targeting</li>
                       <li>• Order skills by proficiency level</li>
@@ -619,55 +619,55 @@ const CreateCVPage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="mb-6">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
                 Preview & Download
               </h2>
               <p className="text-text-gray">Review your CV before downloading</p>
             </div>
             
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="gap-6 grid lg:grid-cols-2">
               {/* Preview Card */}
-              <div className="bg-white/90 rounded-2xl p-6 border border-gray-100 shadow-lg">
+              <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                    <i className="fas fa-eye text-white"></i>
+                  <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
+                    <i className="text-white fas fa-eye"></i>
                   </div>
                   <h3 className="font-bold text-lg">CV Summary</h3>
                 </div>
                 
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <i className="fas fa-user text-primary"></i>
+                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                    <i className="text-primary fas fa-user"></i>
                     <div>
-                      <p className="text-sm text-text-gray">Name</p>
+                      <p className="text-text-gray text-sm">Name</p>
                       <p className="font-medium">{formData.fullName || 'Not provided'}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <i className="fas fa-briefcase text-primary"></i>
+                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                    <i className="text-primary fas fa-briefcase"></i>
                     <div>
-                      <p className="text-sm text-text-gray">Job Title</p>
+                      <p className="text-text-gray text-sm">Job Title</p>
                       <p className="font-medium">{formData.jobTitle || 'Not provided'}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <i className="fas fa-envelope text-primary"></i>
+                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                    <i className="text-primary fas fa-envelope"></i>
                     <div>
-                      <p className="text-sm text-text-gray">Email</p>
+                      <p className="text-text-gray text-sm">Email</p>
                       <p className="font-medium">{formData.email || 'Not provided'}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <i className="fas fa-building text-primary"></i>
+                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                    <i className="text-primary fas fa-building"></i>
                     <div>
-                      <p className="text-sm text-text-gray">Experience</p>
+                      <p className="text-text-gray text-sm">Experience</p>
                       <p className="font-medium">{formData.experiences.length} position(s)</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <i className="fas fa-graduation-cap text-primary"></i>
+                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                    <i className="text-primary fas fa-graduation-cap"></i>
                     <div>
-                      <p className="text-sm text-text-gray">Education</p>
+                      <p className="text-text-gray text-sm">Education</p>
                       <p className="font-medium">{formData.education.length} degree(s)</p>
                     </div>
                   </div>
@@ -675,10 +675,10 @@ const CreateCVPage = () => {
               </div>
 
               {/* Download Options */}
-              <div className="bg-white/90 rounded-2xl p-6 border border-gray-100 shadow-lg">
+              <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
-                    <i className="fas fa-download text-white"></i>
+                  <div className="flex justify-center items-center bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg w-10 h-10">
+                    <i className="text-white fas fa-download"></i>
                   </div>
                   <h3 className="font-bold text-lg">Download Options</h3>
                 </div>
@@ -687,7 +687,7 @@ const CreateCVPage = () => {
                   <button
                     onClick={handleGenerateCV}
                     disabled={isGenerating}
-                    className="w-full py-4 px-6 bg-gradient-to-r from-primary to-secondary text-white rounded-xl cursor-pointer font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex justify-center items-center gap-3 bg-gradient-to-r from-primary to-secondary disabled:opacity-50 hover:shadow-lg px-6 py-4 rounded-xl w-full font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer disabled:cursor-not-allowed"
                   >
                     {isGenerating ? (
                       <>
@@ -704,19 +704,19 @@ const CreateCVPage = () => {
                   
                   <button
                     onClick={() => showNotification('Word document download coming soon!')}
-                    className="w-full py-4 px-6 bg-white border-2 border-primary text-primary rounded-xl cursor-pointer font-bold transition-all duration-300 hover:bg-primary/5 flex items-center justify-center gap-3"
+                    className="flex justify-center items-center gap-3 bg-white hover:bg-primary/5 px-6 py-4 border-2 border-primary rounded-xl w-full font-bold text-primary transition-all duration-300 cursor-pointer"
                   >
                     <i className="fas fa-file-word"></i>
                     Download as Word
                   </button>
                 </div>
 
-                <div className="mt-6 p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border border-yellow-200">
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 mt-6 p-4 border border-yellow-200 rounded-xl">
                   <div className="flex items-start gap-3">
-                    <i className="fas fa-star text-yellow-500 mt-1"></i>
+                    <i className="mt-1 text-yellow-500 fas fa-star"></i>
                     <div>
-                      <h4 className="font-bold text-gray-800 mb-1">Pro Tip</h4>
-                      <p className="text-sm text-text-gray">
+                      <h4 className="mb-1 font-bold text-gray-800">Pro Tip</h4>
+                      <p className="text-text-gray text-sm">
                         Always save your CV in PDF format to preserve formatting across different devices and systems.
                       </p>
                     </div>
@@ -733,32 +733,32 @@ const CreateCVPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-light-bg">
-      <div className="flex-1 flex flex-col">
+    <div className="flex bg-light-bg min-h-screen">
+      <div className="flex flex-col flex-1">
         {/* Header */}
-        <div className="bg-white/95 backdrop-blur-lg p-6 flex items-center gap-6 border-b border-gray-200">
+        <div className="flex items-center gap-6 bg-white/95 backdrop-blur-lg p-6 border-gray-200 border-b">
           <button
             onClick={toggleSidebar}
             className="lg:hidden bg-none border-none text-text-gray"
           >
             <i className="fas fa-bars"></i>
           </button>
-          <div className="flex-1 relative max-w-md">
-            <i className="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-text-gray"></i>
+          <div className="relative flex-1 max-w-md">
+            <i className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2 fas fa-search"></i>
             <input
               placeholder="Search..."
-              className="w-full py-3 pl-11 pr-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray"
+              className="bg-white/70 py-3 pr-4 pl-11 border border-gray-200 rounded-lg w-full placeholder-text-gray text-text-dark"
             />
           </div>
           <div className="flex items-center gap-4">
-            <button className="relative bg-none border-none text-2xl cursor-pointer text-text-gray">
+            <button className="relative bg-none border-none text-text-gray text-2xl cursor-pointer">
               <i className="fas fa-bell"></i>
             </button>
             <button className="bg-none border-none">
               <img
                 src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
                 alt="Profile"
-                className="w-9 h-9 rounded-full"
+                className="rounded-full w-9 h-9"
               />
             </button>
           </div>
@@ -767,9 +767,9 @@ const CreateCVPage = () => {
         {/* Main Content */}
         <div className="flex-1 p-6 overflow-y-auto">
           {/* Page Header */}
-          <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-6 mb-6 flex justify-between items-center gap-4 border border-gray-100 shadow-lg">
+          <div className="flex justify-between items-center gap-4 bg-white/90 shadow-lg backdrop-blur-lg mb-6 p-6 border border-gray-100 rounded-2xl">
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+              <h1 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-3xl">
                 Create Your Professional CV
               </h1>
               <p className="text-text-gray">
@@ -777,13 +777,13 @@ const CreateCVPage = () => {
               </p>
             </div>
             <div className="hidden md:flex items-center gap-2 text-text-gray">
-              <i className="fas fa-file-alt text-2xl text-primary"></i>
+              <i className="text-primary text-2xl fas fa-file-alt"></i>
             </div>
           </div>
 
           {/* Progress Steps */}
-          <div className="bg-white/90 rounded-2xl p-4 mb-6 border border-gray-100 shadow-lg overflow-x-auto">
-            <div className="flex items-center justify-between min-w-max">
+          <div className="bg-white/90 shadow-lg mb-6 p-4 border border-gray-100 rounded-2xl overflow-x-auto">
+            <div className="flex justify-between items-center min-w-max">
               {steps.map((step, index) => (
                 <React.Fragment key={step.id}>
                   <div
@@ -811,7 +811,7 @@ const CreateCVPage = () => {
                         <i className={`fas ${step.icon}`}></i>
                       )}
                     </div>
-                    <span className="text-sm font-medium whitespace-nowrap">{step.name}</span>
+                    <span className="font-medium text-sm whitespace-nowrap">{step.name}</span>
                   </div>
                   {index < steps.length - 1 && (
                     <div
@@ -841,23 +841,23 @@ const CreateCVPage = () => {
                   : 'bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:-translate-y-0.5'
               }`}
             >
-              <i className="fas fa-arrow-left"></i>
+              <i className="fa-arrow-left fas"></i>
               Previous
             </button>
             
             {currentStep < 6 ? (
               <button
                 onClick={nextStep}
-                className="py-3 px-6 bg-gradient-to-r from-primary to-secondary text-white rounded-xl cursor-pointer font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg flex items-center gap-2"
+                className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-6 py-3 rounded-xl font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
                 Next
-                <i className="fas fa-arrow-right"></i>
+                <i className="fa-arrow-right fas"></i>
               </button>
             ) : (
               <button
                 onClick={handleGenerateCV}
                 disabled={isGenerating}
-                className="py-3 px-6 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl cursor-pointer font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg flex items-center gap-2 disabled:opacity-50"
+                className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 disabled:opacity-50 hover:shadow-lg px-6 py-3 rounded-xl font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
                 {isGenerating ? (
                   <>

@@ -45,7 +45,7 @@ const OldHomePageContent = () => {
           <h1 className="hero-title">
             <span className="title-line">Master Your Next Interview</span>
           </h1>
-          <p className="hero-description">Practice with AI-generated questions, get real-time feedback, and track your progress.<br />ConfidenSee helps you build confidence for your dream job interview.</p>
+          <p className="hero-description">Practice with AI-generated questions, get real-time feedback, and track your progress.<br />CareerEdge helps you build confidence for your dream job interview.</p>
           <div className="hero-actions">
             <a href="reg.html" className="btn-hero">
               <span>Start Practicing Free</span>
@@ -195,7 +195,7 @@ const OldHomePageContent = () => {
       <section id="testimonials" className="testimonials-section">
         <div className="section-header">
           <h2>What Our Users Say</h2>
-          <p>Hear from professionals who landed their dream jobs with ConfidenSee</p>
+          <p>Hear from professionals who landed their dream jobs with CareerEdge</p>
         </div>
         <div className="testimonials-grid">
           <div className="testimonial-card">
@@ -206,7 +206,7 @@ const OldHomePageContent = () => {
               <i className="fas fa-star"></i>
               <i className="fas fa-star"></i>
             </div>
-            <p className="testimonial-text">"ConfidenSee completely transformed my interview preparation. The AI feedback was incredibly accurate and helped me identify my weak spots. I landed my dream job at Google thanks to this platform!"</p>
+            <p className="testimonial-text">"CareerEdge completely transformed my interview preparation. The AI feedback was incredibly accurate and helped me identify my weak spots. I landed my dream job at Google thanks to this platform!"</p>
             <div className="testimonial-author">
               <div className="author-avatar">U1</div>
               <div className="author-info">
@@ -240,7 +240,7 @@ const OldHomePageContent = () => {
               <i className="fas fa-star"></i>
               <i className="fas fa-star"></i>
             </div>
-            <p className="testimonial-text">"As someone who struggled with interview anxiety, ConfidenSee gave me the practice and confidence I needed. The performance analytics helped me track my progress. Highly recommend to anyone job hunting!"</p>
+            <p className="testimonial-text">"As someone who struggled with interview anxiety, CareerEdge gave me the practice and confidence I needed. The performance analytics helped me track my progress. Highly recommend to anyone job hunting!"</p>
             <div className="testimonial-author">
               <div className="author-avatar">U3</div>
               <div className="author-info">
@@ -328,7 +328,7 @@ const OldHomePageContent = () => {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="logo">
-              <span>ConfidenSee</span>
+              <span>CareerEdge</span>
             </div>
             <p>Master your interview skills with AI-powered practice and feedback.</p>
             <div className="social-links">
@@ -363,7 +363,7 @@ const OldHomePageContent = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; ConfidenSee. All rights reserved.</p>
+          <p>&copy; CareerEdge. All rights reserved.</p>
         </div>
       </footer>
     </>

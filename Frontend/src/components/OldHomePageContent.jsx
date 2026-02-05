@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaMicrophone, FaChartLine, FaRobot, FaBrain, FaChartBar, FaBullseye, FaUsers, FaStar, FaCheck, FaTwitter, FaLinkedinIn, FaInstagram, FaFacebookF } from 'react-icons/fa';
 
 const OldHomePageContent = () => {
   return (
@@ -57,19 +58,19 @@ const OldHomePageContent = () => {
         <div className="hero-visual">
           <div className="floating-card card-1">
             <div className="card-content">
-              <i className="fas fa-microphone"></i>
+              <FaMicrophone />
               <h4>Voice Analysis</h4>
             </div>
           </div>
           <div className="floating-card card-2">
             <div className="card-content">
-              <i className="fas fa-chart-line"></i>
+              <FaChartLine />
               <h4>Performance Metrics</h4>
             </div>
           </div>
           <div className="floating-card card-3">
             <div className="card-content">
-              <i className="fas fa-robot"></i>
+              <FaRobot />
               <h4>AI Feedback</h4>
             </div>
           </div>
@@ -114,7 +115,7 @@ const OldHomePageContent = () => {
             <div className="card-inner">
               <div className="card-front">
                 <div className="card-icon">
-                  <i className="fas fa-brain"></i>
+                  <FaBrain />
                 </div>
                 <h3>AI-Powered Questions</h3>
               </div>
@@ -127,7 +128,7 @@ const OldHomePageContent = () => {
             <div className="card-inner">
               <div className="card-front">
                 <div className="card-icon">
-                  <i className="fas fa-microphone"></i>
+                  <FaMicrophone />
                 </div>
                 <h3>Voice + Text Mode</h3>
               </div>
@@ -140,7 +141,7 @@ const OldHomePageContent = () => {
             <div className="card-inner">
               <div className="card-front">
                 <div className="card-icon">
-                  <i className="fas fa-chart-bar"></i>
+                  <FaChartBar />
                 </div>
                 <h3>Performance Analytics</h3>
               </div>
@@ -153,7 +154,7 @@ const OldHomePageContent = () => {
             <div className="card-inner">
               <div className="card-front">
                 <div className="card-icon">
-                  <i className="fas fa-bullseye"></i>
+                  <FaBullseye />
                 </div>
                 <h3>Position-Specific Training</h3>
               </div>
@@ -166,7 +167,7 @@ const OldHomePageContent = () => {
             <div className="card-inner">
               <div className="card-front">
                 <div className="card-icon">
-                  <i className="fas fa-users"></i>
+                  <FaUsers />
                 </div>
                 <h3>Real-time Feedback</h3>
               </div>
@@ -179,7 +180,7 @@ const OldHomePageContent = () => {
             <div className="card-inner">
               <div className="card-front">
                 <div className="card-icon">
-                  <i className="fas fa-brain"></i>
+                  <FaBrain />
                 </div>
                 <h3>Progress Tracking</h3>
               </div>
@@ -200,11 +201,11 @@ const OldHomePageContent = () => {
         <div className="testimonials-grid">
           <div className="testimonial-card">
             <div className="stars">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
             </div>
             <p className="testimonial-text">"CareerEdge completely transformed my interview preparation. The AI feedback was incredibly accurate and helped me identify my weak spots. I landed my dream job at Google thanks to this platform!"</p>
             <div className="testimonial-author">
@@ -217,11 +218,11 @@ const OldHomePageContent = () => {
           </div>
           <div className="testimonial-card">
             <div className="stars">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
             </div>
             <p className="testimonial-text">"The personalized questions and real-time feedback were game-changers. I went from nervous and unprepared to confident and ready. I aced 3 interviews in a row and got multiple offers!"</p>
             <div className="testimonial-author">
@@ -234,11 +235,11 @@ const OldHomePageContent = () => {
           </div>
           <div className="testimonial-card">
             <div className="stars">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
             </div>
             <p className="testimonial-text">"As someone who struggled with interview anxiety, CareerEdge gave me the practice and confidence I needed. The performance analytics helped me track my progress. Highly recommend to anyone job hunting!"</p>
             <div className="testimonial-author">
@@ -266,13 +267,13 @@ const OldHomePageContent = () => {
               <p className="price-desc">Perfect for getting started</p>
             </div>
             <ul className="features-list">
-              <li><i className="fas fa-check"></i> 10 hours of interview practice</li>
-              <li><i className="fas fa-check"></i> AI generated questions</li>
-              <li><i className="fas fa-check"></i> Basic AI feedback and scoring</li>
-              <li><i className="fas fa-check"></i> Voice + text hybrid mode</li>
-              <li><i className="fas fa-check"></i> Basic performance tracking</li>
-              <li><i className="fas fa-check"></i> Use anytime within 30 days</li>
-              <li><i className="fas fa-check"></i> Email support</li>
+              <li><FaCheck /> 10 hours of interview practice</li>
+              <li><FaCheck /> AI generated questions</li>
+              <li><FaCheck /> Basic AI feedback and scoring</li>
+              <li><FaCheck /> Voice + text hybrid mode</li>
+              <li><FaCheck /> Basic performance tracking</li>
+              <li><FaCheck /> Use anytime within 30 days</li>
+              <li><FaCheck /> Email support</li>
             </ul>
             <a href="#" className="btn-pricing">Get Started</a>
             <div className="card-hover"></div>
@@ -285,15 +286,15 @@ const OldHomePageContent = () => {
               <p className="price-desc">Ideal for serious candidates</p>
             </div>
             <ul className="features-list">
-              <li><i className="fas fa-check"></i> 20 hours of interview practice</li>
-              <li><i className="fas fa-check"></i> AI generated questions</li>
-              <li><i className="fas fa-check"></i> Advanced AI feedback with insights</li>
-              <li><i className="fas fa-check"></i> Voice + text hybrid mode</li>
-              <li><i className="fas fa-check"></i> Detailed performance analytics</li>
-              <li><i className="fas fa-check"></i> Progress tracking & recommendations</li>
-              <li><i className="fas fa-check"></i> Use anytime within 30 days</li>
-              <li><i className="fas fa-check"></i> Priority email support</li>
-              <li><i className="fas fa-check"></i> Offline simulation mode</li>
+              <li><FaCheck /> 20 hours of interview practice</li>
+              <li><FaCheck /> AI generated questions</li>
+              <li><FaCheck /> Advanced AI feedback with insights</li>
+              <li><FaCheck /> Voice + text hybrid mode</li>
+              <li><FaCheck /> Detailed performance analytics</li>
+              <li><FaCheck /> Progress tracking & recommendations</li>
+              <li><FaCheck /> Use anytime within 30 days</li>
+              <li><FaCheck /> Priority email support</li>
+              <li><FaCheck /> Offline simulation mode</li>
             </ul>
             <a href="#" className="btn-pricing">Get Started</a>
             <div className="card-hover"></div>
@@ -305,17 +306,17 @@ const OldHomePageContent = () => {
               <p className="price-desc">For comprehensive preparation</p>
             </div>
             <ul className="features-list">
-              <li><i className="fas fa-check"></i> 30 hours of interview practice</li>
-              <li><i className="fas fa-check"></i> AI generated questions</li>
-              <li><i className="fas fa-check"></i> Advanced AI with personalized learning</li>
-              <li><i className="fas fa-check"></i> Voice + text hybrid mode</li>
-              <li><i className="fas fa-check"></i> Comprehensive analytics dashboard</li>
-              <li><i className="fas fa-check"></i> Custom question creation</li>
-              <li><i className="fas fa-check"></i> Use anytime within 30 days</li>
-              <li><i className="fas fa-check"></i> Priority support + live chat</li>
-              <li><i className="fas fa-check"></i> Offline simulation mode</li>
-              <li><i className="fas fa-check"></i> Interview scheduling assistant</li>
-              <li><i className="fas fa-check"></i> Export performance reports</li>
+              <li><FaCheck /> 30 hours of interview practice</li>
+              <li><FaCheck /> AI generated questions</li>
+              <li><FaCheck /> Advanced AI with personalized learning</li>
+              <li><FaCheck /> Voice + text hybrid mode</li>
+              <li><FaCheck /> Comprehensive analytics dashboard</li>
+              <li><FaCheck /> Custom question creation</li>
+              <li><FaCheck /> Use anytime within 30 days</li>
+              <li><FaCheck /> Priority support + live chat</li>
+              <li><FaCheck /> Offline simulation mode</li>
+              <li><FaCheck /> Interview scheduling assistant</li>
+              <li><FaCheck /> Export performance reports</li>
             </ul>
             <a href="#" className="btn-pricing">Get Started</a>
             <div className="card-hover"></div>
@@ -332,10 +333,10 @@ const OldHomePageContent = () => {
             </div>
             <p>Master your interview skills with AI-powered practice and feedback.</p>
             <div className="social-links">
-              <a href="#"><i className="fab fa-twitter"></i></a>
-              <a href="#"><i className="fab fa-linkedin-in"></i></a>
-              <a href="#"><i className="fab fa-instagram"></i></a>
-              <a href="#"><i className="fab fa-facebook-f"></i></a>
+              <a href="#"><FaTwitter /></a>
+              <a href="#"><FaLinkedinIn /></a>
+              <a href="#"><FaInstagram /></a>
+              <a href="#"><FaFacebookF /></a>
             </div>
           </div>
           <div className="footer-links">

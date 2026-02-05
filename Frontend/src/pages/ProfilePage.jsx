@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaBars, FaSearch, FaCamera, FaSyncAlt, FaSave, FaLock, FaShieldAlt, FaEnvelope, FaBell, FaSignOutAlt, FaTrashAlt, FaDownload } from 'react-icons/fa';
 import Sidebar from "../components/Sidebar";
 
 const ProfilePage = () => {
@@ -77,10 +78,10 @@ const ProfilePage = () => {
             onClick={toggleSidebar}
             className="lg:hidden bg-none border-none text-text-gray"
           >
-            <i className="fas fa-bars"></i>
+            <FaBars />
           </button>
           <div className="relative flex-1 max-w-md">
-            <i className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2 fas fa-search"></i>
+            <FaSearch className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2" />
             <input
               placeholder="Search..."
               className="bg-white/70 py-3 pr-4 pl-11 border border-gray-200 rounded-lg w-full placeholder-text-gray text-text-dark"
@@ -111,10 +112,10 @@ const ProfilePage = () => {
                   />
                   <div className="flex flex-col gap-2">
                     <button className="inline-flex items-center gap-2 bg-transparent hover:bg-primary/10 px-4 py-2.5 border border-primary rounded-lg text-primary transition-all hover:-translate-y-0.5 duration-300 cursor-pointer">
-                      <i className="fas fa-camera"></i> Change Avatar
+                      <FaCamera /> Change Avatar
                     </button>
                     <button className="inline-flex items-center gap-2 bg-transparent hover:bg-primary/10 px-4 py-2.5 border border-primary rounded-lg text-primary transition-all hover:-translate-y-0.5 duration-300 cursor-pointer">
-                      <i className="fas fa-sync-alt"></i> Regenerate
+                      <FaSyncAlt /> Regenerate
                     </button>
                   </div>
                 </div>
@@ -171,7 +172,7 @@ const ProfilePage = () => {
                     onClick={handleSaveChanges}
                     className="inline-flex relative items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2.5 border-none rounded-lg overflow-hidden font-semibold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
                   >
-                    <i className="fas fa-save"></i> Save Changes
+                    <FaSave /> Save Changes
                   </button>
                 </div>
               </div>
@@ -183,7 +184,7 @@ const ProfilePage = () => {
                 <div className="group flex justify-between items-center hover:bg-gray-50 mb-3 p-3 rounded-lg transition-all duration-300">
                   <div className="flex items-center gap-3">
                     <div className="bg-primary/10 group-hover:bg-primary/20 p-2 rounded-full group-hover:scale-110 transition-all duration-300">
-                      <i className="text-primary fas fa-lock"></i>
+                      <FaLock className="text-primary" />
                     </div>
                     <div>
                       <span className="font-medium">Make profile private</span>
@@ -210,7 +211,7 @@ const ProfilePage = () => {
                 <div className="group flex justify-between items-center hover:bg-gray-50 mb-3 p-3 rounded-lg transition-all duration-300">
                   <div className="flex items-center gap-3">
                     <div className="bg-primary/10 group-hover:bg-primary/20 p-2 rounded-full group-hover:scale-110 transition-all duration-300">
-                      <i className="text-primary fas fa-shield-alt"></i>
+                      <FaShieldAlt className="text-primary" />
                     </div>
                     <div>
                       <span className="font-medium">Two-factor authentication</span>
@@ -237,7 +238,7 @@ const ProfilePage = () => {
                 <div className="group flex justify-between items-center hover:bg-gray-50 mb-3 p-3 rounded-lg transition-all duration-300">
                   <div className="flex items-center gap-3">
                     <div className="bg-primary/10 group-hover:bg-primary/20 p-2 rounded-full group-hover:scale-110 transition-all duration-300">
-                      <i className="text-primary fas fa-envelope"></i>
+                      <FaEnvelope className="text-primary" />
                     </div>
                     <div>
                       <span className="font-medium">Email notifications</span>
@@ -264,7 +265,7 @@ const ProfilePage = () => {
                 <div className="group flex justify-between items-center hover:bg-gray-50 mb-3 p-3 rounded-lg transition-all duration-300">
                   <div className="flex items-center gap-3">
                     <div className="bg-primary/10 group-hover:bg-primary/20 p-2 rounded-full group-hover:scale-110 transition-all duration-300">
-                      <i className="text-primary fas fa-bell"></i>
+                      <FaBell className="text-primary" />
                     </div>
                     <div>
                       <span className="font-medium">Practice reminders</span>
@@ -293,7 +294,7 @@ const ProfilePage = () => {
                     onClick={handleUpdatePrivacy}
                     className="inline-flex items-center gap-2 bg-transparent hover:bg-primary/10 px-4 py-2.5 border border-primary rounded-lg text-primary transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
                   >
-                    <i className="fas fa-shield-alt"></i> Update Privacy
+                    <FaShieldAlt /> Update Privacy
                   </button>
                 </div>
               </div>
@@ -345,13 +346,13 @@ const ProfilePage = () => {
                     onClick={() => handleDangerAction("Sign Out")}
                     className="inline-flex items-center gap-2 bg-transparent hover:bg-red-100 px-4 py-2.5 border border-danger rounded-lg text-danger transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
                   >
-                    <i className="fas fa-sign-out-alt"></i> Sign Out
+                    <FaSignOutAlt /> Sign Out
                   </button>
                   <button
                     onClick={() => handleDangerAction("Delete Account")}
                     className="inline-flex items-center gap-2 bg-transparent hover:bg-red-100 px-4 py-2.5 border border-danger rounded-lg text-danger transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
                   >
-                    <i className="fas fa-trash-alt"></i> Delete Account
+                    <FaTrashAlt /> Delete Account
                   </button>
                 </div>
               </div>
@@ -365,7 +366,7 @@ const ProfilePage = () => {
                 </p>
                 <div className="mt-4 text-right">
                   <button className="inline-flex items-center gap-2 bg-transparent hover:bg-primary/10 px-4 py-2.5 border border-primary rounded-lg text-primary transition-all hover:-translate-y-0.5 duration-300 cursor-pointer">
-                    <i className="fas fa-download"></i> Export Data
+                    <FaDownload /> Export Data
                   </button>
                 </div>
               </div>

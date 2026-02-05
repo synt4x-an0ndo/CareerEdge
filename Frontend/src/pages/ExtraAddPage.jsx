@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { FaBell, FaArrowRight } from 'react-icons/fa';
 
 const ExtraAddPage = () => {
     const navigate = useNavigate();
@@ -262,102 +263,110 @@ Requirements:
     const charsRemaining = maxChars - (customDescription?.length || 0);
 
     return (
-        <div className="flex bg-[#0a1628] min-h-screen">
-            <div className="flex flex-col flex-1">
-                {/* Header */}
-                <div className="flex items-center gap-6 bg-[#0d1e36]/95 backdrop-blur-lg p-6 border-[#1e3a5f] border-b">
-                    <div className="relative flex-1 max-w-md">
-                        <i className="top-1/2 left-3.5 absolute text-gray-400 -translate-y-1/2 fas fa-search"></i>
-                        <input
-                            placeholder="Search..."
-                            className="bg-[#0a1628] py-3 pr-4 pl-11 border border-[#1e3a5f] rounded-lg w-full text-white placeholder-gray-500"
-                        />
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <button className="relative bg-none border-none text-gray-400 hover:text-white text-2xl transition-colors cursor-pointer">
-                            <i className="fas fa-bell"></i>
-                        </button>
-                        <button className="bg-none border-none">
-                            <img
-                                src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
-                                alt="Profile"
-                                className="rounded-full w-9 h-9"
-                            />
-                        </button>
-                    </div>
+        <div className="flex flex-col bg-[#0a1628] min-h-screen">
+            {/* Fixed Header */}
+            <header className="top-0 z-40 sticky flex justify-between items-center bg-[#0d1e36]/95 backdrop-blur-lg px-6 py-4 border-[#1e3a5f] border-b">
+                <div className="flex items-center gap-4">
+                    <button
+                        onClick={() => navigate('/dashboard')}
+                        className="flex items-center gap-2 hover:bg-[#1e3a5f]/50 px-4 py-2 rounded-lg text-gray-400 hover:text-white transition-all"
+                    >
+                        <span className="text-xl">←</span>
+                        <span className="hidden sm:inline font-medium text-sm">Dashboard</span>
+                    </button>
                 </div>
 
-                {/* Main Content */}
-                <div className="flex-1 p-6 overflow-y-auto">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="mx-auto max-w-4xl"
-                    >
-                        {/* Page Title */}
-                        <div className="mb-8 text-center">
-                            <h1 className="mb-2 font-bold text-white text-3xl">
-                                Select a job description
-                            </h1>
-                        </div>
+                <h1 className="font-semibold text-white text-lg tracking-wide">
+                    New Practice Session
+                </h1>
 
-                        {/* Job Role Pills */}
-                        <div className="flex flex-wrap justify-center gap-3 mb-8">
-                            {jobRoles.map((job) => (
-                                <motion.button
-                                    key={job.id}
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    onClick={() => handleJobSelect(job.name)}
-                                    className={`px-5 py-2.5 rounded-full border font-medium transition-all duration-300 ${selectedJob === job.name
-                                            ? 'bg-amber-400/90 text-gray-900 border-amber-400 shadow-lg shadow-amber-400/20'
-                                            : 'bg-[#1e3a5f] text-gray-300 border-[#2d4a6f] hover:border-amber-400/50 hover:text-white'
-                                        }`}
-                                >
-                                    {job.name}
-                                </motion.button>
-                            ))}
-                        </div>
+                <div className="flex items-center gap-4">
+                    <button className="relative text-gray-400 hover:text-white text-xl transition-colors">
+                        <FaBell />
+                    </button>
+                    <button>
+                        <img
+                            src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
+                            alt="Profile"
+                            className="rounded-full w-9 h-9"
+                        />
+                    </button>
+                </div>
+            </header>
 
-                        {/* Job Description Textarea */}
-                        <div className="bg-[#0d1e36] shadow-lg mb-6 p-6 border border-[#1e3a5f] rounded-2xl">
-                            <div className="relative">
-                                <textarea
-                                    className="bg-[#0a1628] p-4 border border-[#1e3a5f] focus:border-amber-400/50 rounded-xl focus:ring-2 focus:ring-amber-400/20 w-full min-h-[250px] text-gray-300 transition-all resize-y placeholder-gray-500"
-                                    value={isCustom ? customDescription : (jobDescriptions[selectedJob] || '')}
-                                    onChange={handleDescriptionChange}
-                                    placeholder={isCustom ? "Enter your custom job description here..." : ""}
-                                    readOnly={!isCustom}
-                                />
-                                <div className="right-4 bottom-4 absolute text-amber-400/70 text-sm">
-                                    {charsRemaining} chars left
-                                </div>
+            {/* Main Content */}
+            <main className="flex-1 px-4 md:px-6 py-8 overflow-y-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="mx-auto max-w-4xl"
+                >
+                    {/* Page Title - Prominent and Visible */}
+                    <div className="mb-10 text-center">
+                        <h2 className="bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400 mb-3 font-bold text-transparent text-3xl md:text-4xl">
+                            Select a job description
+                        </h2>
+                        <p className="text-gray-400 text-base">
+                            Choose a role or enter your own job description
+                        </p>
+                    </div>
+
+                    {/* Job Role Pills */}
+                    <div className="flex flex-wrap justify-center gap-3 mb-10">
+                        {jobRoles.map((job) => (
+                            <motion.button
+                                key={job.id}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                onClick={() => handleJobSelect(job.name)}
+                                className={`px-5 py-2.5 rounded-full border font-medium transition-all duration-300 ${selectedJob === job.name
+                                    ? 'bg-amber-400 text-gray-900 border-amber-400 shadow-lg shadow-amber-400/20'
+                                    : 'bg-[#1e3a5f]/80 text-gray-200 border-[#2d4a6f] hover:border-amber-400/50 hover:bg-[#1e3a5f]'
+                                    }`}
+                            >
+                                {job.name}
+                            </motion.button>
+                        ))}
+                    </div>
+
+                    {/* Job Description Card */}
+                    <div className="bg-gradient-to-b from-[#0d1e36] to-[#0a1628] shadow-xl backdrop-blur-sm mb-8 p-6 border border-[#1e3a5f] rounded-2xl">
+                        <div className="relative">
+                            <textarea
+                                className="bg-[#0a1628]/80 p-5 border border-[#1e3a5f] focus:border-amber-400/50 rounded-xl outline-none focus:ring-2 focus:ring-amber-400/20 w-full min-h-[280px] text-gray-200 text-base leading-relaxed transition-all resize-y placeholder-gray-500"
+                                value={isCustom ? customDescription : (jobDescriptions[selectedJob] || '')}
+                                onChange={handleDescriptionChange}
+                                placeholder={isCustom ? "Enter your custom job description here..." : ""}
+                                readOnly={!isCustom}
+                            />
+                            <div className="right-4 bottom-4 absolute font-medium text-amber-400/70 text-sm">
+                                {charsRemaining} chars left
                             </div>
                         </div>
+                    </div>
 
-                        {/* Generate Questions Button */}
-                        <div className="flex flex-col items-center gap-4">
-                            <motion.button
-                                whileHover={{ scale: 1.02, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={handleGenerateQuestions}
-                                className="flex items-center gap-3 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl px-8 py-4 rounded-full font-bold text-white text-lg transition-all duration-300"
-                            >
-                                Generate Questions
-                                <i className="fa-arrow-right fas"></i>
-                            </motion.button>
+                    {/* Generate Questions Button */}
+                    <div className="flex flex-col items-center gap-5">
+                        <motion.button
+                            whileHover={{ scale: 1.03, y: -2 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={handleGenerateQuestions}
+                            className="flex items-center gap-3 bg-gradient-to-r from-amber-500 hover:from-amber-400 to-orange-500 hover:to-orange-400 shadow-amber-500/25 shadow-lg hover:shadow-amber-500/40 px-10 py-4 rounded-full font-bold text-white text-lg transition-all duration-300"
+                        >
+                            Generate Questions
+                            <FaArrowRight />
+                        </motion.button>
 
-                            <button
-                                onClick={() => navigate('/dashboard')}
-                                className="font-medium text-gray-400 hover:text-white underline underline-offset-2 transition-colors duration-200"
-                            >
-                                Skip For Now
-                            </button>
-                        </div>
-                    </motion.div>
-                </div>
-            </div>
+                        <button
+                            onClick={() => navigate('/dashboard')}
+                            className="font-medium text-gray-500 hover:text-gray-300 transition-colors duration-200"
+                        >
+                            Skip For Now
+                        </button>
+                    </div>
+                </motion.div>
+            </main>
         </div>
     );
 };

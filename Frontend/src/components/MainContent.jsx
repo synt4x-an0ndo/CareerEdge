@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { FaBars, FaSearch, FaCheckCircle, FaSpinner, FaCheck, FaSave } from 'react-icons/fa';
 
 const MainContent = ({ openSidebar }) => {
   const [selectedInterfaceLang, setSelectedInterfaceLang] = useState('en');
@@ -33,10 +34,10 @@ const MainContent = ({ openSidebar }) => {
     <div className="flex flex-col flex-1 bg-light-bg">
       <div className="flex items-center gap-6 bg-white/95 backdrop-blur-lg p-6 border-gray-200 border-b">
         <button onClick={openSidebar} className="lg:hidden bg-none border-none text-text-gray">
-          <i className="fas fa-bars"></i>
+          <FaBars />
         </button>
         <div className="relative flex-1 max-w-md">
-          <i className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2 fas fa-search"></i>
+          <FaSearch className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2" />
           <input placeholder="Search..." className="bg-white/70 py-3 pr-4 pl-11 border border-gray-200 rounded-lg w-full placeholder-text-gray text-text-dark" />
         </div>
       </div>
@@ -74,7 +75,7 @@ const MainContent = ({ openSidebar }) => {
                   <div className="mb-1 font-semibold">{lang.name}</div>
                   <div className="text-text-gray text-sm">{lang.details}</div>
                 </div>
-                <div className={`text-success text-lg transition-all duration-300 ${selectedInterfaceLang === lang.lang ? 'opacity-100' : 'opacity-0'}`}><i className="fas fa-check-circle"></i></div>
+                <div className={`text-success text-lg transition-all duration-300 ${selectedInterfaceLang === lang.lang ? 'opacity-100' : 'opacity-0'}`}><FaCheckCircle /></div>
               </div>
             ))}
           </div>
@@ -91,7 +92,7 @@ const MainContent = ({ openSidebar }) => {
                   <div className="mb-1 font-semibold">{lang.name}</div>
                   <div className="text-text-gray text-sm">{lang.details}</div>
                 </div>
-                <div className={`text-success text-lg transition-all duration-300 ${selectedAILang === lang.lang ? 'opacity-100' : 'opacity-0'}`}><i className="fas fa-check-circle"></i></div>
+                <div className={`text-success text-lg transition-all duration-300 ${selectedAILang === lang.lang ? 'opacity-100' : 'opacity-0'}`}><FaCheckCircle /></div>
               </div>
             ))}
           </div>
@@ -128,11 +129,11 @@ const MainContent = ({ openSidebar }) => {
         <div className="mt-4 text-right">
           <button onClick={handleSave} disabled={isSaving || isSaved} className={`py-3 px-5 bg-gradient-to-r from-primary to-secondary border-none rounded-lg text-white font-semibold cursor-pointer inline-flex gap-2 items-center transition-all duration-300 relative overflow-hidden hover:-translate-y-0.5 hover:shadow-lg ${isSaving || isSaved ? 'bg-gradient-to-r from-success to-primary' : ''}`}>
             {isSaving ? (
-              <><i className="fas fa-spinner fa-spin"></i> Saving...</>
+              <><FaSpinner className="animate-spin" /> Saving...</>
             ) : isSaved ? (
-              <><i className="fas fa-check"></i> Settings Saved!</>
+              <><FaCheck /> Settings Saved!</>
             ) : (
-              <><i className="fas fa-save"></i> Save Language Settings</>
+              <><FaSave /> Save Language Settings</>
             )}
           </button>
         </div>

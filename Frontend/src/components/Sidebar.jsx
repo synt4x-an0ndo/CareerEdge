@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaHome, FaUser, FaFileAlt, FaChevronLeft, FaChevronRight, FaPlus } from "react-icons/fa";
 
 const Sidebar = ({ activePage }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const navItems = [
-    { to: "/dashboard", icon: "fa-home", label: "Dashboard" },
-    { to: "/profile", icon: "fa-user", label: "Profile" },
-    { to: "/create-cv", icon: "fa-file-alt", label: "Create CV" },
+    { to: "/dashboard", icon: FaHome, label: "Dashboard" },
+    { to: "/profile", icon: FaUser, label: "Profile" },
+    { to: "/create-cv", icon: FaFileAlt, label: "Create CV" },
   ];
 
   const toggleSidebar = () => {
@@ -22,7 +23,7 @@ const Sidebar = ({ activePage }) => {
         onClick={toggleSidebar}
         aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
-        <i className={`fas ${isCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'}`}></i>
+        {isCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
       </button>
 
       <div className="sidebar-header">
@@ -65,7 +66,7 @@ const Sidebar = ({ activePage }) => {
             className={`new-session-btn ${isCollapsed ? 'collapsed' : ''}`}
             title={isCollapsed ? "New Practice Session" : ""}
           >
-            <i className="fas fa-plus"></i>
+            <FaPlus />
             {!isCollapsed && <span>New Practice Session</span>}
           </Link>
         </li>
@@ -76,7 +77,7 @@ const Sidebar = ({ activePage }) => {
             className={`nav-item ${activePage === item.label ? "active" : ""}`}
           >
             <Link to={item.to} title={isCollapsed ? item.label : ""}>
-              <i className={`fas ${item.icon}`}></i>
+              <item.icon />
               {!isCollapsed && <span>{item.label}</span>}
             </Link>
           </li>

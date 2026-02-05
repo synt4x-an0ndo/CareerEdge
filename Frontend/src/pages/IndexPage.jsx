@@ -22,7 +22,6 @@ const IndexPage = () => {
         isScrolled={isScrolled}
       />
       <Hero />
-      <RateSection />
       <Features />
       <Testimonials />
       <Footer />
@@ -96,7 +95,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
         >
           <a
             href="/dashboard"
-            className="flex items-center gap-2 font-medium text-gray-400 hover:text-white text-sm transition-all duration-300"
+            className="flex items-center gap-2 font-medium text-amber-400 hover:text-amber-300 text-sm transition-all duration-300"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -371,41 +370,6 @@ const Hero = () => {
         />
         <p className="text-gray-600 text-sm">Scroll to explore</p>
       </motion.div>
-    </section>
-  );
-};
-
-const RateSection = () => {
-  const stats = [
-    { value: "10,000+", label: "Auto-crafted interview questions" },
-    { value: "95%", label: "User-reported improvement" },
-    { value: "5,000+", label: "Happy users and counting…" },
-  ];
-
-  return (
-    <section className="bg-white px-6 sm:px-8 py-20">
-      <div className="mx-auto max-w-7xl">
-        <div className="gap-8 grid md:grid-cols-3">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-gradient-to-br from-gray-50 to-gray-100 shadow-lg hover:shadow-2xl p-8 rounded-2xl text-center transition-all duration-300"
-            >
-              <div className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-3 font-black text-transparent text-4xl sm:text-5xl">
-                {stat.value}
-              </div>
-              <div className="text-gray-600 text-sm sm:text-base">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 };

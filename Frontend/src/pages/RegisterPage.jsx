@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { FaArrowLeft, FaGoogle, FaLinkedin, FaEnvelope, FaLock, FaEye, FaEyeSlash, FaUser, FaBriefcase, FaCodeBranch } from 'react-icons/fa';
 
 const RegisterPage = () => {
   const [activeTab, setActiveTab] = useState('login');
@@ -64,7 +65,7 @@ const RegisterPage = () => {
 
       <nav className="w-full max-w-md flex justify-between items-center mb-8">
         <a href="index.html" className="flex items-center text-text-gray text-sm font-medium transition-all duration-300 hover:text-primary">
-          <i className="fa-arrow-left fas mr-2 text-xs"></i>
+          <FaArrowLeft className="mr-2 text-xs" />
           <span>Back to Home</span>
         </a>
         <div className="flex items-center font-bold text-lg text-primary cursor-pointer">
@@ -86,8 +87,8 @@ const RegisterPage = () => {
             </div>
 
             <div className="flex flex-col gap-3 mb-6">
-              <button type="button" className="flex items-center justify-center py-3 rounded-full border border-gray-200 bg-white/70 text-text-dark font-medium cursor-pointer transition-all duration-300 hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg"><i className="fab fa-google mr-2 text-lg"></i> <span>Continue with Google</span></button>
-              <button type="button" className="flex items-center justify-center py-3 rounded-full border border-gray-200 bg-white/70 text-text-dark font-medium cursor-pointer transition-all duration-300 hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg"><i className="fab fa-linkedin mr-2 text-lg"></i> <span>Continue with LinkedIn</span></button>
+              <button type="button" className="flex items-center justify-center py-3 rounded-full border border-gray-200 bg-white/70 text-text-dark font-medium cursor-pointer transition-all duration-300 hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg"><FaGoogle className="mr-2 text-lg" /> <span>Continue with Google</span></button>
+              <button type="button" className="flex items-center justify-center py-3 rounded-full border border-gray-200 bg-white/70 text-text-dark font-medium cursor-pointer transition-all duration-300 hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg"><FaLinkedin className="mr-2 text-lg" /> <span>Continue with LinkedIn</span></button>
             </div>
 
             <div className="relative text-center my-6 flex items-center gap-4 justify-center before:content-[''] before:flex-1 before:h-px before:bg-gradient-to-r before:from-transparent before:via-primary/30 before:to-transparent after:content-[''] after:flex-1 after:h-px after:bg-gradient-to-l after:from-transparent after:via-primary/30 after:to-transparent">
@@ -97,7 +98,7 @@ const RegisterPage = () => {
             <div className="mb-6">
               <label htmlFor="login-email" className="block mb-2 font-medium text-sm text-text-dark">Email address</label>
               <div className="relative">
-                <i className="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-text-gray"></i>
+                <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-text-gray" />
                 <input type="email" id="login-email" placeholder="Enter your email" required value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} className="w-full py-3 pl-10 pr-4 rounded-lg border border-gray-200 bg-white/70 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
               </div>
             </div>
@@ -105,10 +106,10 @@ const RegisterPage = () => {
             <div className="mb-6">
               <label htmlFor="login-password" className="block mb-2 font-medium text-sm text-text-dark">Password</label>
               <div className="relative">
-                <i className="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-gray"></i>
+                <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-text-gray" />
                 <input type={showLoginPassword ? 'text' : 'password'} id="login-password" placeholder="Enter your password" required value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} className="w-full py-3 pl-10 pr-4 rounded-lg border border-gray-200 bg-white/70 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
                 <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 bg-none border-none text-text-gray cursor-pointer" onClick={() => setShowLoginPassword(!showLoginPassword)}>
-                  <i className={`fas ${showLoginPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                  {showLoginPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
               <a href="#" className="inline-block mt-2 text-sm text-primary no-underline">Forgot password?</a>
@@ -130,8 +131,8 @@ const RegisterPage = () => {
             </div>
 
             <div className="flex flex-col gap-3 mb-6">
-              <button type="button" className="flex items-center justify-center py-3 rounded-full border border-gray-200 bg-white/70 text-text-dark font-medium cursor-pointer transition-all duration-300 hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg"><i className="fab fa-google mr-2 text-lg"></i> <span>Continue with Google</span></button>
-              <button type="button" className="flex items-center justify-center py-3 rounded-full border border-gray-200 bg-white/70 text-text-dark font-medium cursor-pointer transition-all duration-300 hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg"><i className="fab fa-linkedin mr-2 text-lg"></i> <span>Continue with LinkedIn</span></button>
+              <button type="button" className="flex items-center justify-center py-3 rounded-full border border-gray-200 bg-white/70 text-text-dark font-medium cursor-pointer transition-all duration-300 hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg"><FaGoogle className="mr-2 text-lg" /> <span>Continue with Google</span></button>
+              <button type="button" className="flex items-center justify-center py-3 rounded-full border border-gray-200 bg-white/70 text-text-dark font-medium cursor-pointer transition-all duration-300 hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg"><FaLinkedin className="mr-2 text-lg" /> <span>Continue with LinkedIn</span></button>
             </div>
 
             <div className="relative text-center my-6 flex items-center gap-4 justify-center before:content-[''] before:flex-1 before:h-px before:bg-gradient-to-r before:from-transparent before:via-primary/30 before:to-transparent after:content-[''] after:flex-1 after:h-px after:bg-gradient-to-l after:from-transparent after:via-primary/30 after:to-transparent">
@@ -142,7 +143,7 @@ const RegisterPage = () => {
               <div className="mb-6 flex-1">
                 <label htmlFor="first-name" className="block mb-2 font-medium text-sm text-text-dark">First name</label>
                 <div className="relative">
-                  <i className="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-text-gray"></i>
+                  <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-text-gray" />
                   <input type="text" id="first-name" placeholder="First name" required value={registerFirstName} onChange={(e) => setRegisterFirstName(e.target.value)} className="w-full py-3 pl-10 pr-4 rounded-lg border border-gray-200 bg-white/70 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
                 </div>
               </div>
@@ -150,7 +151,7 @@ const RegisterPage = () => {
               <div className="mb-6 flex-1">
                 <label htmlFor="last-name" className="block mb-2 font-medium text-sm text-text-dark">Last name</label>
                 <div className="relative">
-                  <i className="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-text-gray"></i>
+                  <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-text-gray" />
                   <input type="text" id="last-name" placeholder="Last name" required value={registerLastName} onChange={(e) => setRegisterLastName(e.target.value)} className="w-full py-3 pl-10 pr-4 rounded-lg border border-gray-200 bg-white/70 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
                 </div>
               </div>
@@ -159,7 +160,7 @@ const RegisterPage = () => {
             <div className="mb-6">
               <label htmlFor="register-email" className="block mb-2 font-medium text-sm text-text-dark">Email address</label>
               <div className="relative">
-                <i className="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-text-gray"></i>
+                <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-text-gray" />
                 <input type="email" id="register-email" placeholder="Enter your email" required value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} className="w-full py-3 pl-10 pr-4 rounded-lg border border-gray-200 bg-white/70 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
               </div>
             </div>
@@ -167,7 +168,7 @@ const RegisterPage = () => {
             <div className="mb-6">
               <label htmlFor="experience" className="block mb-2 font-medium text-sm text-text-dark">Experience Level</label>
               <div className="relative">
-                <i className="fas fa-briefcase absolute left-4 top-1/2 -translate-y-1/2 text-text-gray"></i>
+                <FaBriefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-text-gray" />
                 <select id="experience" required value={experienceLevel} onChange={(e) => setExperienceLevel(e.target.value)} className="w-full py-3 pl-10 pr-4 rounded-lg border border-gray-200 bg-white/70 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer">
                   <option value="">Select Experience Level</option>
                   <option value="entry-level">Entry Level</option>
@@ -181,7 +182,7 @@ const RegisterPage = () => {
             <div className="mb-6">
               <label htmlFor="domain" className="block mb-2 font-medium text-sm text-text-dark">Domain</label>
               <div className="relative">
-                <i className="fas fa-code-branch absolute left-4 top-1/2 -translate-y-1/2 text-text-gray"></i>
+                <FaCodeBranch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-gray" />
                 <select id="domain" required value={domain} onChange={(e) => setDomain(e.target.value)} className="w-full py-3 pl-10 pr-4 rounded-lg border border-gray-200 bg-white/70 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer">
                   <option value="">Select Domain</option>
                   <option value="software-engineering">Software Engineering</option>
@@ -198,10 +199,10 @@ const RegisterPage = () => {
             <div className="mb-6">
               <label htmlFor="register-password" className="block mb-2 font-medium text-sm text-text-dark">Password</label>
               <div className="relative">
-                <i className="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-gray"></i>
+                <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-text-gray" />
                 <input type={showRegisterPassword ? 'text' : 'password'} id="register-password" placeholder="Create a password" required value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} className="w-full py-3 pl-10 pr-4 rounded-lg border border-gray-200 bg-white/70 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
                 <button type="button" className="absolute right-4 top-1/2 -translate-y-1/2 bg-none border-none text-text-gray cursor-pointer" onClick={() => setShowRegisterPassword(!showRegisterPassword)}>
-                  <i className={`fas ${showRegisterPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                  {showRegisterPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
               <div className="mt-2">
@@ -215,7 +216,7 @@ const RegisterPage = () => {
             <div className="mb-6">
               <label htmlFor="confirm-password" className="block mb-2 font-medium text-sm text-text-dark">Confirm password</label>
               <div className="relative">
-                <i className="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-text-gray"></i>
+                <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-text-gray" />
                 <input type="password" id="confirm-password" placeholder="Confirm your password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="w-full py-3 pl-10 pr-4 rounded-lg border border-gray-200 bg-white/70 text-text-dark transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" />
               </div>
             </div>

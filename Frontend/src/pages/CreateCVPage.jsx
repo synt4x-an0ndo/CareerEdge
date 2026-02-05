@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { 
+  FaFileAlt, FaBriefcase, FaPalette, FaThLarge, FaUser, FaGraduationCap, 
+  FaTools, FaEye, FaCheckCircle, FaEnvelope, FaPhone, FaMapMarkerAlt, 
+  FaLinkedin, FaAlignLeft, FaPlus, FaBuilding, FaTrash, FaInfoCircle, 
+  FaLightbulb, FaDownload, FaSpinner, FaFilePdf, FaFileWord, FaStar, 
+  FaBars, FaSearch, FaBell, FaCheck, FaArrowLeft, FaArrowRight 
+} from 'react-icons/fa';
 
 const CreateCVPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -47,32 +54,32 @@ const CreateCVPage = () => {
       id: 'modern',
       name: 'Modern Professional',
       description: 'Clean and professional design with a modern layout',
-      icon: 'fa-file-alt',
+      icon: FaFileAlt,
       color: 'from-primary to-secondary'
     },
     {
       id: 'executive',
       name: 'Executive',
       description: 'Bold and authoritative design for leadership positions',
-      icon: 'fa-briefcase',
+      icon: FaBriefcase,
       color: 'from-purple-500 to-pink-500'
     },
     {
       id: 'creative',
       name: 'Creative',
       description: 'Modern two-column layout perfect for creative professionals',
-      icon: 'fa-palette',
+      icon: FaPalette,
       color: 'from-orange-500 to-red-500'
     }
   ];
 
   const steps = [
-    { id: 1, name: 'Template', icon: 'fa-th-large' },
-    { id: 2, name: 'Personal Info', icon: 'fa-user' },
-    { id: 3, name: 'Experience', icon: 'fa-briefcase' },
-    { id: 4, name: 'Education', icon: 'fa-graduation-cap' },
-    { id: 5, name: 'Skills', icon: 'fa-tools' },
-    { id: 6, name: 'Preview', icon: 'fa-eye' }
+    { id: 1, name: 'Template', icon: FaThLarge },
+    { id: 2, name: 'Personal Info', icon: FaUser },
+    { id: 3, name: 'Experience', icon: FaBriefcase },
+    { id: 4, name: 'Education', icon: FaGraduationCap },
+    { id: 5, name: 'Skills', icon: FaTools },
+    { id: 6, name: 'Preview', icon: FaEye }
   ];
 
   const handleInputChange = (e, field) => {
@@ -192,13 +199,13 @@ const CreateCVPage = () => {
                   onClick={() => setSelectedTemplate(template.id)}
                 >
                   <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${template.color} flex items-center justify-center mb-4`}>
-                    <i className={`fas ${template.icon} text-white text-2xl`}></i>
+                    <template.icon className="text-white text-2xl" />
                   </div>
                   <h3 className="mb-2 font-bold text-lg">{template.name}</h3>
                   <p className="text-text-gray text-sm">{template.description}</p>
                   {selectedTemplate === template.id && (
                     <div className="flex items-center mt-4 font-medium text-primary">
-                      <i className="mr-2 fas fa-check-circle"></i>
+                      <FaCheckCircle className="mr-2" />
                       Selected
                     </div>
                   )}
@@ -225,7 +232,7 @@ const CreateCVPage = () => {
               <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
                 <div>
                   <label className="block mb-2 font-medium text-gray-700 text-sm">
-                    <i className="mr-2 text-primary fas fa-user"></i>Full Name *
+                    <FaUser className="mr-2 text-primary" />Full Name *
                   </label>
                   <input
                     type="text"
@@ -237,7 +244,7 @@ const CreateCVPage = () => {
                 </div>
                 <div>
                   <label className="block mb-2 font-medium text-gray-700 text-sm">
-                    <i className="mr-2 text-primary fas fa-briefcase"></i>Job Title *
+                    <FaBriefcase className="mr-2 text-primary" />Job Title *
                   </label>
                   <input
                     type="text"
@@ -249,7 +256,7 @@ const CreateCVPage = () => {
                 </div>
                 <div>
                   <label className="block mb-2 font-medium text-gray-700 text-sm">
-                    <i className="mr-2 text-primary fas fa-envelope"></i>Email *
+                    <FaEnvelope className="mr-2 text-primary" />Email *
                   </label>
                   <input
                     type="email"
@@ -261,7 +268,7 @@ const CreateCVPage = () => {
                 </div>
                 <div>
                   <label className="block mb-2 font-medium text-gray-700 text-sm">
-                    <i className="mr-2 text-primary fas fa-phone"></i>Phone
+                    <FaPhone className="mr-2 text-primary" />Phone
                   </label>
                   <input
                     type="tel"
@@ -273,7 +280,7 @@ const CreateCVPage = () => {
                 </div>
                 <div>
                   <label className="block mb-2 font-medium text-gray-700 text-sm">
-                    <i className="mr-2 text-primary fas fa-map-marker-alt"></i>Location
+                    <FaMapMarkerAlt className="mr-2 text-primary" />Location
                   </label>
                   <input
                     type="text"
@@ -285,7 +292,7 @@ const CreateCVPage = () => {
                 </div>
                 <div>
                   <label className="block mb-2 font-medium text-gray-700 text-sm">
-                    <i className="mr-2 text-primary fab fa-linkedin"></i>LinkedIn Profile
+                    <FaLinkedin className="mr-2 text-primary" />LinkedIn Profile
                   </label>
                   <input
                     type="url"
@@ -297,7 +304,7 @@ const CreateCVPage = () => {
                 </div>
                 <div className="md:col-span-2">
                   <label className="block mb-2 font-medium text-gray-700 text-sm">
-                    <i className="fa-align-left mr-2 text-primary fas"></i>Professional Summary
+                    <FaAlignLeft className="mr-2 text-primary" />Professional Summary
                   </label>
                   <textarea
                     className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all resize-none"
@@ -330,7 +337,7 @@ const CreateCVPage = () => {
                 onClick={addExperience}
                 className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2 rounded-lg font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
-                <i className="fas fa-plus"></i>
+                <FaPlus />
                 Add Experience
               </button>
             </div>
@@ -345,7 +352,7 @@ const CreateCVPage = () => {
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
                       <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
-                        <i className="text-white fas fa-building"></i>
+                        <FaBuilding className="text-white" />
                       </div>
                       <h3 className="font-bold text-lg">Experience {index + 1}</h3>
                     </div>
@@ -354,7 +361,7 @@ const CreateCVPage = () => {
                         onClick={() => removeExperience(index)}
                         className="hover:bg-red-50 p-2 rounded-lg text-red-500 hover:text-red-700 transition-all"
                       >
-                        <i className="fas fa-trash"></i>
+                        <FaTrash />
                       </button>
                     )}
                   </div>
@@ -468,7 +475,7 @@ const CreateCVPage = () => {
                 onClick={addEducation}
                 className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2 rounded-lg font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
-                <i className="fas fa-plus"></i>
+                <FaPlus />
                 Add Education
               </button>
             </div>
@@ -483,7 +490,7 @@ const CreateCVPage = () => {
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
                       <div className="flex justify-center items-center bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg w-10 h-10">
-                        <i className="text-white fas fa-graduation-cap"></i>
+                        <FaGraduationCap className="text-white" />
                       </div>
                       <h3 className="font-bold text-lg">Education {index + 1}</h3>
                     </div>
@@ -492,7 +499,7 @@ const CreateCVPage = () => {
                         onClick={() => removeEducation(index)}
                         className="hover:bg-red-50 p-2 rounded-lg text-red-500 hover:text-red-700 transition-all"
                       >
-                        <i className="fas fa-trash"></i>
+                        <FaTrash />
                       </button>
                     )}
                   </div>
@@ -576,7 +583,7 @@ const CreateCVPage = () => {
             <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
               <div className="mb-6">
                 <label className="block mb-2 font-medium text-gray-700 text-sm">
-                  <i className="mr-2 text-primary fas fa-tools"></i>Technical Skills
+                  <FaTools className="mr-2 text-primary" />Technical Skills
                 </label>
                 <textarea
                   className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all resize-none"
@@ -586,7 +593,7 @@ const CreateCVPage = () => {
                   placeholder="JavaScript, Python, React, Node.js, SQL, Git, AWS..."
                 />
                 <p className="mt-2 text-text-gray text-sm">
-                  <i className="mr-1 fas fa-info-circle"></i>
+                  <FaInfoCircle className="mr-1" />
                   Separate skills with commas for best formatting
                 </p>
               </div>
@@ -594,7 +601,7 @@ const CreateCVPage = () => {
               <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 border border-primary/20 rounded-xl">
                 <div className="flex items-start gap-3">
                   <div className="flex flex-shrink-0 justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
-                    <i className="text-white fas fa-lightbulb"></i>
+                    <FaLightbulb className="text-white" />
                   </div>
                   <div>
                     <h4 className="mb-1 font-bold text-gray-800">Pro Tips for Skills</h4>
@@ -630,42 +637,42 @@ const CreateCVPage = () => {
               <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
-                    <i className="text-white fas fa-eye"></i>
+                    <FaEye className="text-white" />
                   </div>
                   <h3 className="font-bold text-lg">CV Summary</h3>
                 </div>
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
-                    <i className="text-primary fas fa-user"></i>
+                    <FaUser className="text-primary" />
                     <div>
                       <p className="text-text-gray text-sm">Name</p>
                       <p className="font-medium">{formData.fullName || 'Not provided'}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
-                    <i className="text-primary fas fa-briefcase"></i>
+                    <FaBriefcase className="text-primary" />
                     <div>
                       <p className="text-text-gray text-sm">Job Title</p>
                       <p className="font-medium">{formData.jobTitle || 'Not provided'}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
-                    <i className="text-primary fas fa-envelope"></i>
+                    <FaEnvelope className="text-primary" />
                     <div>
                       <p className="text-text-gray text-sm">Email</p>
                       <p className="font-medium">{formData.email || 'Not provided'}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
-                    <i className="text-primary fas fa-building"></i>
+                    <FaBuilding className="text-primary" />
                     <div>
                       <p className="text-text-gray text-sm">Experience</p>
                       <p className="font-medium">{formData.experiences.length} position(s)</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
-                    <i className="text-primary fas fa-graduation-cap"></i>
+                    <FaGraduationCap className="text-primary" />
                     <div>
                       <p className="text-text-gray text-sm">Education</p>
                       <p className="font-medium">{formData.education.length} degree(s)</p>
@@ -678,7 +685,7 @@ const CreateCVPage = () => {
               <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex justify-center items-center bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg w-10 h-10">
-                    <i className="text-white fas fa-download"></i>
+                    <FaDownload className="text-white" />
                   </div>
                   <h3 className="font-bold text-lg">Download Options</h3>
                 </div>
@@ -691,12 +698,12 @@ const CreateCVPage = () => {
                   >
                     {isGenerating ? (
                       <>
-                        <i className="fas fa-spinner fa-spin"></i>
+                        <FaSpinner className="animate-spin" />
                         Generating...
                       </>
                     ) : (
                       <>
-                        <i className="fas fa-file-pdf"></i>
+                        <FaFilePdf />
                         Download as PDF
                       </>
                     )}
@@ -706,14 +713,14 @@ const CreateCVPage = () => {
                     onClick={() => showNotification('Word document download coming soon!')}
                     className="flex justify-center items-center gap-3 bg-white hover:bg-primary/5 px-6 py-4 border-2 border-primary rounded-xl w-full font-bold text-primary transition-all duration-300 cursor-pointer"
                   >
-                    <i className="fas fa-file-word"></i>
+                    <FaFileWord />
                     Download as Word
                   </button>
                 </div>
 
                 <div className="bg-gradient-to-r from-yellow-50 to-orange-50 mt-6 p-4 border border-yellow-200 rounded-xl">
                   <div className="flex items-start gap-3">
-                    <i className="mt-1 text-yellow-500 fas fa-star"></i>
+                    <FaStar className="mt-1 text-yellow-500" />
                     <div>
                       <h4 className="mb-1 font-bold text-gray-800">Pro Tip</h4>
                       <p className="text-text-gray text-sm">
@@ -741,10 +748,10 @@ const CreateCVPage = () => {
             onClick={toggleSidebar}
             className="lg:hidden bg-none border-none text-text-gray"
           >
-            <i className="fas fa-bars"></i>
+            <FaBars />
           </button>
           <div className="relative flex-1 max-w-md">
-            <i className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2 fas fa-search"></i>
+            <FaSearch className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2" />
             <input
               placeholder="Search..."
               className="bg-white/70 py-3 pr-4 pl-11 border border-gray-200 rounded-lg w-full placeholder-text-gray text-text-dark"
@@ -752,7 +759,7 @@ const CreateCVPage = () => {
           </div>
           <div className="flex items-center gap-4">
             <button className="relative bg-none border-none text-text-gray text-2xl cursor-pointer">
-              <i className="fas fa-bell"></i>
+              <FaBell />
             </button>
             <button className="bg-none border-none">
               <img
@@ -777,7 +784,7 @@ const CreateCVPage = () => {
               </p>
             </div>
             <div className="hidden md:flex items-center gap-2 text-text-gray">
-              <i className="text-primary text-2xl fas fa-file-alt"></i>
+              <FaFileAlt className="text-primary text-2xl" />
             </div>
           </div>
 
@@ -806,9 +813,9 @@ const CreateCVPage = () => {
                       }`}
                     >
                       {currentStep > step.id ? (
-                        <i className="fas fa-check"></i>
+                        <FaCheck />
                       ) : (
-                        <i className={`fas ${step.icon}`}></i>
+                        <step.icon />
                       )}
                     </div>
                     <span className="font-medium text-sm whitespace-nowrap">{step.name}</span>
@@ -841,7 +848,7 @@ const CreateCVPage = () => {
                   : 'bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:-translate-y-0.5'
               }`}
             >
-              <i className="fa-arrow-left fas"></i>
+              <FaArrowLeft />
               Previous
             </button>
             
@@ -851,7 +858,7 @@ const CreateCVPage = () => {
                 className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-6 py-3 rounded-xl font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
                 Next
-                <i className="fa-arrow-right fas"></i>
+                <FaArrowRight />
               </button>
             ) : (
               <button
@@ -861,12 +868,12 @@ const CreateCVPage = () => {
               >
                 {isGenerating ? (
                   <>
-                    <i className="fas fa-spinner fa-spin"></i>
+                    <FaSpinner className="animate-spin" />
                     Generating...
                   </>
                 ) : (
                   <>
-                    <i className="fas fa-download"></i>
+                    <FaDownload />
                     Generate CV
                   </>
                 )}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { Link } from "react-router-dom";
 import { Bar, Pie } from "react-chartjs-2";
+import { FaBrain, FaBullseye, FaTrophy, FaClock, FaBell, FaBars, FaSearch } from "react-icons/fa";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -36,10 +37,10 @@ const DashboardPage = () => {
   };
 
   const stats = [
-    { icon: "fa-brain", value: "0", label: "Total Interviews" },
-    { icon: "fa-bullseye", value: "0/10", label: "Average Score" },
-    { icon: "fa-trophy", value: "0 Days", label: "Current Streak" },
-    { icon: "fa-clock", value: "0h", label: "Hours Remaining" },
+    { icon: FaBrain, value: "0", label: "Total Interviews" },
+    { icon: FaBullseye, value: "0/10", label: "Average Score" },
+    { icon: FaTrophy, value: "0 Days", label: "Current Streak" },
+    { icon: FaClock, value: "0h", label: "Hours Remaining" },
   ];
 
   const weeklyData = {
@@ -77,31 +78,31 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-light-bg">
+    <div className="flex bg-light-bg min-h-screen">
       {isModalOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
+          className="z-50 fixed inset-0 flex justify-center items-center bg-black/50"
           onClick={toggleModal}
         >
           <div
-            className="bg-white p-5 rounded-xl w-96 text-center relative shadow-lg"
+            className="relative bg-white shadow-lg p-5 rounded-xl w-96 text-center"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="absolute top-2.5 right-4 text-xl border-none bg-none cursor-pointer text-text-gray"
+              className="top-2.5 right-4 absolute bg-none border-none text-text-gray text-xl cursor-pointer"
               onClick={toggleModal}
             >
               &times;
             </button>
-            <div className="text-4xl mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent block">
-              <i className="fas fa-bell"></i>
+            <div className="block bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 text-transparent text-4xl">
+              <FaBell />
             </div>
-            <h2 className="text-2xl font-bold mb-2">Notifications</h2>
-            <p className="text-text-gray mb-4">
+            <h2 className="mb-2 font-bold text-2xl">Notifications</h2>
+            <p className="mb-4 text-text-gray">
               You do not have any notifications.
             </p>
             <button
-              className="py-2 px-4 bg-gradient-to-r from-primary to-secondary text-white rounded-md cursor-pointer font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+              className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2 rounded-md font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               onClick={toggleModal}
             >
               Close
@@ -110,42 +111,42 @@ const DashboardPage = () => {
         </div>
       )}
 
-      <div className="flex-1 flex flex-col">
-        <div className="bg-white/95 backdrop-blur-lg p-6 flex items-center gap-6 border-b border-gray-200">
+      <div className="flex flex-col flex-1">
+        <div className="flex items-center gap-6 bg-white/95 backdrop-blur-lg p-6 border-gray-200 border-b">
           <button
             onClick={toggleSidebar}
             className="lg:hidden bg-none border-none text-text-gray"
           >
-            <i className="fas fa-bars"></i>
+            <FaBars />
           </button>
-          <div className="flex-1 relative max-w-md">
-            <i className="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-text-gray"></i>
+          <div className="relative flex-1 max-w-md">
+            <FaSearch className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2" />
             <input
               placeholder="Search..."
-              className="w-full py-3 pl-11 pr-4 bg-white/70 border border-gray-200 rounded-lg text-text-dark placeholder-text-gray"
+              className="bg-white/70 py-3 pr-4 pl-11 border border-gray-200 rounded-lg w-full placeholder-text-gray text-text-dark"
             />
           </div>
           <div className="flex items-center gap-4">
             <button
-              className="relative bg-none border-none text-2xl cursor-pointer text-text-gray"
+              className="relative bg-none border-none text-text-gray text-2xl cursor-pointer"
               onClick={toggleModal}
             >
-              <i className="fas fa-bell"></i>
+              <FaBell />
             </button>
             <button className="bg-none border-none">
               <img
                 src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
                 alt="Profile"
-                className="w-9 h-9 rounded-full"
+                className="rounded-full w-9 h-9"
               />
             </button>
           </div>
         </div>
 
         <div className="flex-1 p-6 overflow-y-auto">
-          <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-6 mb-6 flex justify-between items-center gap-4 border border-gray-100 shadow-lg">
+          <div className="flex justify-between items-center gap-4 bg-white/90 shadow-lg backdrop-blur-lg mb-6 p-6 border border-gray-100 rounded-2xl">
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+              <h1 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-3xl">
                 Welcome back, User!
               </h1>
               <p className="text-text-gray">
@@ -155,17 +156,17 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div className="gap-4 grid sm:grid-cols-2 lg:grid-cols-4 mb-6">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="bg-white/90 p-5 rounded-2xl flex items-center gap-4 border border-gray-100 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="flex items-center gap-4 bg-white/90 shadow-lg hover:shadow-xl p-5 border border-gray-100 rounded-2xl transition-all hover:-translate-y-1 duration-300"
               >
-                <div className="text-2xl text-primary">
-                  <i className={`fas ${stat.icon}`}></i>
+                <div className="text-primary text-2xl">
+                  <stat.icon />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold">{stat.value}</h3>
+                  <h3 className="font-bold text-2xl">{stat.value}</h3>
                   <p className="text-text-gray text-sm">{stat.label}</p>
                 </div>
               </div>
@@ -175,7 +176,7 @@ const DashboardPage = () => {
           {/* Performance Analytics */}
           <div className="mb-6">
             <div>
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
                 Performance Analytics
               </h2>
               <p className="text-text-gray">
@@ -184,10 +185,10 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 mb-6">
+          <div className="gap-6 grid lg:grid-cols-2 mb-6">
             <div className="bg-white/90 shadow-lg hover:shadow-xl p-6 border border-gray-100 rounded-2xl transition-all hover:-translate-y-1 duration-300">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold text-transparent text-xl">
                   Weekly Performance
                 </h3>
               </div>
@@ -204,7 +205,7 @@ const DashboardPage = () => {
 
             <div className="bg-white/90 shadow-lg hover:shadow-xl p-6 border border-gray-100 rounded-2xl transition-all hover:-translate-y-1 duration-300">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold text-transparent text-xl">
                   Skill Distribution
                 </h3>
               </div>
@@ -239,14 +240,14 @@ const DashboardPage = () => {
           </div>
 
           {/* Recent Activity */}
-          <div className="bg-white/90 p-6 rounded-2xl mb-6 border border-gray-100 shadow-lg">
+          <div className="bg-white/90 shadow-lg mb-6 p-6 border border-gray-100 rounded-2xl">
             <div className="mb-4">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold text-transparent text-2xl">
                 Recent Activity
               </h2>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-white/70 p-5 rounded-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 hover:shadow-xl">
+            <div className="gap-4 grid md:grid-cols-2 lg:grid-cols-3">
+              <div className="bg-white/70 hover:shadow-xl p-5 border border-gray-100 rounded-xl transition-all hover:-translate-y-1 duration-300">
                 <div className="mb-2">
                   <h3 className="font-semibold">
                     No recent interview sessions

@@ -1,6 +1,139 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { FaExclamationCircle, FaArrowLeft, FaChevronLeft, FaChevronRight, FaMicrophone, FaStop, FaArrowRight, FaKeyboard } from 'react-icons/fa';
+
+// Styles object for the redesigned interview page
+const styles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        background: 'linear-gradient(180deg, #0a1628 0%, #0d1e36 50%, #0a1628 100%)',
+    },
+    header: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '16px 24px',
+        borderBottom: '1px solid rgba(30, 58, 95, 0.6)',
+        backgroundColor: 'rgba(13, 30, 54, 0.95)',
+        backdropFilter: 'blur(12px)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 40,
+    },
+    headerLeft: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '16px',
+        flex: 1,
+    },
+    headerCenter: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 2,
+    },
+    headerRight: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        gap: '12px',
+        flex: 1,
+    },
+    backButton: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '8px 16px',
+        borderRadius: '8px',
+        color: '#9ca3af',
+        fontSize: '14px',
+        fontWeight: '500',
+        transition: 'all 0.2s ease',
+        backgroundColor: 'transparent',
+        border: 'none',
+        cursor: 'pointer',
+    },
+    headerTitle: {
+        fontSize: '18px',
+        fontWeight: '600',
+        color: '#ffffff',
+        letterSpacing: '0.5px',
+    },
+    questionCard: {
+        maxWidth: '80%',
+        width: '100%',
+        margin: '0 auto',
+        padding: '32px 40px',
+        borderRadius: '20px',
+        background: 'linear-gradient(145deg, rgba(30, 58, 95, 0.4) 0%, rgba(13, 30, 54, 0.8) 100%)',
+        border: '1px solid rgba(59, 130, 246, 0.2)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+        backdropFilter: 'blur(16px)',
+    },
+    questionText: {
+        fontSize: '20px',
+        lineHeight: '1.7',
+        fontWeight: '500',
+        color: '#f8fafc',
+        textAlign: 'center',
+        marginBottom: '0',
+    },
+    timerContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '24px 0',
+    },
+    timerDisplay: {
+        fontSize: '56px',
+        fontWeight: '300',
+        letterSpacing: '2px',
+    },
+    timerLabel: {
+        fontSize: '13px',
+        color: '#64748b',
+        textTransform: 'uppercase',
+        letterSpacing: '1.5px',
+    },
+    recordButton: {
+        width: '80px',
+        height: '80px',
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        border: 'none',
+        transition: 'all 0.3s ease',
+    },
+    recordButtonIdle: {
+        background: 'linear-gradient(145deg, #3d1a2a 0%, #2a1219 100%)',
+        boxShadow: '0 4px 20px rgba(239, 68, 68, 0.2)',
+    },
+    recordButtonActive: {
+        background: 'linear-gradient(145deg, #ef4444 0%, #dc2626 100%)',
+        boxShadow: '0 4px 30px rgba(239, 68, 68, 0.5)',
+        animation: 'pulse 1.5s infinite',
+    },
+    typeAnswerButton: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '12px 24px',
+        borderRadius: '12px',
+        backgroundColor: 'rgba(251, 191, 36, 0.1)',
+        border: '1px solid rgba(251, 191, 36, 0.3)',
+        color: '#fbbf24',
+        fontSize: '14px',
+        fontWeight: '500',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+    },
+};
 
 const InterviewPage = () => {
     const navigate = useNavigate();
@@ -191,7 +324,48 @@ const InterviewPage = () => {
     const currentSampleResponses = sampleResponses[jobTitle] || sampleResponses['default'];
 
     return (
-        <div className="flex bg-[#0a1628] min-h-screen">
+        <div style={styles.container} className="interview-page">
+            {/* Custom CSS for animations */}
+            <style>{`
+                @keyframes pulse {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                }
+                @keyframes recording-pulse {
+                    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+                    50% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
+                }
+                .record-btn-active {
+                    animation: recording-pulse 1.5s infinite;
+                }
+                .back-btn:hover {
+                    background-color: rgba(30, 58, 95, 0.5);
+                    color: #ffffff;
+                }
+                .type-answer-btn:hover {
+                    background-color: rgba(251, 191, 36, 0.2);
+                    border-color: rgba(251, 191, 36, 0.5);
+                }
+                @media (max-width: 768px) {
+                    .question-card-responsive {
+                        max-width: 95% !important;
+                        padding: 24px 20px !important;
+                    }
+                    .question-text-responsive {
+                        font-size: 17px !important;
+                    }
+                    .timer-display-responsive {
+                        font-size: 44px !important;
+                    }
+                    .header-responsive {
+                        padding: 12px 16px !important;
+                    }
+                    .header-title-responsive {
+                        font-size: 15px !important;
+                    }
+                }
+            `}</style>
+
             {/* Back Confirmation Modal */}
             <AnimatePresence>
                 {showBackModal && (
@@ -206,30 +380,30 @@ const InterviewPage = () => {
                             initial={{ opacity: 0, scale: 0.95, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                            className="bg-white shadow-xl p-6 rounded-2xl w-full max-w-md"
+                            className="bg-[#0d1e36] shadow-2xl p-6 border border-[#1e3a5f] rounded-2xl w-full max-w-md"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex justify-center mb-4">
-                                <div className="flex justify-center items-center bg-red-50 rounded-full w-12 h-12">
-                                    <i className="text-red-400 text-xl fas fa-exclamation-circle"></i>
+                                <div className="flex justify-center items-center bg-red-500/10 rounded-full w-14 h-14">
+                                    <FaExclamationCircle className="text-red-400 text-2xl" />
                                 </div>
                             </div>
-                            <h3 className="mb-2 font-bold text-gray-800 text-xl text-center">
+                            <h3 className="mb-2 font-bold text-white text-xl text-center">
                                 Return to question generation
                             </h3>
-                            <p className="mb-6 text-gray-500 text-center">
+                            <p className="mb-6 text-gray-400 text-center">
                                 Are you sure you want to exit this interview and restart at the question generation step? You will not be able to continue the interview.
                             </p>
                             <div className="flex justify-center gap-4">
                                 <button
                                     onClick={cancelBack}
-                                    className="hover:bg-gray-50 px-6 py-2.5 border border-gray-300 rounded-full font-medium text-gray-700 transition-colors"
+                                    className="bg-[#1e3a5f]/50 hover:bg-[#1e3a5f] px-6 py-2.5 border border-[#1e3a5f] rounded-full font-medium text-gray-300 transition-colors"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={confirmBack}
-                                    className="bg-red-50 hover:bg-red-100 px-6 py-2.5 rounded-full font-medium text-red-500 transition-colors"
+                                    className="bg-red-500/20 hover:bg-red-500/30 px-6 py-2.5 border border-red-500/30 rounded-full font-medium text-red-400 transition-colors"
                                 >
                                     Confirm
                                 </button>
@@ -239,136 +413,185 @@ const InterviewPage = () => {
                 )}
             </AnimatePresence>
 
-            <div className="flex flex-col flex-1">
-                {/* Header */}
-                <div className="flex justify-between items-center bg-[#0d1e36]/95 backdrop-blur-lg p-4 border-[#1e3a5f] border-b">
+            {/* Fixed Header */}
+            <header style={styles.header} className="header-responsive">
+                {/* Left: Back Button */}
+                <div style={styles.headerLeft}>
                     <button
                         onClick={handleBack}
-                        className="flex items-center gap-2 font-medium text-gray-400 hover:text-white transition-colors"
+                        style={styles.backButton}
+                        className="back-btn"
                     >
-                        <i className="fa-arrow-left fas"></i>
-                        <span>Question Generation</span>
+                        <FaArrowLeft />
+                        <span className="hidden sm:inline">Back</span>
                     </button>
+                </div>
 
+                {/* Center: Static Title */}
+                <div style={styles.headerCenter}>
+                    <h1 style={styles.headerTitle} className="header-title-responsive">
+                        Question Generation
+                    </h1>
+                </div>
+
+                {/* Right: Navigation & End Button */}
+                <div style={styles.headerRight}>
                     <div className="flex items-center gap-2">
                         <button
                             onClick={handlePrevQuestion}
                             disabled={currentQuestion === 0}
-                            className="disabled:opacity-30 p-2 text-gray-500 hover:text-white transition-colors disabled:cursor-not-allowed"
+                            className="hover:bg-[#1e3a5f]/50 disabled:opacity-30 p-2 rounded-lg text-gray-400 hover:text-white transition-all disabled:cursor-not-allowed"
                         >
-                            <i className="fa-chevron-left fas"></i>
+                            <FaChevronLeft />
                         </button>
-                        <div className="bg-[#0a1628] px-5 py-2 border border-[#1e3a5f] rounded-full font-medium text-gray-300">
-                            Question {currentQuestion + 1}
+                        <div className="bg-[#0a1628] px-4 py-2 border border-[#1e3a5f] rounded-full font-medium text-gray-300 text-sm">
+                            {currentQuestion + 1} / {questions.length}
                         </div>
                         <button
                             onClick={handleNextQuestion}
                             disabled={currentQuestion === questions.length - 1}
-                            className="disabled:opacity-30 p-2 text-gray-500 hover:text-white transition-colors disabled:cursor-not-allowed"
+                            className="hover:bg-[#1e3a5f]/50 disabled:opacity-30 p-2 rounded-lg text-gray-400 hover:text-white transition-all disabled:cursor-not-allowed"
                         >
-                            <i className="fa-chevron-right fas"></i>
+                            <FaChevronRight />
                         </button>
                     </div>
-
                     <button
                         onClick={handleEndReview}
-                        className="bg-[#1e3a5f] hover:bg-[#2d4a6f] px-5 py-2 rounded-full font-medium text-gray-300 transition-colors"
+                        className="hidden sm:block bg-gradient-to-r from-amber-500/20 hover:from-amber-500/30 to-orange-500/20 hover:to-orange-500/30 ml-4 px-5 py-2 border border-amber-500/30 rounded-full font-medium text-amber-400 text-sm transition-all"
                     >
                         End & Review
                     </button>
                 </div>
+            </header>
 
-                {/* Main Content */}
-                <div className="flex-1 p-6 overflow-y-auto">
-                    <div className="mx-auto max-w-3xl">
-                        {/* Question Card */}
-                        <motion.div
-                            key={currentQuestion}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="bg-[#0d1e36] shadow-lg mb-6 p-8 border border-[#1e3a5f] rounded-2xl"
+            {/* Main Content Area */}
+            <main className="flex flex-col flex-1 px-4 md:px-6 py-8 overflow-y-auto">
+                <div className="flex flex-col gap-8 mx-auto w-full max-w-4xl">
+
+                    {/* Question Card - Dedicated Container */}
+                    <motion.div
+                        key={currentQuestion}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, ease: 'easeOut' }}
+                        style={styles.questionCard}
+                        className="question-card-responsive"
+                    >
+                        <p style={styles.questionText} className="question-text-responsive">
+                            {questions[currentQuestion]}
+                        </p>
+                    </motion.div>
+
+                    {/* Timer Section */}
+                    <div style={styles.timerContainer}>
+                        <div style={styles.timerDisplay} className="timer-display-responsive">
+                            <span className={isRecording ? 'text-amber-400' : 'text-gray-400'}>
+                                {formatTime(timeElapsed)}
+                            </span>
+                            <span className="text-gray-600"> / {formatTime(maxTime)}</span>
+                        </div>
+                        <span style={styles.timerLabel}>
+                            {isRecording ? 'Recording...' : 'Time Elapsed'}
+                        </span>
+                    </div>
+
+                    {/* Record Button */}
+                    <div className="flex justify-center">
+                        <motion.button
+                            whileHover={{ scale: 1.08 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={toggleRecording}
+                            style={{
+                                ...styles.recordButton,
+                                ...(isRecording ? styles.recordButtonActive : styles.recordButtonIdle),
+                            }}
+                            className={isRecording ? 'record-btn-active' : ''}
                         >
-                            {/* Question Text */}
-                            <h2 className="mb-8 font-bold text-white text-xl text-center leading-relaxed">
-                                {questions[currentQuestion]}
-                            </h2>
+                            {isRecording ? (
+                                <FaStop className="text-white text-2xl" />
+                            ) : (
+                                <FaMicrophone className="text-red-400 text-2xl" />
+                            )}
+                        </motion.button>
+                    </div>
 
-                            {/* Timer */}
-                            <div className="mb-6 text-center">
-                                <div className="font-light text-gray-500 text-5xl">
-                                    <span className={isRecording ? 'text-amber-400' : ''}>
-                                        {formatTime(timeElapsed)}
-                                    </span>
-                                    <span className="text-gray-600"> / {formatTime(maxTime)}</span>
-                                </div>
-                            </div>
+                    {/* Type Answer Section */}
+                    <div className="flex flex-col items-center gap-4">
+                        <button
+                            onClick={() => setShowTypeAnswer(!showTypeAnswer)}
+                            style={styles.typeAnswerButton}
+                            className="type-answer-btn"
+                        >
+                            <FaKeyboard />
+                            <span>{showTypeAnswer ? 'Hide keyboard' : 'Or type your answer'}</span>
+                        </button>
 
-                            {/* Microphone Button */}
-                            <div className="flex justify-center mb-6">
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onClick={toggleRecording}
-                                    className={`w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 ${isRecording
-                                            ? 'bg-red-500 text-white shadow-lg shadow-red-500/30'
-                                            : 'bg-[#3d1a2a] text-red-400 hover:bg-[#4d2a3a]'
-                                        }`}
+                        <AnimatePresence>
+                            {showTypeAnswer && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="w-full max-w-2xl"
                                 >
-                                    <i className={`fas ${isRecording ? 'fa-stop' : 'fa-microphone'} text-2xl`}></i>
-                                </motion.button>
-                            </div>
+                                    <textarea
+                                        value={typedAnswer}
+                                        onChange={(e) => setTypedAnswer(e.target.value)}
+                                        placeholder="Type your answer here..."
+                                        className="bg-[#0a1628]/80 p-5 border border-[#1e3a5f] focus:border-amber-400/50 rounded-xl outline-none focus:ring-2 focus:ring-amber-400/20 w-full min-h-[180px] text-gray-200 text-base leading-relaxed transition-all resize-none placeholder-gray-500"
+                                    />
+                                    <div className="flex justify-end mt-4">
+                                        <motion.button
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            onClick={handleSubmitTypedAnswer}
+                                            disabled={!typedAnswer.trim()}
+                                            className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 disabled:opacity-50 shadow-lg hover:shadow-amber-500/25 px-6 py-3 rounded-full font-medium text-white transition-all duration-300 disabled:cursor-not-allowed"
+                                        >
+                                            Submit Answer
+                                            <FaArrowRight />
+                                        </motion.button>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
 
-                            {/* Type Answer Link */}
-                            <div className="text-center">
-                                <button
-                                    onClick={() => setShowTypeAnswer(!showTypeAnswer)}
-                                    className="font-medium text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors"
-                                >
-                                    Or type your answer
-                                </button>
-                            </div>
+                    {/* Question Progress Dots */}
+                    <div className="flex justify-center gap-3 py-4">
+                        {questions.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => {
+                                    setCurrentQuestion(index);
+                                    setTimeElapsed(0);
+                                    setIsRecording(false);
+                                    setTypedAnswer(answers[index] || '');
+                                    setShowTypeAnswer(false);
+                                    setFeedbackOpen(false);
+                                    setSampleResponseOpen(false);
+                                }}
+                                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentQuestion
+                                    ? 'bg-amber-400 scale-150 shadow-lg shadow-amber-400/30'
+                                    : answers[index]
+                                        ? 'bg-green-400 hover:scale-125'
+                                        : 'bg-gray-600 hover:bg-gray-500 hover:scale-110'
+                                    }`}
+                                title={`Question ${index + 1}`}
+                            />
+                        ))}
+                    </div>
 
-                            {/* Type Answer Textarea */}
-                            <AnimatePresence>
-                                {showTypeAnswer && (
-                                    <motion.div
-                                        initial={{ opacity: 0, height: 0 }}
-                                        animate={{ opacity: 1, height: 'auto' }}
-                                        exit={{ opacity: 0, height: 0 }}
-                                        className="mt-6"
-                                    >
-                                        <textarea
-                                            value={typedAnswer}
-                                            onChange={(e) => setTypedAnswer(e.target.value)}
-                                            placeholder="Type your answer here..."
-                                            className="bg-[#0a1628] p-4 border border-[#1e3a5f] focus:border-amber-400/50 rounded-xl focus:ring-2 focus:ring-amber-400/20 w-full min-h-[150px] text-gray-300 transition-all resize-none placeholder-gray-500"
-                                        />
-                                        <div className="flex justify-end mt-4">
-                                            <motion.button
-                                                whileHover={{ scale: 1.02 }}
-                                                whileTap={{ scale: 0.98 }}
-                                                onClick={handleSubmitTypedAnswer}
-                                                disabled={!typedAnswer.trim()}
-                                                className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary disabled:opacity-50 shadow-lg hover:shadow-xl px-6 py-3 rounded-full font-medium text-white transition-all duration-300 disabled:cursor-not-allowed"
-                                            >
-                                                Submit Answer
-                                                <i className="fa-arrow-right fas"></i>
-                                            </motion.button>
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
-
+                    {/* Collapsible Sections - Feedback & Sample Response */}
+                    <div className="space-y-3 mt-4">
                         {/* Feedback Section */}
-                        <div className="bg-[#0d1e36] mb-4 border border-[#1e3a5f] rounded-xl overflow-hidden">
+                        <div className="bg-[#0d1e36]/80 backdrop-blur-sm border border-[#1e3a5f] rounded-xl overflow-hidden">
                             <button
                                 onClick={() => setFeedbackOpen(!feedbackOpen)}
-                                className="flex justify-between items-center hover:bg-[#1e3a5f]/30 px-6 py-4 w-full text-gray-400 transition-colors"
+                                className="flex justify-between items-center hover:bg-[#1e3a5f]/30 px-6 py-4 w-full text-gray-300 transition-colors"
                             >
                                 <span className="font-medium">Feedback</span>
-                                <i className={`fas fa-chevron-right transition-transform ${feedbackOpen ? 'rotate-90' : ''}`}></i>
+                                <FaChevronRight className={`transition-transform duration-200 ${feedbackOpen ? 'rotate-90' : ''}`} />
                             </button>
                             <AnimatePresence>
                                 {feedbackOpen && (
@@ -379,7 +602,7 @@ const InterviewPage = () => {
                                         className="border-[#1e3a5f] border-t"
                                     >
                                         <div className="p-6 text-gray-400">
-                                            <p className="text-sm italic">
+                                            <p className="text-sm italic leading-relaxed">
                                                 Complete your answer to receive AI-powered feedback on your response.
                                             </p>
                                         </div>
@@ -389,13 +612,13 @@ const InterviewPage = () => {
                         </div>
 
                         {/* Sample Response Section */}
-                        <div className="bg-[#0d1e36] border border-[#1e3a5f] rounded-xl overflow-hidden">
+                        <div className="bg-[#0d1e36]/80 backdrop-blur-sm border border-[#1e3a5f] rounded-xl overflow-hidden">
                             <button
                                 onClick={() => setSampleResponseOpen(!sampleResponseOpen)}
-                                className="flex justify-between items-center hover:bg-[#1e3a5f]/30 px-6 py-4 w-full text-gray-400 transition-colors"
+                                className="flex justify-between items-center hover:bg-[#1e3a5f]/30 px-6 py-4 w-full text-gray-300 transition-colors"
                             >
                                 <span className="font-medium">Sample Response</span>
-                                <i className={`fas fa-chevron-right transition-transform ${sampleResponseOpen ? 'rotate-90' : ''}`}></i>
+                                <FaChevronRight className={`transition-transform duration-200 ${sampleResponseOpen ? 'rotate-90' : ''}`} />
                             </button>
                             <AnimatePresence>
                                 {sampleResponseOpen && (
@@ -405,8 +628,8 @@ const InterviewPage = () => {
                                         exit={{ height: 0, opacity: 0 }}
                                         className="border-[#1e3a5f] border-t"
                                     >
-                                        <div className="p-6 text-gray-400">
-                                            <p className="leading-relaxed">
+                                        <div className="p-6 text-gray-300">
+                                            <p className="text-sm leading-relaxed">
                                                 {currentSampleResponses[currentQuestion] || currentSampleResponses[0]}
                                             </p>
                                         </div>
@@ -414,33 +637,19 @@ const InterviewPage = () => {
                                 )}
                             </AnimatePresence>
                         </div>
+                    </div>
 
-                        {/* Question Progress */}
-                        <div className="flex justify-center gap-2 mt-6">
-                            {questions.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => {
-                                        setCurrentQuestion(index);
-                                        setTimeElapsed(0);
-                                        setIsRecording(false);
-                                        setTypedAnswer(answers[index] || '');
-                                        setShowTypeAnswer(false);
-                                        setFeedbackOpen(false);
-                                        setSampleResponseOpen(false);
-                                    }}
-                                    className={`w-3 h-3 rounded-full transition-all ${index === currentQuestion
-                                            ? 'bg-amber-400 scale-125'
-                                            : answers[index]
-                                                ? 'bg-green-400'
-                                                : 'bg-gray-600 hover:bg-gray-500'
-                                        }`}
-                                />
-                            ))}
-                        </div>
+                    {/* Mobile End & Review Button */}
+                    <div className="sm:hidden flex justify-center mt-4">
+                        <button
+                            onClick={handleEndReview}
+                            className="bg-gradient-to-r from-amber-500/20 hover:from-amber-500/30 to-orange-500/20 hover:to-orange-500/30 px-6 py-3 border border-amber-500/30 rounded-full font-medium text-amber-400 transition-all"
+                        >
+                            End & Review
+                        </button>
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     );
 };

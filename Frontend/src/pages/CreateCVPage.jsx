@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  FaFileAlt, FaBriefcase, FaPalette, FaThLarge, FaUser, FaGraduationCap, 
-  FaTools, FaEye, FaCheckCircle, FaEnvelope, FaPhone, FaMapMarkerAlt, 
-  FaLinkedin, FaAlignLeft, FaPlus, FaBuilding, FaTrash, FaInfoCircle, 
-  FaLightbulb, FaDownload, FaSpinner, FaFilePdf, FaFileWord, FaStar, 
-  FaBars, FaSearch, FaBell, FaCheck, FaArrowLeft, FaArrowRight 
+import {
+  FaFileAlt, FaBriefcase, FaPalette, FaThLarge, FaUser, FaGraduationCap,
+  FaTools, FaEye, FaCheckCircle, FaEnvelope, FaPhone, FaMapMarkerAlt,
+  FaLinkedin, FaAlignLeft, FaPlus, FaBuilding, FaTrash, FaInfoCircle,
+  FaLightbulb, FaDownload, FaSpinner, FaFilePdf, FaFileWord, FaStar,
+  FaBars, FaSearch, FaBell, FaCheck, FaArrowLeft, FaArrowRight
 } from 'react-icons/fa';
 
 const CreateCVPage = () => {
@@ -191,11 +191,10 @@ const CreateCVPage = () => {
                   key={template.id}
                   whileHover={{ scale: 1.02, y: -5 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`bg-white/90 p-6 rounded-2xl border-2 cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl ${
-                    selectedTemplate === template.id
+                  className={`bg-white/90 p-6 rounded-2xl border-2 cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl ${selectedTemplate === template.id
                       ? 'border-primary ring-4 ring-primary/20'
                       : 'border-gray-100 hover:border-primary/50'
-                  }`}
+                    }`}
                   onClick={() => setSelectedTemplate(template.id)}
                 >
                   <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${template.color} flex items-center justify-center mb-4`}>
@@ -597,7 +596,7 @@ const CreateCVPage = () => {
                   Separate skills with commas for best formatting
                 </p>
               </div>
-              
+
               <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 border border-primary/20 rounded-xl">
                 <div className="flex items-start gap-3">
                   <div className="flex flex-shrink-0 justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
@@ -631,7 +630,7 @@ const CreateCVPage = () => {
               </h2>
               <p className="text-text-gray">Review your CV before downloading</p>
             </div>
-            
+
             <div className="gap-6 grid lg:grid-cols-2">
               {/* Preview Card */}
               <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
@@ -641,7 +640,7 @@ const CreateCVPage = () => {
                   </div>
                   <h3 className="font-bold text-lg">CV Summary</h3>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
                     <FaUser className="text-primary" />
@@ -689,7 +688,7 @@ const CreateCVPage = () => {
                   </div>
                   <h3 className="font-bold text-lg">Download Options</h3>
                 </div>
-                
+
                 <div className="space-y-4">
                   <button
                     onClick={handleGenerateCV}
@@ -708,7 +707,7 @@ const CreateCVPage = () => {
                       </>
                     )}
                   </button>
-                  
+
                   <button
                     onClick={() => showNotification('Word document download coming soon!')}
                     className="flex justify-center items-center gap-3 bg-white hover:bg-primary/5 px-6 py-4 border-2 border-primary rounded-xl w-full font-bold text-primary transition-all duration-300 cursor-pointer"
@@ -794,23 +793,21 @@ const CreateCVPage = () => {
               {steps.map((step, index) => (
                 <React.Fragment key={step.id}>
                   <div
-                    className={`flex flex-col items-center cursor-pointer transition-all ${
-                      currentStep === step.id
+                    className={`flex flex-col items-center cursor-pointer transition-all ${currentStep === step.id
                         ? 'text-primary'
                         : currentStep > step.id
-                        ? 'text-green-500'
-                        : 'text-gray-400'
-                    }`}
+                          ? 'text-green-500'
+                          : 'text-gray-400'
+                      }`}
                     onClick={() => setCurrentStep(step.id)}
                   >
                     <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all ${
-                        currentStep === step.id
+                      className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all ${currentStep === step.id
                           ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
                           : currentStep > step.id
-                          ? 'bg-green-500 text-white'
-                          : 'bg-gray-200 text-gray-500'
-                      }`}
+                            ? 'bg-green-500 text-white'
+                            : 'bg-gray-200 text-gray-500'
+                        }`}
                     >
                       {currentStep > step.id ? (
                         <FaCheck />
@@ -822,9 +819,8 @@ const CreateCVPage = () => {
                   </div>
                   {index < steps.length - 1 && (
                     <div
-                      className={`flex-1 h-1 mx-2 rounded ${
-                        currentStep > step.id ? 'bg-green-500' : 'bg-gray-200'
-                      }`}
+                      className={`flex-1 h-1 mx-2 rounded ${currentStep > step.id ? 'bg-green-500' : 'bg-gray-200'
+                        }`}
                     />
                   )}
                 </React.Fragment>
@@ -842,16 +838,15 @@ const CreateCVPage = () => {
             <button
               onClick={prevStep}
               disabled={currentStep === 1}
-              className={`py-3 px-6 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 ${
-                currentStep === 1
+              className={`py-3 px-6 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 ${currentStep === 1
                   ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                   : 'bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:-translate-y-0.5'
-              }`}
+                }`}
             >
               <FaArrowLeft />
               Previous
             </button>
-            
+
             {currentStep < 6 ? (
               <button
                 onClick={nextStep}

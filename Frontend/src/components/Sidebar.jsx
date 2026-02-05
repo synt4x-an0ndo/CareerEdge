@@ -18,8 +18,8 @@ const Sidebar = ({ activePage }) => {
   return (
     <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       {/* Toggle Button */}
-      <button 
-        className="sidebar-toggle" 
+      <button
+        className="sidebar-toggle"
         onClick={toggleSidebar}
         aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
@@ -61,8 +61,8 @@ const Sidebar = ({ activePage }) => {
 
       <ul className="sidebar-nav">
         <li className="flex justify-center">
-          <Link 
-            to="/extra-add" 
+          <Link
+            to="/extra-add"
             className={`new-session-btn ${isCollapsed ? 'collapsed' : ''}`}
             title={isCollapsed ? "New Practice Session" : ""}
           >

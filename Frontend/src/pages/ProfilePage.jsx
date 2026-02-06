@@ -1,15 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { FaBars, FaSearch, FaCamera, FaSyncAlt, FaSave, FaLock, FaShieldAlt, FaEnvelope, FaBell, FaSignOutAlt, FaTrashAlt, FaDownload } from 'react-icons/fa';
+import { 
+  FaBars, FaUser, FaCamera, FaSave, FaLock, FaShieldAlt, FaEnvelope, 
+  FaBell, FaSignOutAlt, FaTrashAlt, FaDownload, FaCheck, 
+  FaPhone, FaMapMarkerAlt, FaBriefcase, FaCalendarAlt, FaGlobe,
+  FaLinkedin, FaGithub, FaTwitter, FaKey, FaHistory, FaChartLine,
+  FaCog, FaUserCircle, FaExclamationTriangle, FaCheckCircle,
+  FaLightbulb, FaTimes, FaEye, FaEyeSlash
+} from 'react-icons/fa';
 import Sidebar from "../components/Sidebar";
 
 const ProfilePage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [fullName, setFullName] = useState("User");
-  const [email, setEmail] = useState("user@example.com");
-  const [bio, setBio] = useState(
-    "Passionate about technology and interview preparation"
-  );
-  const [jobTitle, setJobTitle] = useState("Software Developer");
+  const [activeTab, setActiveTab] = useState("profile");
+  const [isSaving, setIsSaving] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
+  const [currentTipIndex, setCurrentTipIndex] = useState(0);
+  const [showSystemNotification, setShowSystemNotification] = useState(true);
+  
+  // Password visibility states
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // System notification messages that rotate
+  const systemTips = [
+    "Complete your profile to increase visibility to recruiters by 40%",
+    "Enable two-factor authentication for enhanced account security",
+    "Practice interviews daily to improve your confidence and skills",
+    "Update your bio regularly to reflect your latest achievements",
+    "Connect your LinkedIn profile to import your experience automatically",
+    "Set up practice reminders to stay consistent with your preparation"
+  ];
+  
+  // Profile Information
+  const [fullName, setFullName] = useState("John Doe");
+  const [email, setEmail] = useState("john.doe@example.com");
+  const [phone, setPhone] = useState("+1 (555) 123-4567");
+  const [location, setLocation] = useState("San Francisco, CA");
+  const [bio, setBio] = useState("Passionate software developer with 5+ years of experience in building scalable web applications. Currently focused on interview preparation and career growth.");
+  const [jobTitle, setJobTitle] = useState("Senior Software Developer");
+  const [company, setCompany] = useState("Tech Innovations Inc.");
+  const [website, setWebsite] = useState("https://johndoe.dev");
+  
+  // Social Links
+  const [linkedin, setLinkedin] = useState("linkedin.com/in/johndoe");
+  const [github, setGithub] = useState("github.com/johndoe");
+  const [twitter, setTwitter] = useState("@johndoe");
+  
+  // Settings
   const [isProfilePrivate, setIsProfilePrivate] = useState(() => {
     return JSON.parse(localStorage.getItem("isProfilePrivate") || "false");
   });
@@ -22,13 +61,26 @@ const ProfilePage = () => {
   const [isPracticeRemindersEnabled, setIsPracticeRemindersEnabled] = useState(() => {
     return JSON.parse(localStorage.getItem("isPracticeRemindersEnabled") || "true");
   });
+  const [isWeeklyReportEnabled, setIsWeeklyReportEnabled] = useState(() => {
+    return JSON.parse(localStorage.getItem("isWeeklyReportEnabled") || "true");
+  });
+  const [isMarketingEnabled, setIsMarketingEnabled] = useState(() => {
+    return JSON.parse(localStorage.getItem("isMarketingEnabled") || "false");
+  });
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+  const showToast = (message) => {
+    setNotificationMessage(message);
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 3000);
   };
 
-  const handleSaveChanges = () => {
-    alert("Profile changes saved!");
+  const handleSaveChanges = async () => {
+    setIsSaving(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsSaving(false);
+    showToast("Profile updated successfully!");
   };
 
   useEffect(() => {
@@ -47,333 +99,754 @@ const ProfilePage = () => {
     localStorage.setItem("isPracticeRemindersEnabled", JSON.stringify(isPracticeRemindersEnabled));
   }, [isPracticeRemindersEnabled]);
 
-  const handleUpdatePrivacy = () => {
-    const message = "Settings updated successfully!";
-    const notification = document.createElement("div");
-    notification.className = "fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 transform translate-y-0";
-    notification.textContent = message;
-    document.body.appendChild(notification);
+  useEffect(() => {
+    localStorage.setItem("isWeeklyReportEnabled", JSON.stringify(isWeeklyReportEnabled));
+  }, [isWeeklyReportEnabled]);
 
-    setTimeout(() => {
-      notification.style.transform = "translateY(200%)";
-      setTimeout(() => notification.remove(), 300);
-    }, 3000);
-  };
+  useEffect(() => {
+    localStorage.setItem("isMarketingEnabled", JSON.stringify(isMarketingEnabled));
+  }, [isMarketingEnabled]);
+
+  // Rotate system notification tips every 5 seconds
+  useEffect(() => {
+    if (!showSystemNotification) return;
+    const interval = setInterval(() => {
+      setCurrentTipIndex((prev) => (prev + 1) % systemTips.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [showSystemNotification, systemTips.length]);
 
   const handleDangerAction = (action) => {
-    if (
-      window.confirm(
-        `Are you sure you want to ${action}? This action cannot be undone.`
-      )
-    ) {
-      alert(`${action} confirmed!`);
+    if (window.confirm(`Are you sure you want to ${action}? This action cannot be undone.`)) {
+      showToast(`${action} confirmed!`);
     }
   };
 
+  // Calculate profile completion
+  const calculateCompletion = () => {
+    const fields = [fullName, email, phone, location, bio, jobTitle, company, linkedin, github];
+    const filled = fields.filter(f => f && f.trim() !== "").length;
+    return Math.round((filled / fields.length) * 100);
+  };
+
+  const profileCompletion = calculateCompletion();
+
+  const tabs = [
+    { id: "profile", label: "Profile", icon: FaUserCircle },
+    { id: "security", label: "Security", icon: FaShieldAlt },
+    { id: "notifications", label: "Notifications", icon: FaBell },
+    { id: "account", label: "Account", icon: FaCog },
+  ];
+
+  // Toggle Switch Component
+  const ToggleSwitch = ({ id, checked, onChange, label, description }) => (
+    <div className="group flex justify-between items-center hover:bg-gray-50/80 p-4 rounded-xl transition-all duration-300">
+      <div className="flex items-center gap-4">
+        <div>
+          <span className="block font-medium text-gray-800">{label}</span>
+          <p className="text-gray-500 text-sm">{description}</p>
+        </div>
+      </div>
+      <label htmlFor={id} className="inline-block relative w-12 h-6 cursor-pointer">
+        <input
+          type="checkbox"
+          id={id}
+          checked={checked}
+          onChange={onChange}
+          className="sr-only peer"
+        />
+        <span className="absolute inset-0 bg-gray-300 peer-checked:bg-gradient-to-r peer-checked:from-primary peer-checked:to-secondary rounded-full transition-all duration-300"></span>
+        <span className="top-0.5 left-0.5 absolute bg-white shadow-md rounded-full w-5 h-5 transition-all peer-checked:translate-x-6 duration-300"></span>
+      </label>
+    </div>
+  );
+
   return (
-    <div className="flex bg-light-bg min-h-screen">
+    <div className="flex bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+      {/* Toast Notification */}
+      {showNotification && (
+        <div className="top-6 right-6 z-50 fixed flex items-center gap-3 bg-white shadow-xl px-6 py-4 border-l-4 border-green-500 rounded-lg animate-slide-in">
+          <FaCheckCircle className="text-green-500 text-xl" />
+          <span className="font-medium text-gray-800">{notificationMessage}</span>
+        </div>
+      )}
+
       <div className="flex flex-col flex-1">
-        <div className="flex items-center gap-6 bg-white/95 backdrop-blur-lg p-6 border-gray-200 border-b">
-          <button
-            onClick={toggleSidebar}
-            className="lg:hidden bg-none border-none text-text-gray"
-          >
-            <FaBars />
-          </button>
-          <div className="relative flex-1 max-w-md">
-            <FaSearch className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2" />
-            <input
-              placeholder="Search..."
-              className="bg-white/70 py-3 pr-4 pl-11 border border-gray-200 rounded-lg w-full placeholder-text-gray text-text-dark"
-            />
+        {/* Header */}
+        <div className="sticky top-0 z-40 flex items-center justify-between bg-white/95 backdrop-blur-xl px-8 py-5 border-b border-gray-200/80">
+          <div className="flex items-center gap-4">
+            <button onClick={toggleSidebar} className="lg:hidden text-gray-600 hover:text-primary transition-colors">
+              <FaBars className="text-xl" />
+            </button>
+            <div>
+              <h1 className="font-bold text-gray-900 text-2xl">Settings</h1>
+              <p className="text-gray-500 text-sm">Manage your account preferences</p>
+            </div>
           </div>
         </div>
 
-        <div className="flex-1 p-6 overflow-y-auto">
-          <div className="flex justify-between items-center mb-6">
-            <div>
-              <h1 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-3xl">
-                Profile Settings
-              </h1>
-              <p className="text-text-gray">
-                Manage your account settings and preferences
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-6">
-            <div className="flex-1 min-w-[260px]">
-              <div className="bg-white/90 shadow-lg hover:shadow-xl mb-6 p-6 border border-gray-100 rounded-2xl transition-all hover:-translate-y-1 duration-300">
-                <div className="flex items-center gap-4 mb-5">
-                  <img
-                    src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
-                    alt="User Avatar"
-                    className="border-2 border-primary rounded-full w-20 h-20 object-cover"
-                  />
-                  <div className="flex flex-col gap-2">
-                    <button className="inline-flex items-center gap-2 bg-transparent hover:bg-primary/10 px-4 py-2.5 border border-primary rounded-lg text-primary transition-all hover:-translate-y-0.5 duration-300 cursor-pointer">
-                      <FaCamera /> Change Avatar
-                    </button>
-                    <button className="inline-flex items-center gap-2 bg-transparent hover:bg-primary/10 px-4 py-2.5 border border-primary rounded-lg text-primary transition-all hover:-translate-y-0.5 duration-300 cursor-pointer">
-                      <FaSyncAlt /> Regenerate
+        <div className="flex-1 p-8 overflow-y-auto">
+          <div className="mx-auto max-w-6xl">
+            {/* System Notification with Changing Text */}
+            {showSystemNotification && (
+              <div className="relative bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 mb-6 p-4 border border-primary/20 rounded-2xl overflow-hidden animate-fade-in">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-50"></div>
+                <div className="relative flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-full w-10 h-10 animate-pulse">
+                      <FaLightbulb className="text-white text-lg" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-gray-800 text-sm">
+                        <span className="bg-clip-text bg-gradient-to-r from-primary to-secondary font-semibold text-transparent">Pro Tip: </span>
+                        <span className="transition-all duration-500">{systemTips[currentTipIndex]}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {/* Progress dots */}
+                    <div className="hidden sm:flex items-center gap-1.5">
+                      {systemTips.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setCurrentTipIndex(idx)}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            idx === currentTipIndex 
+                              ? 'bg-gradient-to-r from-primary to-secondary w-6' 
+                              : 'bg-gray-300 hover:bg-gray-400'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => setShowSystemNotification(false)}
+                      className="flex justify-center items-center hover:bg-gray-200 rounded-full w-8 h-8 text-gray-400 hover:text-gray-600 transition-all duration-300"
+                    >
+                      <FaTimes className="text-sm" />
                     </button>
                   </div>
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-text-gray text-sm">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="bg-white/70 p-3 border border-gray-200 focus:border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all duration-300"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-text-gray text-sm">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="your.email@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="bg-white/70 p-3 border border-gray-200 focus:border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all duration-300"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-text-gray text-sm">
-                    Bio
-                  </label>
-                  <textarea
-                    placeholder="Tell us about yourself..."
-                    rows="3"
-                    value={bio}
-                    onChange={(e) => setBio(e.target.value)}
-                    className="bg-white/70 p-3 border border-gray-200 focus:border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all duration-300 resize-y"
-                  ></textarea>
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-text-gray text-sm">
-                    Job Title
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Software Engineer"
-                    value={jobTitle}
-                    onChange={(e) => setJobTitle(e.target.value)}
-                    className="bg-white/70 p-3 border border-gray-200 focus:border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all duration-300"
-                  />
-                </div>
-                <div className="mt-4 text-right">
-                  <button
-                    onClick={handleSaveChanges}
-                    className="inline-flex relative items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2.5 border-none rounded-lg overflow-hidden font-semibold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
-                  >
-                    <FaSave /> Save Changes
-                  </button>
                 </div>
               </div>
+            )}
 
-              <div className="bg-white/90 shadow-lg hover:shadow-xl mb-6 p-6 border border-gray-100 rounded-2xl transition-all hover:-translate-y-1 duration-300">
-                <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 font-bold text-transparent text-xl">
-                  Privacy & Security
-                </h3>
-                <div className="group flex justify-between items-center hover:bg-gray-50 mb-3 p-3 rounded-lg transition-all duration-300">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 group-hover:bg-primary/20 p-2 rounded-full group-hover:scale-110 transition-all duration-300">
-                      <FaLock className="text-primary" />
+            {/* Profile Header Card */}
+            <div className="relative bg-navy shadow-sm mb-8 border border-navy-light rounded-2xl overflow-hidden">
+              {/* Cover Background */}
+              <div className="bg-gradient-to-r from-navy-dark via-navy to-navy-light h-32"></div>
+              
+              <div className="px-8 pb-6">
+                <div className="flex sm:flex-row flex-col sm:items-end gap-6 -mt-16">
+                  {/* Avatar */}
+                  <div className="relative group">
+                    <div className="bg-navy-light p-1.5 rounded-full shadow-xl ring-4 ring-gold/30">
+                      <img
+                        src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
+                        alt="User Avatar"
+                        className="rounded-full w-28 h-28 object-cover"
+                      />
                     </div>
-                    <div>
-                      <span className="font-medium">Make profile private</span>
-                      <p className="text-gray-500 text-sm">Only you can see your profile</p>
+                    <button className="right-0 bottom-0 absolute flex justify-center items-center bg-gold hover:bg-gold/90 shadow-lg rounded-full w-9 h-9 text-navy-dark transition-all group-hover:scale-110 duration-300">
+                      <FaCamera className="text-sm" />
+                    </button>
+                  </div>
+                  
+                  {/* User Info */}
+                  <div className="flex-1 pt-4 sm:pt-0">
+                    <div className="flex sm:flex-row flex-col justify-between sm:items-center gap-4">
+                      <div>
+                        <h2 className="font-bold text-gold text-2xl">{fullName}</h2>
+                        <p className="text-skyblue">{jobTitle} at {company}</p>
+                        <div className="flex items-center gap-4 mt-2 text-skyblue/80 text-sm">
+                          <span className="flex items-center gap-1">
+                            <FaMapMarkerAlt className="text-gold" /> {location}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <FaCalendarAlt className="text-gold" /> Joined Jan 2024
+                          </span>
+                        </div>
+                      </div>
+                      
+                      {/* Profile Completion */}
+                      <div className="bg-navy-dark px-5 py-3 border border-navy-light rounded-xl">
+                        <div className="flex items-center gap-3">
+                          <div className="relative w-14 h-14">
+                            <svg className="w-14 h-14 -rotate-90 transform">
+                              <circle cx="28" cy="28" r="24" stroke="#294062" strokeWidth="4" fill="none" />
+                              <circle 
+                                cx="28" cy="28" r="24" 
+                                stroke="url(#gradient)" 
+                                strokeWidth="4" 
+                                fill="none"
+                                strokeDasharray={`${profileCompletion * 1.51} 151`}
+                                strokeLinecap="round"
+                              />
+                              <defs>
+                                <linearGradient id="gradient">
+                                  <stop offset="0%" stopColor="#F3BF5B" />
+                                  <stop offset="100%" stopColor="#80A9C5" />
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                            <span className="top-1/2 left-1/2 absolute font-bold text-gold text-sm -translate-x-1/2 -translate-y-1/2">{profileCompletion}%</span>
+                          </div>
+                          <div>
+                            <p className="font-semibold text-text-dark text-sm">Profile Complete</p>
+                            <p className="text-skyblue text-xs">Add more details to stand out</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <label
-                    htmlFor="toggle-profile-private"
-                    className="inline-block relative w-14 h-7 cursor-pointer"
-                  >
-                    <input
-                      type="checkbox"
-                      id="toggle-profile-private"
-                      checked={isProfilePrivate}
-                      onChange={() => {
-                        setIsProfilePrivate(!isProfilePrivate);
-                        handleUpdatePrivacy();
-                      }}
-                      className="sr-only peer"
-                    />
-                    <span className="before:top-0.5 before:left-0.5 absolute before:absolute after:absolute inset-0 bg-gray-200 before:bg-white after:bg-white peer-checked:bg-gradient-to-r peer-checked:from-primary peer-checked:to-secondary after:opacity-0 peer-checked:after:opacity-20 before:shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:before:shadow-[0_2px_8px_rgba(0,0,0,0.15)] peer-checked:before:shadow-[0_2px_4px_rgba(0,0,0,0.2)] rounded-full before:rounded-full after:rounded-full group-hover:ring-4 group-hover:ring-primary/10 before:w-6 after:w-full before:h-6 after:h-full before:content-[''] after:content-[''] hover:before:scale-110 transition-all before:transition-all after:transition-all peer-checked:before:translate-x-7 duration-500 before:duration-500 after:duration-500 ease-in-out before:ease-in-out"></span>
-                  </label>
-                </div>
-                <div className="group flex justify-between items-center hover:bg-gray-50 mb-3 p-3 rounded-lg transition-all duration-300">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 group-hover:bg-primary/20 p-2 rounded-full group-hover:scale-110 transition-all duration-300">
-                      <FaShieldAlt className="text-primary" />
-                    </div>
-                    <div>
-                      <span className="font-medium">Two-factor authentication</span>
-                      <p className="text-gray-500 text-sm">Add an extra layer of security</p>
-                    </div>
-                  </div>
-                  <label
-                    htmlFor="toggle-two-factor"
-                    className="inline-block relative w-14 h-7 cursor-pointer"
-                  >
-                    <input
-                      type="checkbox"
-                      id="toggle-two-factor"
-                      checked={isTwoFactorEnabled}
-                      onChange={() => {
-                        setIsTwoFactorEnabled(!isTwoFactorEnabled);
-                        handleUpdatePrivacy();
-                      }}
-                      className="sr-only peer"
-                    />
-                    <span className="before:top-0.5 before:left-0.5 absolute before:absolute after:absolute inset-0 bg-gray-200 before:bg-white after:bg-white peer-checked:bg-gradient-to-r peer-checked:from-primary peer-checked:to-secondary after:opacity-0 peer-checked:after:opacity-20 before:shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:before:shadow-[0_2px_8px_rgba(0,0,0,0.15)] peer-checked:before:shadow-[0_2px_4px_rgba(0,0,0,0.2)] rounded-full before:rounded-full after:rounded-full group-hover:ring-4 group-hover:ring-primary/10 before:w-6 after:w-full before:h-6 after:h-full before:content-[''] after:content-[''] hover:before:scale-110 transition-all before:transition-all after:transition-all peer-checked:before:translate-x-7 duration-500 before:duration-500 after:duration-500 ease-in-out before:ease-in-out"></span>
-                  </label>
-                </div>
-                <div className="group flex justify-between items-center hover:bg-gray-50 mb-3 p-3 rounded-lg transition-all duration-300">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 group-hover:bg-primary/20 p-2 rounded-full group-hover:scale-110 transition-all duration-300">
-                      <FaEnvelope className="text-primary" />
-                    </div>
-                    <div>
-                      <span className="font-medium">Email notifications</span>
-                      <p className="text-gray-500 text-sm">Get updates and reminders via email</p>
-                    </div>
-                  </div>
-                  <label
-                    htmlFor="toggle-email-notifications"
-                    className="inline-block relative w-14 h-7 cursor-pointer"
-                  >
-                    <input
-                      type="checkbox"
-                      id="toggle-email-notifications"
-                      checked={isEmailNotificationsEnabled}
-                      onChange={() => {
-                        setIsEmailNotificationsEnabled(!isEmailNotificationsEnabled);
-                        handleUpdatePrivacy();
-                      }}
-                      className="sr-only peer"
-                    />
-                    <span className="before:top-0.5 before:left-0.5 absolute before:absolute after:absolute inset-0 bg-gray-200 before:bg-white after:bg-white peer-checked:bg-gradient-to-r peer-checked:from-primary peer-checked:to-secondary after:opacity-0 peer-checked:after:opacity-20 before:shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:before:shadow-[0_2px_8px_rgba(0,0,0,0.15)] peer-checked:before:shadow-[0_2px_4px_rgba(0,0,0,0.2)] rounded-full before:rounded-full after:rounded-full group-hover:ring-4 group-hover:ring-primary/10 before:w-6 after:w-full before:h-6 after:h-full before:content-[''] after:content-[''] hover:before:scale-110 transition-all before:transition-all after:transition-all peer-checked:before:translate-x-7 duration-500 before:duration-500 after:duration-500 ease-in-out before:ease-in-out"></span>
-                  </label>
-                </div>
-                <div className="group flex justify-between items-center hover:bg-gray-50 mb-3 p-3 rounded-lg transition-all duration-300">
-                  <div className="flex items-center gap-3">
-                    <div className="bg-primary/10 group-hover:bg-primary/20 p-2 rounded-full group-hover:scale-110 transition-all duration-300">
-                      <FaBell className="text-primary" />
-                    </div>
-                    <div>
-                      <span className="font-medium">Practice reminders</span>
-                      <p className="text-gray-500 text-sm">Get reminded to practice regularly</p>
-                    </div>
-                  </div>
-                  <label
-                    htmlFor="toggle-practice-reminders"
-                    className="inline-block relative w-14 h-7 cursor-pointer"
-                  >
-                    <input
-                      type="checkbox"
-                      id="toggle-practice-reminders"
-                      checked={isPracticeRemindersEnabled}
-                      onChange={() => {
-                        setIsPracticeRemindersEnabled(!isPracticeRemindersEnabled);
-                        handleUpdatePrivacy();
-                      }}
-                      className="sr-only peer"
-                    />
-                    <span className="before:top-0.5 before:left-0.5 absolute before:absolute after:absolute inset-0 bg-gray-200 before:bg-white after:bg-white peer-checked:bg-gradient-to-r peer-checked:from-primary peer-checked:to-secondary after:opacity-0 peer-checked:after:opacity-20 before:shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:before:shadow-[0_2px_8px_rgba(0,0,0,0.15)] peer-checked:before:shadow-[0_2px_4px_rgba(0,0,0,0.2)] rounded-full before:rounded-full after:rounded-full group-hover:ring-4 group-hover:ring-primary/10 before:w-6 after:w-full before:h-6 after:h-full before:content-[''] after:content-[''] hover:before:scale-110 transition-all before:transition-all after:transition-all peer-checked:before:translate-x-7 duration-500 before:duration-500 after:duration-500 ease-in-out before:ease-in-out"></span>
-                  </label>
-                </div>
-                <div className="mt-4 text-right">
-                  <button
-                    onClick={handleUpdatePrivacy}
-                    className="inline-flex items-center gap-2 bg-transparent hover:bg-primary/10 px-4 py-2.5 border border-primary rounded-lg text-primary transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
-                  >
-                    <FaShieldAlt /> Update Privacy
-                  </button>
                 </div>
               </div>
             </div>
 
-            <div className="flex-1 min-w-[260px]">
-              <div className="bg-white/90 shadow-lg mb-6 p-5 border border-gray-100 rounded-2xl">
-                <h4 className="mb-4 font-bold text-text-dark text-xl">
-                  Your Activity
-                </h4>
-                <div className="gap-3 grid grid-cols-2">
-                  <div className="bg-white/70 p-3 border border-gray-100 rounded-lg text-center">
-                    <div className="mb-1 font-bold text-primary text-xl">0</div>
-                    <div className="text-text-gray text-sm">
-                      Interviews Completed
+            {/* Tab Navigation */}
+            <div className="flex space-x-1 bg-white shadow-sm mb-8 p-1.5 border border-gray-200/80 rounded-xl">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-medium text-sm transition-all duration-300 ${
+                    activeTab === tab.id
+                      ? "bg-gradient-to-r from-primary to-secondary text-white shadow-md"
+                      : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                  }`}
+                >
+                  <tab.icon className="text-lg" />
+                  <span className="hidden sm:inline">{tab.label}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Tab Content */}
+            <div className="gap-8 grid lg:grid-cols-3">
+              {/* Main Content */}
+              <div className="lg:col-span-2">
+                {activeTab === "profile" && (
+                  <div className="space-y-6">
+                    {/* Personal Information */}
+                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-primary/10 rounded-xl w-10 h-10">
+                          <FaUser className="text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-lg">Personal Information</h3>
+                          <p className="text-gray-500 text-sm">Update your personal details here</p>
+                        </div>
+                      </div>
+                      
+                      <div className="gap-5 grid md:grid-cols-2">
+                        <div>
+                          <label className="block mb-2 font-medium text-gray-700 text-sm">Full Name</label>
+                          <input
+                            type="text"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                          />
+                        </div>
+                        <div>
+                          <label className="block mb-2 font-medium text-gray-700 text-sm">Email Address</label>
+                          <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                          />
+                        </div>
+                        <div>
+                          <label className="block mb-2 font-medium text-gray-700 text-sm">Phone Number</label>
+                          <div className="relative">
+                            <FaPhone className="top-1/2 left-4 absolute text-gray-400 -translate-y-1/2" />
+                            <input
+                              type="tel"
+                              value={phone}
+                              onChange={(e) => setPhone(e.target.value)}
+                              className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block mb-2 font-medium text-gray-700 text-sm">Location</label>
+                          <div className="relative">
+                            <FaMapMarkerAlt className="top-1/2 left-4 absolute text-gray-400 -translate-y-1/2" />
+                            <input
+                              type="text"
+                              value={location}
+                              onChange={(e) => setLocation(e.target.value)}
+                              className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-5">
+                        <label className="block mb-2 font-medium text-gray-700 text-sm">Bio</label>
+                        <textarea
+                          rows="4"
+                          value={bio}
+                          onChange={(e) => setBio(e.target.value)}
+                          className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300 resize-none"
+                          placeholder="Tell us about yourself..."
+                        ></textarea>
+                        <p className="mt-2 text-right text-gray-400 text-xs">{bio.length}/500 characters</p>
+                      </div>
+                    </div>
+
+                    {/* Professional Information */}
+                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-secondary/10 rounded-xl w-10 h-10">
+                          <FaBriefcase className="text-secondary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-lg">Professional Information</h3>
+                          <p className="text-gray-500 text-sm">Your work and career details</p>
+                        </div>
+                      </div>
+                      
+                      <div className="gap-5 grid md:grid-cols-2">
+                        <div>
+                          <label className="block mb-2 font-medium text-gray-700 text-sm">Job Title</label>
+                          <input
+                            type="text"
+                            value={jobTitle}
+                            onChange={(e) => setJobTitle(e.target.value)}
+                            className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                          />
+                        </div>
+                        <div>
+                          <label className="block mb-2 font-medium text-gray-700 text-sm">Company</label>
+                          <input
+                            type="text"
+                            value={company}
+                            onChange={(e) => setCompany(e.target.value)}
+                            className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <label className="block mb-2 font-medium text-gray-700 text-sm">Personal Website</label>
+                          <div className="relative">
+                            <FaGlobe className="top-1/2 left-4 absolute text-gray-400 -translate-y-1/2" />
+                            <input
+                              type="url"
+                              value={website}
+                              onChange={(e) => setWebsite(e.target.value)}
+                              className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Social Links */}
+                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-blue-100 rounded-xl w-10 h-10">
+                          <FaLinkedin className="text-blue-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-lg">Social Links</h3>
+                          <p className="text-gray-500 text-sm">Connect your social profiles</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="relative">
+                          <FaLinkedin className="top-1/2 left-4 absolute text-[#0077b5] -translate-y-1/2" />
+                          <input
+                            type="text"
+                            value={linkedin}
+                            onChange={(e) => setLinkedin(e.target.value)}
+                            placeholder="linkedin.com/in/username"
+                            className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                          />
+                        </div>
+                        <div className="relative">
+                          <FaGithub className="top-1/2 left-4 absolute text-gray-800 -translate-y-1/2" />
+                          <input
+                            type="text"
+                            value={github}
+                            onChange={(e) => setGithub(e.target.value)}
+                            placeholder="github.com/username"
+                            className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                          />
+                        </div>
+                        <div className="relative">
+                          <FaTwitter className="top-1/2 left-4 absolute text-[#1da1f2] -translate-y-1/2" />
+                          <input
+                            type="text"
+                            value={twitter}
+                            onChange={(e) => setTwitter(e.target.value)}
+                            placeholder="@username"
+                            className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Save Button */}
+                    <div className="flex justify-end">
+                      <button
+                        onClick={handleSaveChanges}
+                        disabled={isSaving}
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg disabled:opacity-70 px-8 py-3 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5 duration-300"
+                      >
+                        {isSaving ? (
+                          <>
+                            <div className="border-2 border-white/30 border-t-white rounded-full w-5 h-5 animate-spin"></div>
+                            Saving...
+                          </>
+                        ) : (
+                          <>
+                            <FaSave /> Save Changes
+                          </>
+                        )}
+                      </button>
                     </div>
                   </div>
-                  <div className="bg-white/70 p-3 border border-gray-100 rounded-lg text-center">
-                    <div className="mb-1 font-bold text-primary text-xl">
-                      0%
+                )}
+
+                {activeTab === "security" && (
+                  <div className="space-y-6">
+                    {/* Password Section */}
+                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-primary/10 rounded-xl w-10 h-10">
+                          <FaKey className="text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-lg">Password</h3>
+                          <p className="text-gray-500 text-sm">Manage your password settings</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div>
+                          <label className="block mb-2 font-medium text-gray-700 text-sm">Current Password</label>
+                          <div className="relative">
+                            <input
+                              type={showCurrentPassword ? "text" : "password"}
+                              placeholder="••••••••"
+                              className="bg-gray-50 hover:bg-gray-100 px-4 py-3 pr-12 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                              className="top-1/2 right-4 absolute text-gray-400 hover:text-primary -translate-y-1/2 transition-colors duration-200"
+                            >
+                              {showCurrentPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
+                            </button>
+                          </div>
+                        </div>
+                        <div className="gap-4 grid md:grid-cols-2">
+                          <div>
+                            <label className="block mb-2 font-medium text-gray-700 text-sm">New Password</label>
+                            <div className="relative">
+                              <input
+                                type={showNewPassword ? "text" : "password"}
+                                placeholder="••••••••"
+                                className="bg-gray-50 hover:bg-gray-100 px-4 py-3 pr-12 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => setShowNewPassword(!showNewPassword)}
+                                className="top-1/2 right-4 absolute text-gray-400 hover:text-primary -translate-y-1/2 transition-colors duration-200"
+                              >
+                                {showNewPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
+                              </button>
+                            </div>
+                          </div>
+                          <div>
+                            <label className="block mb-2 font-medium text-gray-700 text-sm">Confirm Password</label>
+                            <div className="relative">
+                              <input
+                                type={showConfirmPassword ? "text" : "password"}
+                                placeholder="••••••••"
+                                className="bg-gray-50 hover:bg-gray-100 px-4 py-3 pr-12 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                className="top-1/2 right-4 absolute text-gray-400 hover:text-primary -translate-y-1/2 transition-colors duration-200"
+                              >
+                                {showConfirmPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <button className="bg-primary hover:bg-primary/90 px-6 py-2.5 rounded-xl font-medium text-white transition-all duration-300">
+                          Update Password
+                        </button>
+                      </div>
                     </div>
-                    <div className="text-text-gray text-sm">Average Score</div>
-                  </div>
-                  <div className="bg-white/70 p-3 border border-gray-100 rounded-lg text-center">
-                    <div className="mb-1 font-bold text-primary text-xl">
-                      0h
+
+                    {/* Security Settings */}
+                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-green-100 rounded-xl w-10 h-10">
+                          <FaShieldAlt className="text-green-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-lg">Security Settings</h3>
+                          <p className="text-gray-500 text-sm">Configure your security preferences</p>
+                        </div>
+                      </div>
+                      
+                      <div className="divide-y divide-gray-100">
+                        <ToggleSwitch
+                          id="two-factor"
+                          checked={isTwoFactorEnabled}
+                          onChange={() => setIsTwoFactorEnabled(!isTwoFactorEnabled)}
+                          label="Two-Factor Authentication"
+                          description="Add an extra layer of security to your account"
+                        />
+                        <ToggleSwitch
+                          id="profile-private"
+                          checked={isProfilePrivate}
+                          onChange={() => setIsProfilePrivate(!isProfilePrivate)}
+                          label="Private Profile"
+                          description="Only you can see your profile details"
+                        />
+                      </div>
                     </div>
-                    <div className="text-text-gray text-sm">Total Practice</div>
-                  </div>
-                  <div className="bg-white/70 p-3 border border-gray-100 rounded-lg text-center">
-                    <div className="mb-1 font-bold text-primary text-xl">0</div>
-                    <div className="text-text-gray text-sm">
-                      Skills Improved
+
+                    {/* Login History */}
+                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-purple-100 rounded-xl w-10 h-10">
+                          <FaHistory className="text-purple-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-lg">Recent Login Activity</h3>
+                          <p className="text-gray-500 text-sm">Monitor your account access</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        {[
+                          { device: "Windows PC", location: "San Francisco, CA", time: "Today, 2:30 PM", current: true },
+                          { device: "iPhone 14", location: "San Francisco, CA", time: "Yesterday, 8:15 AM", current: false },
+                          { device: "MacBook Pro", location: "New York, NY", time: "Feb 3, 2026, 4:22 PM", current: false },
+                        ].map((session, idx) => (
+                          <div key={idx} className={`flex items-center justify-between p-4 rounded-xl ${session.current ? 'bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/30' : 'bg-gray-50 border border-gray-100'}`}>
+                            <div className="flex items-center gap-3">
+                              <div className={`w-2 h-2 rounded-full ${session.current ? 'bg-primary' : 'bg-gray-400'}`}></div>
+                              <div>
+                                <p className={`font-medium ${session.current ? 'text-primary' : 'text-gray-800'}`}>{session.device}</p>
+                                <p className="text-gray-500 text-sm">{session.location} • {session.time}</p>
+                              </div>
+                            </div>
+                            {session.current && (
+                              <span className="bg-gradient-to-r from-primary to-secondary px-3 py-1 rounded-full font-medium text-white text-xs">Current</span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+
+                {activeTab === "notifications" && (
+                  <div className="space-y-6">
+                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-blue-100 rounded-xl w-10 h-10">
+                          <FaEnvelope className="text-blue-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-lg">Email Notifications</h3>
+                          <p className="text-gray-500 text-sm">Choose what emails you want to receive</p>
+                        </div>
+                      </div>
+                      
+                      <div className="divide-y divide-gray-100">
+                        <ToggleSwitch
+                          id="email-notifications"
+                          checked={isEmailNotificationsEnabled}
+                          onChange={() => setIsEmailNotificationsEnabled(!isEmailNotificationsEnabled)}
+                          label="Email Notifications"
+                          description="Receive important updates via email"
+                        />
+                        <ToggleSwitch
+                          id="weekly-report"
+                          checked={isWeeklyReportEnabled}
+                          onChange={() => setIsWeeklyReportEnabled(!isWeeklyReportEnabled)}
+                          label="Weekly Progress Report"
+                          description="Get a summary of your weekly practice progress"
+                        />
+                        <ToggleSwitch
+                          id="marketing"
+                          checked={isMarketingEnabled}
+                          onChange={() => setIsMarketingEnabled(!isMarketingEnabled)}
+                          label="Marketing Emails"
+                          description="Receive tips, product updates, and promotions"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-amber-100 rounded-xl w-10 h-10">
+                          <FaBell className="text-amber-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-lg">Practice Reminders</h3>
+                          <p className="text-gray-500 text-sm">Stay on track with your interview preparation</p>
+                        </div>
+                      </div>
+                      
+                      <div className="divide-y divide-gray-100">
+                        <ToggleSwitch
+                          id="practice-reminders"
+                          checked={isPracticeRemindersEnabled}
+                          onChange={() => setIsPracticeRemindersEnabled(!isPracticeRemindersEnabled)}
+                          label="Daily Practice Reminders"
+                          description="Get reminded to practice every day"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "account" && (
+                  <div className="space-y-6">
+                    {/* Data Management */}
+                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-primary/10 rounded-xl w-10 h-10">
+                          <FaDownload className="text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 text-lg">Data Management</h3>
+                          <p className="text-gray-500 text-sm">Download or export your data</p>
+                        </div>
+                      </div>
+                      
+                      <p className="mb-4 text-gray-600">Download a copy of all your data including interview history, practice sessions, and profile information.</p>
+                      <button className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-5 py-2.5 rounded-xl font-medium text-gray-700 transition-all duration-300">
+                        <FaDownload /> Export All Data
+                      </button>
+                    </div>
+
+                    {/* Danger Zone */}
+                    <div className="bg-red-50 p-6 border border-red-200 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="flex justify-center items-center bg-red-100 rounded-xl w-10 h-10">
+                          <FaExclamationTriangle className="text-red-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-red-800 text-lg">Danger Zone</h3>
+                          <p className="text-red-600 text-sm">Irreversible actions - proceed with caution</p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-4 bg-white p-4 border border-red-200 rounded-xl">
+                          <div>
+                            <p className="font-medium text-gray-800">Sign Out</p>
+                            <p className="text-gray-500 text-sm">Sign out from all devices</p>
+                          </div>
+                          <button
+                            onClick={() => handleDangerAction("Sign Out")}
+                            className="inline-flex items-center gap-2 bg-white hover:bg-red-50 px-4 py-2 border border-red-300 rounded-lg font-medium text-red-600 transition-all duration-300"
+                          >
+                            <FaSignOutAlt /> Sign Out
+                          </button>
+                        </div>
+                        
+                        <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-4 bg-white p-4 border border-red-200 rounded-xl">
+                          <div>
+                            <p className="font-medium text-gray-800">Delete Account</p>
+                            <p className="text-gray-500 text-sm">Permanently delete your account and all data</p>
+                          </div>
+                          <button
+                            onClick={() => handleDangerAction("Delete Account")}
+                            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-medium text-white transition-all duration-300"
+                          >
+                            <FaTrashAlt /> Delete Account
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
-              <div className="bg-red-50 shadow-lg mb-6 p-6 border border-red-300 rounded-2xl">
-                <h3 className="mb-4 font-bold text-danger text-xl">
-                  Danger Zone
-                </h3>
-                <p className="mb-4 text-text-gray">
-                  Once you delete your account, there is no going back. Please
-                  be certain.
-                </p>
-                <div className="flex justify-end gap-2 mt-4 text-right">
-                  <button
-                    onClick={() => handleDangerAction("Sign Out")}
-                    className="inline-flex items-center gap-2 bg-transparent hover:bg-red-100 px-4 py-2.5 border border-danger rounded-lg text-danger transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
-                  >
-                    <FaSignOutAlt /> Sign Out
-                  </button>
-                  <button
-                    onClick={() => handleDangerAction("Delete Account")}
-                    className="inline-flex items-center gap-2 bg-transparent hover:bg-red-100 px-4 py-2.5 border border-danger rounded-lg text-danger transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
-                  >
-                    <FaTrashAlt /> Delete Account
-                  </button>
-                </div>
-              </div>
+              {/* Sidebar */}
+              <div className="lg:col-span-1">
+                <div className="space-y-6">
+                  {/* Activity Stats */}
+                  <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="flex justify-center items-center bg-primary/10 rounded-xl w-10 h-10">
+                        <FaChartLine className="text-primary" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900">Your Activity</h3>
+                    </div>
+                    
+                    <div className="gap-3 grid grid-cols-2">
+                      {[
+                        { value: "0", label: "Interviews", color: "from-primary to-indigo-500" },
+                        { value: "0%", label: "Avg Score", color: "from-green-500 to-emerald-500" },
+                        { value: "0h", label: "Practice Time", color: "from-amber-500 to-orange-500" },
+                        { value: "0", label: "Skills", color: "from-purple-500 to-pink-500" },
+                      ].map((stat, idx) => (
+                        <div key={idx} className="bg-gradient-to-br from-gray-50 to-white p-4 border border-gray-100 rounded-xl text-center">
+                          <div className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                            {stat.value}
+                          </div>
+                          <div className="text-gray-500 text-xs">{stat.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-              <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
-                <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 font-bold text-transparent text-xl">
-                  Data Management
-                </h3>
-                <p className="mb-4 text-text-gray">
-                  Download a copy of your data or request account deletion
-                </p>
-                <div className="mt-4 text-right">
-                  <button className="inline-flex items-center gap-2 bg-transparent hover:bg-primary/10 px-4 py-2.5 border border-primary rounded-lg text-primary transition-all hover:-translate-y-0.5 duration-300 cursor-pointer">
-                    <FaDownload /> Export Data
-                  </button>
+                  {/* Quick Links */}
+                  <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                    <h3 className="mb-4 font-semibold text-gray-900">Quick Links</h3>
+                    <div className="space-y-2">
+                      {[
+                        { icon: FaLock, label: "Privacy Policy" },
+                        { icon: FaShieldAlt, label: "Terms of Service" },
+                        { icon: FaEnvelope, label: "Contact Support" },
+                      ].map((link, idx) => (
+                        <a
+                          key={idx}
+                          href="#"
+                          className="flex items-center gap-3 hover:bg-gray-50 p-3 rounded-lg text-gray-600 hover:text-primary transition-all duration-300"
+                        >
+                          <link.icon className="text-gray-400" />
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes slide-in {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        .animate-slide-in {
+          animation: slide-in 0.3s ease-out forwards;
+        }
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.5s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 };

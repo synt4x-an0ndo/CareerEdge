@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { 
-  FaBars, FaUser, FaCamera, FaSave, FaLock, FaShieldAlt, FaEnvelope, 
-  FaBell, FaSignOutAlt, FaTrashAlt, FaDownload, FaCheck, 
+import {
+  FaBars, FaUser, FaCamera, FaSave, FaLock, FaShieldAlt, FaEnvelope,
+  FaBell, FaSignOutAlt, FaTrashAlt, FaDownload, FaCheck,
   FaPhone, FaMapMarkerAlt, FaBriefcase, FaCalendarAlt, FaGlobe,
   FaLinkedin, FaGithub, FaTwitter, FaKey, FaHistory, FaChartLine,
   FaCog, FaUserCircle, FaExclamationTriangle, FaCheckCircle,
@@ -17,7 +17,7 @@ const ProfilePage = () => {
   const [notificationMessage, setNotificationMessage] = useState("");
   const [currentTipIndex, setCurrentTipIndex] = useState(0);
   const [showSystemNotification, setShowSystemNotification] = useState(true);
-  
+
   // Password visibility states
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -32,7 +32,7 @@ const ProfilePage = () => {
     "Connect your LinkedIn profile to import your experience automatically",
     "Set up practice reminders to stay consistent with your preparation"
   ];
-  
+
   // Profile Information
   const [fullName, setFullName] = useState("John Doe");
   const [email, setEmail] = useState("john.doe@example.com");
@@ -42,12 +42,12 @@ const ProfilePage = () => {
   const [jobTitle, setJobTitle] = useState("Senior Software Developer");
   const [company, setCompany] = useState("Tech Innovations Inc.");
   const [website, setWebsite] = useState("https://johndoe.dev");
-  
+
   // Social Links
   const [linkedin, setLinkedin] = useState("linkedin.com/in/johndoe");
   const [github, setGithub] = useState("github.com/johndoe");
   const [twitter, setTwitter] = useState("@johndoe");
-  
+
   // Settings
   const [isProfilePrivate, setIsProfilePrivate] = useState(() => {
     return JSON.parse(localStorage.getItem("isProfilePrivate") || "false");
@@ -165,7 +165,7 @@ const ProfilePage = () => {
     <div className="flex bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
       {/* Toast Notification */}
       {showNotification && (
-        <div className="top-6 right-6 z-50 fixed flex items-center gap-3 bg-white shadow-xl px-6 py-4 border-l-4 border-green-500 rounded-lg animate-slide-in">
+        <div className="top-6 right-6 z-50 fixed flex items-center gap-3 bg-white shadow-xl px-6 py-4 border-green-500 border-l-4 rounded-lg animate-slide-in">
           <FaCheckCircle className="text-green-500 text-xl" />
           <span className="font-medium text-gray-800">{notificationMessage}</span>
         </div>
@@ -173,7 +173,7 @@ const ProfilePage = () => {
 
       <div className="flex flex-col flex-1">
         {/* Header */}
-        <div className="sticky top-0 z-40 flex items-center justify-between bg-white/95 backdrop-blur-xl px-8 py-5 border-b border-gray-200/80">
+        <div className="top-0 z-40 sticky flex justify-between items-center bg-white/95 backdrop-blur-xl px-8 py-5 border-gray-200/80 border-b">
           <div className="flex items-center gap-4">
             <button onClick={toggleSidebar} className="lg:hidden text-gray-600 hover:text-primary transition-colors">
               <FaBars className="text-xl" />
@@ -191,7 +191,7 @@ const ProfilePage = () => {
             {showSystemNotification && (
               <div className="relative bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 mb-6 p-4 border border-primary/20 rounded-2xl overflow-hidden animate-fade-in">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-50"></div>
-                <div className="relative flex items-center justify-between gap-4">
+                <div className="relative flex justify-between items-center gap-4">
                   <div className="flex items-center gap-3">
                     <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-full w-10 h-10 animate-pulse">
                       <FaLightbulb className="text-white text-lg" />
@@ -210,11 +210,10 @@ const ProfilePage = () => {
                         <button
                           key={idx}
                           onClick={() => setCurrentTipIndex(idx)}
-                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            idx === currentTipIndex 
-                              ? 'bg-gradient-to-r from-primary to-secondary w-6' 
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentTipIndex
+                              ? 'bg-gradient-to-r from-primary to-secondary w-6'
                               : 'bg-gray-300 hover:bg-gray-400'
-                          }`}
+                            }`}
                         />
                       ))}
                     </div>
@@ -233,23 +232,23 @@ const ProfilePage = () => {
             <div className="relative bg-navy shadow-sm mb-8 border border-navy-light rounded-2xl overflow-hidden">
               {/* Cover Background */}
               <div className="bg-gradient-to-r from-navy-dark via-navy to-navy-light h-32"></div>
-              
+
               <div className="px-8 pb-6">
                 <div className="flex sm:flex-row flex-col sm:items-end gap-6 -mt-16">
                   {/* Avatar */}
-                  <div className="relative group">
-                    <div className="bg-navy-light p-1.5 rounded-full shadow-xl ring-4 ring-gold/30">
+                  <div className="group relative">
+                    <div className="bg-navy-light shadow-xl p-1.5 rounded-full ring-4 ring-gold/30">
                       <img
                         src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
                         alt="User Avatar"
                         className="rounded-full w-28 h-28 object-cover"
                       />
                     </div>
-                    <button className="right-0 bottom-0 absolute flex justify-center items-center bg-gold hover:bg-gold/90 shadow-lg rounded-full w-9 h-9 text-navy-dark transition-all group-hover:scale-110 duration-300">
+                    <button className="right-0 bottom-0 absolute flex justify-center items-center bg-gold hover:bg-gold/90 shadow-lg rounded-full w-9 h-9 text-navy-dark group-hover:scale-110 transition-all duration-300">
                       <FaCamera className="text-sm" />
                     </button>
                   </div>
-                  
+
                   {/* User Info */}
                   <div className="flex-1 pt-4 sm:pt-0">
                     <div className="flex sm:flex-row flex-col justify-between sm:items-center gap-4">
@@ -265,17 +264,17 @@ const ProfilePage = () => {
                           </span>
                         </div>
                       </div>
-                      
+
                       {/* Profile Completion */}
                       <div className="bg-navy-dark px-5 py-3 border border-navy-light rounded-xl">
                         <div className="flex items-center gap-3">
                           <div className="relative w-14 h-14">
                             <svg className="w-14 h-14 -rotate-90 transform">
                               <circle cx="28" cy="28" r="24" stroke="#294062" strokeWidth="4" fill="none" />
-                              <circle 
-                                cx="28" cy="28" r="24" 
-                                stroke="url(#gradient)" 
-                                strokeWidth="4" 
+                              <circle
+                                cx="28" cy="28" r="24"
+                                stroke="url(#gradient)"
+                                strokeWidth="4"
                                 fill="none"
                                 strokeDasharray={`${profileCompletion * 1.51} 151`}
                                 strokeLinecap="round"
@@ -307,11 +306,10 @@ const ProfilePage = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-medium text-sm transition-all duration-300 ${
-                    activeTab === tab.id
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-medium text-sm transition-all duration-300 ${activeTab === tab.id
                       ? "bg-gradient-to-r from-primary to-secondary text-white shadow-md"
                       : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                  }`}
+                    }`}
                 >
                   <tab.icon className="text-lg" />
                   <span className="hidden sm:inline">{tab.label}</span>
@@ -336,7 +334,7 @@ const ProfilePage = () => {
                           <p className="text-gray-500 text-sm">Update your personal details here</p>
                         </div>
                       </div>
-                      
+
                       <div className="gap-5 grid md:grid-cols-2">
                         <div>
                           <label className="block mb-2 font-medium text-gray-700 text-sm">Full Name</label>
@@ -381,7 +379,7 @@ const ProfilePage = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="mt-5">
                         <label className="block mb-2 font-medium text-gray-700 text-sm">Bio</label>
                         <textarea
@@ -391,7 +389,7 @@ const ProfilePage = () => {
                           className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300 resize-none"
                           placeholder="Tell us about yourself..."
                         ></textarea>
-                        <p className="mt-2 text-right text-gray-400 text-xs">{bio.length}/500 characters</p>
+                        <p className="mt-2 text-gray-400 text-xs text-right">{bio.length}/500 characters</p>
                       </div>
                     </div>
 
@@ -406,7 +404,7 @@ const ProfilePage = () => {
                           <p className="text-gray-500 text-sm">Your work and career details</p>
                         </div>
                       </div>
-                      
+
                       <div className="gap-5 grid md:grid-cols-2">
                         <div>
                           <label className="block mb-2 font-medium text-gray-700 text-sm">Job Title</label>
@@ -452,7 +450,7 @@ const ProfilePage = () => {
                           <p className="text-gray-500 text-sm">Connect your social profiles</p>
                         </div>
                       </div>
-                      
+
                       <div className="space-y-4">
                         <div className="relative">
                           <FaLinkedin className="top-1/2 left-4 absolute text-[#0077b5] -translate-y-1/2" />
@@ -492,7 +490,7 @@ const ProfilePage = () => {
                       <button
                         onClick={handleSaveChanges}
                         disabled={isSaving}
-                        className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg disabled:opacity-70 px-8 py-3 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5 duration-300"
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary disabled:opacity-70 hover:shadow-lg px-8 py-3 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5 duration-300"
                       >
                         {isSaving ? (
                           <>
@@ -522,7 +520,7 @@ const ProfilePage = () => {
                           <p className="text-gray-500 text-sm">Manage your password settings</p>
                         </div>
                       </div>
-                      
+
                       <div className="space-y-4">
                         <div>
                           <label className="block mb-2 font-medium text-gray-700 text-sm">Current Password</label>
@@ -535,7 +533,7 @@ const ProfilePage = () => {
                             <button
                               type="button"
                               onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                              className="top-1/2 right-4 absolute text-gray-400 hover:text-primary -translate-y-1/2 transition-colors duration-200"
+                              className="top-1/2 right-4 absolute text-gray-400 hover:text-primary transition-colors -translate-y-1/2 duration-200"
                             >
                               {showCurrentPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
                             </button>
@@ -553,7 +551,7 @@ const ProfilePage = () => {
                               <button
                                 type="button"
                                 onClick={() => setShowNewPassword(!showNewPassword)}
-                                className="top-1/2 right-4 absolute text-gray-400 hover:text-primary -translate-y-1/2 transition-colors duration-200"
+                                className="top-1/2 right-4 absolute text-gray-400 hover:text-primary transition-colors -translate-y-1/2 duration-200"
                               >
                                 {showNewPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
                               </button>
@@ -570,7 +568,7 @@ const ProfilePage = () => {
                               <button
                                 type="button"
                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                className="top-1/2 right-4 absolute text-gray-400 hover:text-primary -translate-y-1/2 transition-colors duration-200"
+                                className="top-1/2 right-4 absolute text-gray-400 hover:text-primary transition-colors -translate-y-1/2 duration-200"
                               >
                                 {showConfirmPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
                               </button>
@@ -594,7 +592,7 @@ const ProfilePage = () => {
                           <p className="text-gray-500 text-sm">Configure your security preferences</p>
                         </div>
                       </div>
-                      
+
                       <div className="divide-y divide-gray-100">
                         <ToggleSwitch
                           id="two-factor"
@@ -624,7 +622,7 @@ const ProfilePage = () => {
                           <p className="text-gray-500 text-sm">Monitor your account access</p>
                         </div>
                       </div>
-                      
+
                       <div className="space-y-3">
                         {[
                           { device: "Windows PC", location: "San Francisco, CA", time: "Today, 2:30 PM", current: true },
@@ -661,7 +659,7 @@ const ProfilePage = () => {
                           <p className="text-gray-500 text-sm">Choose what emails you want to receive</p>
                         </div>
                       </div>
-                      
+
                       <div className="divide-y divide-gray-100">
                         <ToggleSwitch
                           id="email-notifications"
@@ -697,7 +695,7 @@ const ProfilePage = () => {
                           <p className="text-gray-500 text-sm">Stay on track with your interview preparation</p>
                         </div>
                       </div>
-                      
+
                       <div className="divide-y divide-gray-100">
                         <ToggleSwitch
                           id="practice-reminders"
@@ -724,7 +722,7 @@ const ProfilePage = () => {
                           <p className="text-gray-500 text-sm">Download or export your data</p>
                         </div>
                       </div>
-                      
+
                       <p className="mb-4 text-gray-600">Download a copy of all your data including interview history, practice sessions, and profile information.</p>
                       <button className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-5 py-2.5 rounded-xl font-medium text-gray-700 transition-all duration-300">
                         <FaDownload /> Export All Data
@@ -742,7 +740,7 @@ const ProfilePage = () => {
                           <p className="text-red-600 text-sm">Irreversible actions - proceed with caution</p>
                         </div>
                       </div>
-                      
+
                       <div className="space-y-4">
                         <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-4 bg-white p-4 border border-red-200 rounded-xl">
                           <div>
@@ -756,7 +754,7 @@ const ProfilePage = () => {
                             <FaSignOutAlt /> Sign Out
                           </button>
                         </div>
-                        
+
                         <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-4 bg-white p-4 border border-red-200 rounded-xl">
                           <div>
                             <p className="font-medium text-gray-800">Delete Account</p>
@@ -786,7 +784,7 @@ const ProfilePage = () => {
                       </div>
                       <h3 className="font-semibold text-gray-900">Your Activity</h3>
                     </div>
-                    
+
                     <div className="gap-3 grid grid-cols-2">
                       {[
                         { value: "0", label: "Interviews", color: "from-primary to-indigo-500" },

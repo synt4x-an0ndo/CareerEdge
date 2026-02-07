@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Font */
+* {
+  font-family: 'Sora', sans-serif;
+}
+
+html, body {
+  font-family: 'Sora', sans-serif;
+}
+
 /* Dark Theme Base Layer Overrides */
 @layer base {
 

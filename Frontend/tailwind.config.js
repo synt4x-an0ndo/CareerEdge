@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Sora', 'sans-serif'],
+        sora: ['Sora', 'sans-serif'],
+      },
       colors: {
         primary: "#F3BF5B",
         secondary: "#80A9C5",

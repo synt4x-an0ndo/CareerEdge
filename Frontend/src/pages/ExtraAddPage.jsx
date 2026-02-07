@@ -322,7 +322,7 @@ Requirements:
                                 onClick={() => handleJobSelect(job.name)}
                                 className={`px-5 py-2.5 rounded-full border font-medium transition-all duration-300 ${selectedJob === job.name
                                     ? 'bg-amber-400 text-gray-900 border-amber-400 shadow-lg shadow-amber-400/20'
-                                    : 'bg-[#1e3a5f]/80 text-gray-200 border-[#2d4a6f] hover:border-amber-400/50 hover:bg-[#1e3a5f]'
+                                    : 'bg-[#1e3a5f] text-white border-[#3d5a7f] hover:border-amber-400/50 hover:bg-[#2a4a6f]'
                                     }`}
                             >
                                 {job.name}

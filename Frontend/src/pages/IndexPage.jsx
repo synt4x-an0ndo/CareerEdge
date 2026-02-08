@@ -23,6 +23,7 @@ const IndexPage = () => {
       />
       <Hero />
       <Features />
+      <HowItWorks />
       <Testimonials />
       <Footer />
     </div>
@@ -71,10 +72,10 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
       {/* Center Navigation */}
       <div className="hidden lg:flex items-center">
         <div className="flex items-center gap-2 bg-slate-800 px-3 py-2 border border-slate-600 rounded-full">
-          {["Features", "Testimonials"].map((item, i) => (
+          {["Features", "How It Works", "Testimonials"].map((item, i) => (
             <motion.a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 + 0.2 }}
@@ -110,9 +111,9 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
         >
           <motion.a
             href="/register"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="group inline-flex relative items-center gap-2 bg-[length:200%_100%] bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:bg-right shadow-amber-500/25 shadow-lg hover:shadow-amber-500/40 px-6 py-2.5 rounded-full font-semibold text-[#0a1628] text-sm transition-all duration-500"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="group inline-flex relative items-center gap-2 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl px-6 py-2.5 rounded-full font-semibold text-white text-sm transition-all duration-300"
           >
             Get Started
             <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -186,7 +187,9 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.25 }}
-            className="bg-gradient-to-r from-amber-400 to-amber-500 mt-2 py-3 rounded-xl w-full font-semibold text-[#0a1628] text-center"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl mt-2 py-3 rounded-xl w-full font-semibold text-white text-center transition-all duration-300"
           >
             Get Started
           </motion.a>
@@ -278,9 +281,12 @@ const Hero = () => {
             href="/register"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex justify-center items-center bg-gradient-to-r from-primary to-secondary shadow-xl hover:shadow-2xl px-10 py-4 rounded-full font-semibold text-white text-lg transition-all duration-300"
+            className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl px-10 py-4 rounded-full font-semibold text-white text-lg transition-all duration-300"
           >
             Start Practicing Free
+            <svg className="w-5 h-5 transition-transform group-hover:translate-x-0.5 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
           </motion.a>
         </motion.div>
       </div>
@@ -447,6 +453,166 @@ const Features = () => {
               <p className="text-gray-600">{feature.desc}</p>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const HowItWorks = () => {
+  const steps = [
+    {
+      number: "01",
+      title: "Create Your Profile",
+      description: "Set up your professional profile with your target role, industry preferences, and experience level for personalized preparation.",
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      ),
+    },
+    {
+      number: "02",
+      title: "Select Interview Type",
+      description: "Choose from behavioral, technical, or industry-specific interviews tailored to your career goals and target companies.",
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+        </svg>
+      ),
+    },
+    {
+      number: "03",
+      title: "Practice with AI",
+      description: "Experience realistic interview simulations powered by advanced AI, with real-time voice analysis and instant feedback.",
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      ),
+    },
+    {
+      number: "04",
+      title: "Analyze & Improve",
+      description: "Review comprehensive performance analytics, identify areas for improvement, and track your progress over time.",
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <section id="how-it-works" className="relative bg-gradient-to-br from-gray-50 to-gray-100 px-6 sm:px-8 py-32 overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0">
+        {/* Gradient orbs */}
+        <div className="top-0 left-1/4 absolute bg-primary/10 blur-[120px] rounded-full w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="right-0 bottom-0 absolute bg-secondary/10 blur-[120px] rounded-full w-[500px] h-[500px] translate-x-1/4 translate-y-1/4" />
+      </div>
+
+      <div className="z-10 relative mx-auto max-w-7xl">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-24 text-center"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-sm mb-6 px-5 py-2.5 border border-primary/30 rounded-full"
+          >
+            <span className="bg-primary rounded-full w-2 h-2 animate-pulse" />
+            <span className="font-medium text-primary text-sm uppercase tracking-wide">How It Works</span>
+          </motion.div>
+
+          <h2 className="mb-6 font-bold text-gray-900 text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight">
+            Your Path to Interview
+            <br />
+            <span className="text-primary">Excellence</span>
+          </h2>
+
+          <p className="mx-auto max-w-2xl text-gray-600 text-lg sm:text-xl leading-relaxed">
+            A streamlined four-step process designed to transform your interview skills and boost your confidence
+          </p>
+        </motion.div>
+
+        {/* Steps Container */}
+        <div className="relative">
+          {/* Horizontal connecting line - desktop only */}
+          <div className="hidden lg:block top-[72px] right-0 left-0 z-0 absolute w-full">
+            <div className="bg-gradient-to-r from-[#FCD34D] via-[#FCD34D] to-[#FCD34D] opacity-90 mx-auto w-[85%] h-[2px]" />
+          </div>
+          <div className="gap-8 lg:gap-6 grid lg:grid-cols-4">
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.15 }}
+                className="group relative"
+              >
+                {/* Card */}
+                <div className="relative flex flex-col items-center lg:items-start p-8 lg:text-left text-center">
+                  {/* Step Number Circle */}
+                  <div className="relative mb-8">
+                    {/* Outer ring */}
+                    <div className="absolute -inset-3 border-2 border-primary/20 group-hover:border-primary/40 rounded-full transition-colors duration-500" />
+
+                    {/* Inner ring with glow */}
+                    <div className="absolute -inset-1.5 bg-primary/0 group-hover:bg-primary/10 rounded-full transition-all duration-500" />
+
+                    {/* Main circle */}
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      className="relative flex justify-center items-center bg-white shadow-xl border border-gray-200 group-hover:border-primary/30 rounded-full w-[88px] h-[88px] transition-all duration-500"
+                    >
+                      {/* Icon container */}
+                      <div className="flex justify-center items-center bg-gradient-to-br from-primary to-primary/80 shadow-lg group-hover:shadow-primary/20 rounded-xl w-12 h-12 text-white transition-shadow duration-500">
+                        {step.icon}
+                      </div>
+
+                      {/* Step number badge */}
+                      <div className="-top-1 -right-1 absolute flex justify-center items-center bg-white shadow-lg border-2 border-primary/50 rounded-full w-7 h-7">
+                        <span className="font-bold text-primary text-xs">{step.number}</span>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="mb-3 font-bold text-gray-900 group-hover:text-primary text-xl transition-colors duration-300">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 group-hover:text-gray-900 text-sm leading-relaxed transition-colors duration-300">
+                      {step.description}
+                    </p>
+                  </div>
+
+                  {/* Mobile connector arrow */}
+                  {i < steps.length - 1 && (
+                    <div className="lg:hidden flex justify-center mt-8">
+                      <motion.div
+                        animate={{ y: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                      </motion.div>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -629,11 +795,14 @@ const Pricing = () => {
                 ))}
               </ul>
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl py-3 rounded-full w-full font-semibold text-white transition-all duration-300"
+                className="flex justify-center items-center gap-2 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl py-3 rounded-full w-full font-semibold text-white transition-all duration-300"
               >
                 Get Started
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </motion.button>
             </motion.div>
           ))}

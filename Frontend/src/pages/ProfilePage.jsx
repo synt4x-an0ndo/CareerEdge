@@ -140,72 +140,72 @@ const ProfilePage = () => {
 
   // Toggle Switch Component
   const ToggleSwitch = ({ id, checked, onChange, label, description }) => (
-    <div className="group flex justify-between items-center hover:bg-gray-50/80 p-4 rounded-xl transition-all duration-300">
+    <div className="group flex items-center justify-between rounded-xl p-4 transition-all duration-300 hover:bg-gray-50/80">
       <div className="flex items-center gap-4">
         <div>
           <span className="block font-medium text-gray-800">{label}</span>
-          <p className="text-gray-500 text-sm">{description}</p>
+          <p className="text-sm text-gray-500">{description}</p>
         </div>
       </div>
-      <label htmlFor={id} className="inline-block relative w-12 h-6 cursor-pointer">
+      <label htmlFor={id} className="relative inline-block h-6 w-12 cursor-pointer">
         <input
           type="checkbox"
           id={id}
           checked={checked}
           onChange={onChange}
-          className="sr-only peer"
+          className="peer sr-only"
         />
-        <span className="absolute inset-0 bg-gray-300 peer-checked:bg-gradient-to-r peer-checked:from-primary peer-checked:to-secondary rounded-full transition-all duration-300"></span>
-        <span className="top-0.5 left-0.5 absolute bg-white shadow-md rounded-full w-5 h-5 transition-all peer-checked:translate-x-6 duration-300"></span>
+        <span className="absolute inset-0 rounded-full bg-gray-300 transition-all duration-300 peer-checked:bg-gradient-to-r peer-checked:from-primary peer-checked:to-secondary"></span>
+        <span className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-md transition-all duration-300 peer-checked:translate-x-6"></span>
       </label>
     </div>
   );
 
   return (
-    <div className="flex bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Toast Notification */}
       {showNotification && (
-        <div className="top-6 right-6 z-50 fixed flex items-center gap-3 bg-white shadow-xl px-6 py-4 border-green-500 border-l-4 rounded-lg animate-slide-in">
-          <FaCheckCircle className="text-green-500 text-xl" />
+        <div className="animate-slide-in fixed right-6 top-6 z-50 flex items-center gap-3 rounded-lg border-l-4 border-green-500 bg-white px-6 py-4 shadow-xl">
+          <FaCheckCircle className="text-xl text-green-500" />
           <span className="font-medium text-gray-800">{notificationMessage}</span>
         </div>
       )}
 
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-1 flex-col">
         {/* Header */}
-        <div className="top-0 z-40 sticky flex justify-between items-center bg-white/95 backdrop-blur-xl px-8 py-5 border-gray-200/80 border-b">
+        <div className="sticky top-0 z-40 flex items-center justify-between border-b border-gray-200/80 bg-white/95 px-8 py-5 backdrop-blur-xl">
           <div className="flex items-center gap-4">
-            <button onClick={toggleSidebar} className="lg:hidden text-gray-600 hover:text-primary transition-colors">
+            <button onClick={toggleSidebar} className="text-gray-600 transition-colors hover:text-primary lg:hidden">
               <FaBars className="text-xl" />
             </button>
             <div>
-              <h1 className="font-bold text-gray-900 text-2xl">Settings</h1>
-              <p className="text-gray-500 text-sm">Manage your account preferences</p>
+              <h1 className="text-2xl font-bold text-gray-900">Settings</h1>
+              <p className="text-sm text-gray-500">Manage your account preferences</p>
             </div>
           </div>
         </div>
 
-        <div className="flex-1 p-8 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto p-8">
           <div className="mx-auto max-w-6xl">
             {/* System Notification with Changing Text */}
             {showSystemNotification && (
-              <div className="relative bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 mb-6 p-4 border border-primary/20 rounded-2xl overflow-hidden animate-fade-in">
+              <div className="animate-fade-in relative mb-6 overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 p-4">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-50"></div>
-                <div className="relative flex justify-between items-center gap-4">
+                <div className="relative flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-full w-10 h-10 animate-pulse">
-                      <FaLightbulb className="text-white text-lg" />
+                    <div className="flex h-10 w-10 animate-pulse items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary">
+                      <FaLightbulb className="text-lg text-white" />
                     </div>
                     <div className="flex-1">
-                      <p className="font-medium text-gray-800 text-sm">
-                        <span className="bg-clip-text bg-gradient-to-r from-primary to-secondary font-semibold text-transparent">Pro Tip: </span>
+                      <p className="text-sm font-medium text-gray-800">
+                        <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text font-semibold text-transparent">Pro Tip: </span>
                         <span className="transition-all duration-500">{systemTips[currentTipIndex]}</span>
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     {/* Progress dots */}
-                    <div className="hidden sm:flex items-center gap-1.5">
+                    <div className="hidden items-center gap-1.5 sm:flex">
                       {systemTips.map((_, idx) => (
                         <button
                           key={idx}
@@ -219,7 +219,7 @@ const ProfilePage = () => {
                     </div>
                     <button
                       onClick={() => setShowSystemNotification(false)}
-                      className="flex justify-center items-center hover:bg-gray-200 rounded-full w-8 h-8 text-gray-400 hover:text-gray-600 transition-all duration-300"
+                      className="flex h-8 w-8 items-center justify-center rounded-full text-gray-400 transition-all duration-300 hover:bg-gray-200 hover:text-gray-600"
                     >
                       <FaTimes className="text-sm" />
                     </button>
@@ -229,33 +229,33 @@ const ProfilePage = () => {
             )}
 
             {/* Profile Header Card */}
-            <div className="relative bg-navy shadow-sm mb-8 border border-navy-light rounded-2xl overflow-hidden">
+            <div className="relative mb-8 overflow-hidden rounded-2xl border border-navy-light bg-navy shadow-sm">
               {/* Cover Background */}
-              <div className="bg-gradient-to-r from-navy-dark via-navy to-navy-light h-32"></div>
+              <div className="h-32 bg-gradient-to-r from-navy-dark via-navy to-navy-light"></div>
 
               <div className="px-8 pb-6">
-                <div className="flex sm:flex-row flex-col sm:items-end gap-6 -mt-16">
+                <div className="-mt-16 flex flex-col gap-6 sm:flex-row sm:items-end">
                   {/* Avatar */}
                   <div className="group relative">
-                    <div className="bg-navy-light shadow-xl p-1.5 rounded-full ring-4 ring-gold/30">
+                    <div className="rounded-full bg-navy-light p-1.5 shadow-xl ring-4 ring-gold/30">
                       <img
                         src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
                         alt="User Avatar"
-                        className="rounded-full w-28 h-28 object-cover"
+                        className="h-28 w-28 rounded-full object-cover"
                       />
                     </div>
-                    <button className="right-0 bottom-0 absolute flex justify-center items-center bg-gold hover:bg-gold/90 shadow-lg rounded-full w-9 h-9 text-navy-dark group-hover:scale-110 transition-all duration-300">
+                    <button className="absolute bottom-0 right-0 flex h-9 w-9 items-center justify-center rounded-full bg-gold text-navy-dark shadow-lg transition-all duration-300 hover:bg-gold/90 group-hover:scale-110">
                       <FaCamera className="text-sm" />
                     </button>
                   </div>
 
                   {/* User Info */}
                   <div className="flex-1 pt-4 sm:pt-0">
-                    <div className="flex sm:flex-row flex-col justify-between sm:items-center gap-4">
+                    <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                       <div>
-                        <h2 className="font-bold text-gold text-2xl">{fullName}</h2>
+                        <h2 className="text-2xl font-bold text-gold">{fullName}</h2>
                         <p className="text-skyblue">{jobTitle} at {company}</p>
-                        <div className="flex items-center gap-4 mt-2 text-skyblue/80 text-sm">
+                        <div className="mt-2 flex items-center gap-4 text-sm text-skyblue/80">
                           <span className="flex items-center gap-1">
                             <FaMapMarkerAlt className="text-gold" /> {location}
                           </span>
@@ -266,10 +266,10 @@ const ProfilePage = () => {
                       </div>
 
                       {/* Profile Completion */}
-                      <div className="bg-navy-dark px-5 py-3 border border-navy-light rounded-xl">
+                      <div className="rounded-xl border border-navy-light bg-navy-dark px-5 py-3">
                         <div className="flex items-center gap-3">
-                          <div className="relative w-14 h-14">
-                            <svg className="w-14 h-14 -rotate-90 transform">
+                          <div className="relative h-14 w-14">
+                            <svg className="h-14 w-14 -rotate-90 transform">
                               <circle cx="28" cy="28" r="24" stroke="#294062" strokeWidth="4" fill="none" />
                               <circle
                                 cx="28" cy="28" r="24"
@@ -286,11 +286,11 @@ const ProfilePage = () => {
                                 </linearGradient>
                               </defs>
                             </svg>
-                            <span className="top-1/2 left-1/2 absolute font-bold text-gold text-sm -translate-x-1/2 -translate-y-1/2">{profileCompletion}%</span>
+                            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-bold text-gold">{profileCompletion}%</span>
                           </div>
                           <div>
-                            <p className="font-semibold text-text-dark text-sm">Profile Complete</p>
-                            <p className="text-skyblue text-xs">Add more details to stand out</p>
+                            <p className="text-sm font-semibold text-text-dark">Profile Complete</p>
+                            <p className="text-xs text-skyblue">Add more details to stand out</p>
                           </div>
                         </div>
                       </div>
@@ -301,7 +301,7 @@ const ProfilePage = () => {
             </div>
 
             {/* Tab Navigation */}
-            <div className="flex space-x-1 bg-white shadow-sm mb-8 p-1.5 border border-gray-200/80 rounded-xl">
+            <div className="mb-8 flex space-x-1 rounded-xl border border-gray-200/80 bg-white p-1.5 shadow-sm">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -318,121 +318,121 @@ const ProfilePage = () => {
             </div>
 
             {/* Tab Content */}
-            <div className="gap-8 grid lg:grid-cols-3">
+            <div className="grid gap-8 lg:grid-cols-3">
               {/* Main Content */}
               <div className="lg:col-span-2">
                 {activeTab === "profile" && (
                   <div className="space-y-6">
                     {/* Personal Information */}
-                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-primary/10 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                           <FaUser className="text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 text-lg">Personal Information</h3>
-                          <p className="text-gray-500 text-sm">Update your personal details here</p>
+                          <h3 className="text-lg font-semibold text-gray-900">Personal Information</h3>
+                          <p className="text-sm text-gray-500">Update your personal details here</p>
                         </div>
                       </div>
 
-                      <div className="gap-5 grid md:grid-cols-2">
+                      <div className="grid gap-5 md:grid-cols-2">
                         <div>
-                          <label className="block mb-2 font-medium text-gray-700 text-sm">Full Name</label>
+                          <label className="mb-2 block text-sm font-medium text-gray-700">Full Name</label>
                           <input
                             type="text"
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
-                            className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                           />
                         </div>
                         <div>
-                          <label className="block mb-2 font-medium text-gray-700 text-sm">Email Address</label>
+                          <label className="mb-2 block text-sm font-medium text-gray-700">Email Address</label>
                           <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                           />
                         </div>
                         <div>
-                          <label className="block mb-2 font-medium text-gray-700 text-sm">Phone Number</label>
+                          <label className="mb-2 block text-sm font-medium text-gray-700">Phone Number</label>
                           <div className="relative">
-                            <FaPhone className="top-1/2 left-4 absolute text-gray-400 -translate-y-1/2" />
+                            <FaPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                             <input
                               type="tel"
                               value={phone}
                               onChange={(e) => setPhone(e.target.value)}
-                              className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                              className="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-4 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                             />
                           </div>
                         </div>
                         <div>
-                          <label className="block mb-2 font-medium text-gray-700 text-sm">Location</label>
+                          <label className="mb-2 block text-sm font-medium text-gray-700">Location</label>
                           <div className="relative">
-                            <FaMapMarkerAlt className="top-1/2 left-4 absolute text-gray-400 -translate-y-1/2" />
+                            <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                             <input
                               type="text"
                               value={location}
                               onChange={(e) => setLocation(e.target.value)}
-                              className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                              className="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-4 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                             />
                           </div>
                         </div>
                       </div>
 
                       <div className="mt-5">
-                        <label className="block mb-2 font-medium text-gray-700 text-sm">Bio</label>
+                        <label className="mb-2 block text-sm font-medium text-gray-700">Bio</label>
                         <textarea
                           rows="4"
                           value={bio}
                           onChange={(e) => setBio(e.target.value)}
-                          className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300 resize-none"
+                          className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                           placeholder="Tell us about yourself..."
                         ></textarea>
-                        <p className="mt-2 text-gray-400 text-xs text-right">{bio.length}/500 characters</p>
+                        <p className="mt-2 text-right text-xs text-gray-400">{bio.length}/500 characters</p>
                       </div>
                     </div>
 
                     {/* Professional Information */}
-                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-secondary/10 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary/10">
                           <FaBriefcase className="text-secondary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 text-lg">Professional Information</h3>
-                          <p className="text-gray-500 text-sm">Your work and career details</p>
+                          <h3 className="text-lg font-semibold text-gray-900">Professional Information</h3>
+                          <p className="text-sm text-gray-500">Your work and career details</p>
                         </div>
                       </div>
 
-                      <div className="gap-5 grid md:grid-cols-2">
+                      <div className="grid gap-5 md:grid-cols-2">
                         <div>
-                          <label className="block mb-2 font-medium text-gray-700 text-sm">Job Title</label>
+                          <label className="mb-2 block text-sm font-medium text-gray-700">Job Title</label>
                           <input
                             type="text"
                             value={jobTitle}
                             onChange={(e) => setJobTitle(e.target.value)}
-                            className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                           />
                         </div>
                         <div>
-                          <label className="block mb-2 font-medium text-gray-700 text-sm">Company</label>
+                          <label className="mb-2 block text-sm font-medium text-gray-700">Company</label>
                           <input
                             type="text"
                             value={company}
                             onChange={(e) => setCompany(e.target.value)}
-                            className="bg-gray-50 hover:bg-gray-100 px-4 py-3 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                           />
                         </div>
                         <div className="md:col-span-2">
-                          <label className="block mb-2 font-medium text-gray-700 text-sm">Personal Website</label>
+                          <label className="mb-2 block text-sm font-medium text-gray-700">Personal Website</label>
                           <div className="relative">
-                            <FaGlobe className="top-1/2 left-4 absolute text-gray-400 -translate-y-1/2" />
+                            <FaGlobe className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                             <input
                               type="url"
                               value={website}
                               onChange={(e) => setWebsite(e.target.value)}
-                              className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                              className="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-4 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                             />
                           </div>
                         </div>
@@ -440,46 +440,46 @@ const ProfilePage = () => {
                     </div>
 
                     {/* Social Links */}
-                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-blue-100 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100">
                           <FaLinkedin className="text-blue-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 text-lg">Social Links</h3>
-                          <p className="text-gray-500 text-sm">Connect your social profiles</p>
+                          <h3 className="text-lg font-semibold text-gray-900">Social Links</h3>
+                          <p className="text-sm text-gray-500">Connect your social profiles</p>
                         </div>
                       </div>
 
                       <div className="space-y-4">
                         <div className="relative">
-                          <FaLinkedin className="top-1/2 left-4 absolute text-[#0077b5] -translate-y-1/2" />
+                          <FaLinkedin className="absolute left-4 top-1/2 -translate-y-1/2 text-[#0077b5]" />
                           <input
                             type="text"
                             value={linkedin}
                             onChange={(e) => setLinkedin(e.target.value)}
                             placeholder="linkedin.com/in/username"
-                            className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            className="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-4 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                           />
                         </div>
                         <div className="relative">
-                          <FaGithub className="top-1/2 left-4 absolute text-gray-800 -translate-y-1/2" />
+                          <FaGithub className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-800" />
                           <input
                             type="text"
                             value={github}
                             onChange={(e) => setGithub(e.target.value)}
                             placeholder="github.com/username"
-                            className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            className="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-4 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                           />
                         </div>
                         <div className="relative">
-                          <FaTwitter className="top-1/2 left-4 absolute text-[#1da1f2] -translate-y-1/2" />
+                          <FaTwitter className="absolute left-4 top-1/2 -translate-y-1/2 text-[#1da1f2]" />
                           <input
                             type="text"
                             value={twitter}
                             onChange={(e) => setTwitter(e.target.value)}
                             placeholder="@username"
-                            className="bg-gray-50 hover:bg-gray-100 py-3 pr-4 pl-11 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                            className="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-11 pr-4 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                           />
                         </div>
                       </div>
@@ -490,11 +490,11 @@ const ProfilePage = () => {
                       <button
                         onClick={handleSaveChanges}
                         disabled={isSaving}
-                        className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary disabled:opacity-70 hover:shadow-lg px-8 py-3 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5 duration-300"
+                        className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-secondary px-8 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-70"
                       >
                         {isSaving ? (
                           <>
-                            <div className="border-2 border-white/30 border-t-white rounded-full w-5 h-5 animate-spin"></div>
+                            <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
                             Saving...
                           </>
                         ) : (
@@ -510,86 +510,86 @@ const ProfilePage = () => {
                 {activeTab === "security" && (
                   <div className="space-y-6">
                     {/* Password Section */}
-                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-primary/10 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                           <FaKey className="text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 text-lg">Password</h3>
-                          <p className="text-gray-500 text-sm">Manage your password settings</p>
+                          <h3 className="text-lg font-semibold text-gray-900">Password</h3>
+                          <p className="text-sm text-gray-500">Manage your password settings</p>
                         </div>
                       </div>
 
                       <div className="space-y-4">
                         <div>
-                          <label className="block mb-2 font-medium text-gray-700 text-sm">Current Password</label>
+                          <label className="mb-2 block text-sm font-medium text-gray-700">Current Password</label>
                           <div className="relative">
                             <input
                               type={showCurrentPassword ? "text" : "password"}
                               placeholder="••••••••"
-                              className="bg-gray-50 hover:bg-gray-100 px-4 py-3 pr-12 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                              className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 pr-12 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                             />
                             <button
                               type="button"
                               onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                              className="top-1/2 right-4 absolute text-gray-400 hover:text-primary transition-colors -translate-y-1/2 duration-200"
+                              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 transition-colors duration-200 hover:text-primary"
                             >
                               {showCurrentPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
                             </button>
                           </div>
                         </div>
-                        <div className="gap-4 grid md:grid-cols-2">
+                        <div className="grid gap-4 md:grid-cols-2">
                           <div>
-                            <label className="block mb-2 font-medium text-gray-700 text-sm">New Password</label>
+                            <label className="mb-2 block text-sm font-medium text-gray-700">New Password</label>
                             <div className="relative">
                               <input
                                 type={showNewPassword ? "text" : "password"}
                                 placeholder="••••••••"
-                                className="bg-gray-50 hover:bg-gray-100 px-4 py-3 pr-12 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 pr-12 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                               />
                               <button
                                 type="button"
                                 onClick={() => setShowNewPassword(!showNewPassword)}
-                                className="top-1/2 right-4 absolute text-gray-400 hover:text-primary transition-colors -translate-y-1/2 duration-200"
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 transition-colors duration-200 hover:text-primary"
                               >
                                 {showNewPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
                               </button>
                             </div>
                           </div>
                           <div>
-                            <label className="block mb-2 font-medium text-gray-700 text-sm">Confirm Password</label>
+                            <label className="mb-2 block text-sm font-medium text-gray-700">Confirm Password</label>
                             <div className="relative">
                               <input
                                 type={showConfirmPassword ? "text" : "password"}
                                 placeholder="••••••••"
-                                className="bg-gray-50 hover:bg-gray-100 px-4 py-3 pr-12 border border-gray-200 focus:border-primary rounded-xl focus:outline-none focus:ring-4 focus:ring-primary/10 w-full text-gray-900 transition-all duration-300"
+                                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 pr-12 text-gray-900 transition-all duration-300 hover:bg-gray-100 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
                               />
                               <button
                                 type="button"
                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                className="top-1/2 right-4 absolute text-gray-400 hover:text-primary transition-colors -translate-y-1/2 duration-200"
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 transition-colors duration-200 hover:text-primary"
                               >
                                 {showConfirmPassword ? <FaEyeSlash className="text-lg" /> : <FaEye className="text-lg" />}
                               </button>
                             </div>
                           </div>
                         </div>
-                        <button className="bg-primary hover:bg-primary/90 px-6 py-2.5 rounded-xl font-medium text-white transition-all duration-300">
+                        <button className="rounded-xl bg-primary px-6 py-2.5 font-medium text-white transition-all duration-300 hover:bg-primary/90">
                           Update Password
                         </button>
                       </div>
                     </div>
 
                     {/* Security Settings */}
-                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-green-100 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100">
                           <FaShieldAlt className="text-green-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 text-lg">Security Settings</h3>
-                          <p className="text-gray-500 text-sm">Configure your security preferences</p>
+                          <h3 className="text-lg font-semibold text-gray-900">Security Settings</h3>
+                          <p className="text-sm text-gray-500">Configure your security preferences</p>
                         </div>
                       </div>
 
@@ -612,14 +612,14 @@ const ProfilePage = () => {
                     </div>
 
                     {/* Login History */}
-                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-purple-100 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100">
                           <FaHistory className="text-purple-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 text-lg">Recent Login Activity</h3>
-                          <p className="text-gray-500 text-sm">Monitor your account access</p>
+                          <h3 className="text-lg font-semibold text-gray-900">Recent Login Activity</h3>
+                          <p className="text-sm text-gray-500">Monitor your account access</p>
                         </div>
                       </div>
 
@@ -634,11 +634,11 @@ const ProfilePage = () => {
                               <div className={`w-2 h-2 rounded-full ${session.current ? 'bg-primary' : 'bg-gray-400'}`}></div>
                               <div>
                                 <p className={`font-medium ${session.current ? 'text-primary' : 'text-gray-800'}`}>{session.device}</p>
-                                <p className="text-gray-500 text-sm">{session.location} • {session.time}</p>
+                                <p className="text-sm text-gray-500">{session.location} • {session.time}</p>
                               </div>
                             </div>
                             {session.current && (
-                              <span className="bg-gradient-to-r from-primary to-secondary px-3 py-1 rounded-full font-medium text-white text-xs">Current</span>
+                              <span className="rounded-full bg-gradient-to-r from-primary to-secondary px-3 py-1 text-xs font-medium text-white">Current</span>
                             )}
                           </div>
                         ))}
@@ -649,14 +649,14 @@ const ProfilePage = () => {
 
                 {activeTab === "notifications" && (
                   <div className="space-y-6">
-                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-blue-100 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100">
                           <FaEnvelope className="text-blue-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 text-lg">Email Notifications</h3>
-                          <p className="text-gray-500 text-sm">Choose what emails you want to receive</p>
+                          <h3 className="text-lg font-semibold text-gray-900">Email Notifications</h3>
+                          <p className="text-sm text-gray-500">Choose what emails you want to receive</p>
                         </div>
                       </div>
 
@@ -685,14 +685,14 @@ const ProfilePage = () => {
                       </div>
                     </div>
 
-                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-amber-100 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100">
                           <FaBell className="text-amber-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 text-lg">Practice Reminders</h3>
-                          <p className="text-gray-500 text-sm">Stay on track with your interview preparation</p>
+                          <h3 className="text-lg font-semibold text-gray-900">Practice Reminders</h3>
+                          <p className="text-sm text-gray-500">Stay on track with your interview preparation</p>
                         </div>
                       </div>
 
@@ -712,57 +712,57 @@ const ProfilePage = () => {
                 {activeTab === "account" && (
                   <div className="space-y-6">
                     {/* Data Management */}
-                    <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-primary/10 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                           <FaDownload className="text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 text-lg">Data Management</h3>
-                          <p className="text-gray-500 text-sm">Download or export your data</p>
+                          <h3 className="text-lg font-semibold text-gray-900">Data Management</h3>
+                          <p className="text-sm text-gray-500">Download or export your data</p>
                         </div>
                       </div>
 
                       <p className="mb-4 text-gray-600">Download a copy of all your data including interview history, practice sessions, and profile information.</p>
-                      <button className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-5 py-2.5 rounded-xl font-medium text-gray-700 transition-all duration-300">
+                      <button className="inline-flex items-center gap-2 rounded-xl bg-gray-100 px-5 py-2.5 font-medium text-gray-700 transition-all duration-300 hover:bg-gray-200">
                         <FaDownload /> Export All Data
                       </button>
                     </div>
 
                     {/* Danger Zone */}
-                    <div className="bg-red-50 p-6 border border-red-200 rounded-2xl">
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="flex justify-center items-center bg-red-100 rounded-xl w-10 h-10">
+                    <div className="rounded-2xl border border-red-200 bg-red-50 p-6">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-100">
                           <FaExclamationTriangle className="text-red-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-red-800 text-lg">Danger Zone</h3>
-                          <p className="text-red-600 text-sm">Irreversible actions - proceed with caution</p>
+                          <h3 className="text-lg font-semibold text-red-800">Danger Zone</h3>
+                          <p className="text-sm text-red-600">Irreversible actions - proceed with caution</p>
                         </div>
                       </div>
 
                       <div className="space-y-4">
-                        <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-4 bg-white p-4 border border-red-200 rounded-xl">
+                        <div className="flex flex-col items-start justify-between gap-4 rounded-xl border border-red-200 bg-white p-4 sm:flex-row sm:items-center">
                           <div>
                             <p className="font-medium text-gray-800">Sign Out</p>
-                            <p className="text-gray-500 text-sm">Sign out from all devices</p>
+                            <p className="text-sm text-gray-500">Sign out from all devices</p>
                           </div>
                           <button
                             onClick={() => handleDangerAction("Sign Out")}
-                            className="inline-flex items-center gap-2 bg-white hover:bg-red-50 px-4 py-2 border border-red-300 rounded-lg font-medium text-red-600 transition-all duration-300"
+                            className="inline-flex items-center gap-2 rounded-lg border border-red-300 bg-white px-4 py-2 font-medium text-red-600 transition-all duration-300 hover:bg-red-50"
                           >
                             <FaSignOutAlt /> Sign Out
                           </button>
                         </div>
 
-                        <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-4 bg-white p-4 border border-red-200 rounded-xl">
+                        <div className="flex flex-col items-start justify-between gap-4 rounded-xl border border-red-200 bg-white p-4 sm:flex-row sm:items-center">
                           <div>
                             <p className="font-medium text-gray-800">Delete Account</p>
-                            <p className="text-gray-500 text-sm">Permanently delete your account and all data</p>
+                            <p className="text-sm text-gray-500">Permanently delete your account and all data</p>
                           </div>
                           <button
                             onClick={() => handleDangerAction("Delete Account")}
-                            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg font-medium text-white transition-all duration-300"
+                            className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 font-medium text-white transition-all duration-300 hover:bg-red-700"
                           >
                             <FaTrashAlt /> Delete Account
                           </button>
@@ -777,33 +777,33 @@ const ProfilePage = () => {
               <div className="lg:col-span-1">
                 <div className="space-y-6">
                   {/* Activity Stats */}
-                  <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="flex justify-center items-center bg-primary/10 rounded-xl w-10 h-10">
+                  <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
+                    <div className="mb-5 flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                         <FaChartLine className="text-primary" />
                       </div>
                       <h3 className="font-semibold text-gray-900">Your Activity</h3>
                     </div>
 
-                    <div className="gap-3 grid grid-cols-2">
+                    <div className="grid grid-cols-2 gap-3">
                       {[
                         { value: "0", label: "Interviews", color: "from-primary to-indigo-500" },
                         { value: "0%", label: "Avg Score", color: "from-green-500 to-emerald-500" },
                         { value: "0h", label: "Practice Time", color: "from-amber-500 to-orange-500" },
                         { value: "0", label: "Skills", color: "from-purple-500 to-pink-500" },
                       ].map((stat, idx) => (
-                        <div key={idx} className="bg-gradient-to-br from-gray-50 to-white p-4 border border-gray-100 rounded-xl text-center">
+                        <div key={idx} className="rounded-xl border border-gray-100 bg-gradient-to-br from-gray-50 to-white p-4 text-center">
                           <div className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
                             {stat.value}
                           </div>
-                          <div className="text-gray-500 text-xs">{stat.label}</div>
+                          <div className="text-xs text-gray-500">{stat.label}</div>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Quick Links */}
-                  <div className="bg-white shadow-sm p-6 border border-gray-200/80 rounded-2xl">
+                  <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm">
                     <h3 className="mb-4 font-semibold text-gray-900">Quick Links</h3>
                     <div className="space-y-2">
                       {[
@@ -814,7 +814,7 @@ const ProfilePage = () => {
                         <a
                           key={idx}
                           href="#"
-                          className="flex items-center gap-3 hover:bg-gray-50 p-3 rounded-lg text-gray-600 hover:text-primary transition-all duration-300"
+                          className="flex items-center gap-3 rounded-lg p-3 text-gray-600 transition-all duration-300 hover:bg-gray-50 hover:text-primary"
                         >
                           <link.icon className="text-gray-400" />
                           {link.label}

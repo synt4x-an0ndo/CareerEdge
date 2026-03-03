@@ -89,20 +89,20 @@ const DashboardPage = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="top-2.5 right-4 absolute bg-none border-none text-text-gray text-xl cursor-pointer"
+              className="top-2.5 right-4 absolute bg-none border-none text-secondary text-xl cursor-pointer"
               onClick={toggleModal}
             >
               &times;
             </button>
-            <div className="block bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 text-transparent text-4xl">
+            <div className="block bg-primary bg-clip-text mb-4 text-transparent text-4xl">
               <FaBell />
             </div>
             <h2 className="mb-2 font-bold text-2xl">Notifications</h2>
-            <p className="mb-4 text-text-gray">
+            <p className="mb-4 text-secondary">
               You do not have any notifications.
             </p>
             <button
-              className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2 rounded-md font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
+              className="bg-[#1d2846] hover:bg-[#1d2846]/90 hover:shadow-lg px-6 py-3 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               onClick={toggleModal}
             >
               Close
@@ -112,23 +112,23 @@ const DashboardPage = () => {
       )}
 
       <div className="flex flex-col flex-1">
-        <div className="flex items-center gap-6 bg-white/95 backdrop-blur-lg p-6 border-gray-200 border-b">
+        <div className="flex items-center gap-6 bg-white p-6 border-accent border-b">
           <button
             onClick={toggleSidebar}
-            className="lg:hidden bg-none border-none text-text-gray"
+            className="lg:hidden bg-none border-none text-secondary"
           >
             <FaBars />
           </button>
           <div className="relative flex-1 max-w-md">
-            <FaSearch className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2" />
+            <FaSearch className="top-1/2 left-3.5 absolute text-secondary -translate-y-1/2" />
             <input
               placeholder="Search..."
-              className="bg-white/70 py-3 pr-4 pl-11 border border-gray-200 rounded-lg w-full placeholder-text-gray text-text-dark"
+              className="bg-light-bg py-3 pr-4 pl-11 border border-accent rounded-lg w-full placeholder-text-gray text-text-dark"
             />
           </div>
           <div className="flex items-center gap-4">
             <button
-              className="relative bg-none border-none text-text-gray text-2xl cursor-pointer"
+              className="relative bg-none border-none text-secondary text-2xl cursor-pointer"
               onClick={toggleModal}
             >
               <FaBell />
@@ -144,12 +144,12 @@ const DashboardPage = () => {
         </div>
 
         <div className="flex-1 p-6 overflow-y-auto">
-          <div className="flex justify-between items-center gap-4 bg-white/90 shadow-lg backdrop-blur-lg mb-6 p-6 border border-gray-100 rounded-2xl">
+          <div className="flex justify-between items-center gap-4 bg-white shadow-lg mb-6 p-6 border border-accent rounded-2xl">
             <div>
-              <h1 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-3xl">
+              <h1 className="bg-primary bg-clip-text mb-2 font-bold text-transparent text-3xl">
                 Welcome back, User!
               </h1>
-              <p className="text-text-gray">
+              <p className="text-secondary">
                 You've completed 0 practice sessions this week. Keep up the good
                 work!
               </p>
@@ -160,14 +160,14 @@ const DashboardPage = () => {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="flex items-center gap-4 bg-white/90 shadow-lg hover:shadow-xl p-5 border border-gray-100 rounded-2xl transition-all hover:-translate-y-1 duration-300"
+                className="flex items-center gap-4 bg-white shadow-lg hover:shadow-xl p-5 border border-accent rounded-2xl transition-all hover:-translate-y-1 duration-300"
               >
                 <div className="text-primary text-2xl">
                   <stat.icon />
                 </div>
                 <div>
                   <h3 className="font-bold text-2xl">{stat.value}</h3>
-                  <p className="text-text-gray text-sm">{stat.label}</p>
+                  <p className="text-secondary text-sm">{stat.label}</p>
                 </div>
               </div>
             ))}
@@ -176,23 +176,23 @@ const DashboardPage = () => {
           {/* Performance Analytics */}
           <div className="mb-6">
             <div>
-              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
+              <h2 className="bg-primary bg-clip-text mb-2 font-bold text-transparent text-2xl">
                 Performance Analytics
               </h2>
-              <p className="text-text-gray">
+              <p className="text-secondary">
                 Track your progress and identify areas for improvement
               </p>
             </div>
           </div>
 
           <div className="gap-6 grid lg:grid-cols-2 mb-6">
-            <div className="bg-white/90 shadow-lg hover:shadow-xl p-6 border border-gray-100 rounded-2xl transition-all hover:-translate-y-1 duration-300">
+            <div className="bg-white shadow-lg hover:shadow-xl p-6 border border-accent rounded-2xl transition-all hover:-translate-y-1 duration-300">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold text-transparent text-xl">
+                <h3 className="bg-primary bg-clip-text font-bold text-transparent text-xl">
                   Weekly Performance
                 </h3>
               </div>
-              <div className="bg-white/70 p-4 border border-gray-100 rounded-lg">
+              <div className="bg-light-bg p-4 border border-accent rounded-lg">
                 <Bar
                   data={weeklyData}
                   options={{
@@ -203,9 +203,9 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            <div className="bg-white/90 shadow-lg hover:shadow-xl p-6 border border-gray-100 rounded-2xl transition-all hover:-translate-y-1 duration-300">
+            <div className="bg-white shadow-lg hover:shadow-xl p-6 border border-accent rounded-2xl transition-all hover:-translate-y-1 duration-300">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold text-transparent text-xl">
+                <h3 className="bg-primary bg-clip-text font-bold text-transparent text-xl">
                   Skill Distribution
                 </h3>
               </div>
@@ -240,20 +240,20 @@ const DashboardPage = () => {
           </div>
 
           {/* Recent Activity */}
-          <div className="bg-white/90 shadow-lg mb-6 p-6 border border-gray-100 rounded-2xl">
+          <div className="bg-white shadow-lg mb-6 p-6 border border-accent rounded-2xl">
             <div className="mb-4">
-              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold text-transparent text-2xl">
+              <h2 className="bg-primary bg-clip-text font-bold text-transparent text-2xl">
                 Recent Activity
               </h2>
             </div>
             <div className="gap-4 grid md:grid-cols-2 lg:grid-cols-3">
-              <div className="bg-white/70 hover:shadow-xl p-5 border border-gray-100 rounded-xl transition-all hover:-translate-y-1 duration-300">
+              <div className="bg-light-bg hover:shadow-xl p-5 border border-accent rounded-xl transition-all hover:-translate-y-1 duration-300">
                 <div className="mb-2">
                   <h3 className="font-semibold">
                     No recent interview sessions
                   </h3>
                 </div>
-                <p className="text-text-gray text-sm">
+                <p className="text-secondary text-sm">
                   Start your first interview to see your progress here
                 </p>
               </div>

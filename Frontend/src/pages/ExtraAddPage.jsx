@@ -263,25 +263,25 @@ Requirements:
     const charsRemaining = maxChars - (customDescription?.length || 0);
 
     return (
-        <div className="flex flex-col bg-[#0a1628] min-h-screen">
+        <div className="flex flex-col bg-[#f3f4f5] min-h-screen">
             {/* Fixed Header */}
-            <header className="top-0 z-40 sticky flex justify-between items-center bg-[#0d1e36]/95 backdrop-blur-lg px-6 py-4 border-[#1e3a5f] border-b">
+            <header className="top-0 z-40 sticky flex justify-between items-center bg-[#f3f4f5]/95 backdrop-blur-lg px-6 py-4 border-[#d6d6d5] border-b">
                 <div className="flex items-center gap-4">
                     <button
                         onClick={() => navigate('/dashboard')}
-                        className="flex items-center gap-2 hover:bg-[#1e3a5f]/50 px-4 py-2 rounded-lg text-gray-400 hover:text-white transition-all"
+                        className="flex items-center gap-2 hover:bg-[#d6d6d5]/50 px-4 py-2 rounded-xl text-[#949492] hover:text-[#1d2846] transition-all"
                     >
                         <span className="text-xl">←</span>
                         <span className="hidden sm:inline font-medium text-sm">Dashboard</span>
                     </button>
                 </div>
 
-                <h1 className="font-semibold text-white text-lg tracking-wide">
+                <h1 className="font-semibold text-[#1d2846] text-lg tracking-wide">
                     New Practice Session
                 </h1>
 
                 <div className="flex items-center gap-4">
-                    <button className="relative text-gray-400 hover:text-white text-xl transition-colors">
+                    <button className="relative text-[#949492] hover:text-[#1d2846] text-xl transition-colors">
                         <FaBell />
                     </button>
                     <button>
@@ -304,10 +304,10 @@ Requirements:
                 >
                     {/* Page Title - Prominent and Visible */}
                     <div className="mb-10 text-center">
-                        <h2 className="bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400 mb-3 font-bold text-transparent text-3xl md:text-4xl">
+                        <h2 className="bg-[#1d2846] bg-clip-text mb-3 font-bold text-3xl md:text-4xl">
                             Select a job description
                         </h2>
-                        <p className="text-gray-400 text-base">
+                        <p className="text-[#949492] text-base">
                             Choose a role or enter your own job description
                         </p>
                     </div>
@@ -320,9 +320,9 @@ Requirements:
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => handleJobSelect(job.name)}
-                                className={`px-5 py-2.5 rounded-full border font-medium transition-all duration-300 ${selectedJob === job.name
-                                    ? 'bg-amber-400 text-gray-900 border-amber-400 shadow-lg shadow-amber-400/20'
-                                    : 'bg-[#1e3a5f] text-white border-[#3d5a7f] hover:border-amber-400/50 hover:bg-[#2a4a6f]'
+                                className={`px-5 py-2.5 rounded-xl border font-medium transition-all duration-300 ${selectedJob === job.name
+                                    ? 'bg-[#1d2846] text-white border-[#1d2846] shadow-lg shadow-[#1d2846]/10'
+                                    : 'bg-white text-[#1d2846] border-[#d6d6d5] hover:border-[#1d2846]/50 hover:bg-[#f3f4f5]'
                                     }`}
                             >
                                 {job.name}
@@ -331,16 +331,16 @@ Requirements:
                     </div>
 
                     {/* Job Description Card */}
-                    <div className="bg-gradient-to-b from-[#0d1e36] to-[#0a1628] shadow-xl backdrop-blur-sm mb-8 p-6 border border-[#1e3a5f] rounded-2xl">
+                    <div className="bg-[#f3f4f5] shadow-xl backdrop-blur-sm mb-8 p-6 border border-[#d6d6d5] rounded-2xl">
                         <div className="relative">
                             <textarea
-                                className="bg-[#0a1628]/80 p-5 border border-[#1e3a5f] focus:border-amber-400/50 rounded-xl outline-none focus:ring-2 focus:ring-amber-400/20 w-full min-h-[280px] text-gray-200 text-base leading-relaxed transition-all resize-y placeholder-gray-500"
+                                className="bg-[#f3f4f5]/80 p-5 border border-[#d6d6d5] focus:border-[#1d2846]/50 rounded-xl outline-none focus:ring-[#1d2846]/20 focus:ring-2 w-full min-h-[280px] text-[#1d2846] text-base leading-relaxed transition-all resize-y placeholder-gray-500"
                                 value={isCustom ? customDescription : (jobDescriptions[selectedJob] || '')}
                                 onChange={handleDescriptionChange}
                                 placeholder={isCustom ? "Enter your custom job description here..." : ""}
                                 readOnly={!isCustom}
                             />
-                            <div className="right-4 bottom-4 absolute font-medium text-amber-400/70 text-sm">
+                            <div className="right-4 bottom-4 absolute font-medium text-[#1d2846]/70 text-sm">
                                 {charsRemaining} chars left
                             </div>
                         </div>
@@ -352,7 +352,7 @@ Requirements:
                             whileHover={{ scale: 1.03, y: -2 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={handleGenerateQuestions}
-                            className="flex items-center gap-3 bg-gradient-to-r from-amber-500 hover:from-amber-400 to-orange-500 hover:to-orange-400 shadow-amber-500/25 shadow-lg hover:shadow-amber-500/40 px-10 py-4 rounded-full font-bold text-white text-lg transition-all duration-300"
+                            className="flex items-center gap-3 bg-[#1d2846] hover:bg-[#1d2846]/90 shadow-[#1d2846]/10 shadow-lg hover:shadow-[#1d2846]/20 px-10 py-4 rounded-xl font-semibold text-white text-lg transition-all duration-300"
                         >
                             Generate Questions
                             <FaArrowRight />
@@ -360,7 +360,7 @@ Requirements:
 
                         <button
                             onClick={() => navigate('/dashboard')}
-                            className="font-medium text-gray-500 hover:text-gray-300 transition-colors duration-200"
+                            className="font-medium text-[#949492] hover:text-[#1d2846] transition-colors duration-200"
                         >
                             Skip For Now
                         </button>

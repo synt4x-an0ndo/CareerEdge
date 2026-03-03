@@ -15,7 +15,7 @@ const IndexPage = () => {
   }, []);
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-[#f3f4f5]">
       <Navbar
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
@@ -36,12 +36,12 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
     animate={{ y: 0 }}
     transition={{ type: "spring", stiffness: 100, damping: 20 }}
     className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ease-out ${isScrolled
-      ? "bg-[#060d18]/98 backdrop-blur-2xl py-3 border-b border-white/5"
-      : "bg-gradient-to-b from-[#0a1628] to-[#0a1628]/80 backdrop-blur-xl py-5"
+      ? "bg-[#ffffff]/98 backdrop-blur-2xl py-3 border-b border-white/5"
+      : "bg-gradient-to-b from-[#ffffff] to-[#ffffff]/80 backdrop-blur-xl py-5"
       }`}
   >
     {/* Subtle top accent line */}
-    <div className="top-0 right-0 left-0 absolute bg-gradient-to-r from-transparent via-amber-400/30 to-transparent h-[1px]" />
+    <div className="top-0 right-0 left-0 absolute bg-gradient-to-r from-transparent via-[#1d2846]/30 to-transparent h-[1px]" />
 
     <div className="flex justify-between items-center mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
       {/* Logo Section */}
@@ -53,16 +53,16 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
         <a href="/" className="flex items-center gap-3">
           {/* Logo Icon */}
           <div className="relative flex-shrink-0">
-            <div className="flex justify-center items-center bg-gradient-to-br from-amber-400 to-amber-500 shadow-amber-500/30 shadow-lg rounded-xl w-10 h-10">
-              <span className="font-extrabold text-[#0a1628] text-xl">C</span>
+            <div className="flex justify-center items-center bg-gradient-to-br from-[#1d2846] to-[#949492] shadow-[#1d2846]/30 shadow-lg rounded-xl w-10 h-10">
+              <span className="font-extrabold text-primary text-xl">C</span>
             </div>
           </div>
           {/* Logo Text */}
           <div className="flex flex-col">
-            <span className="font-bold text-white text-xl leading-none tracking-tight">
-              Confiden<span className="text-amber-400">See</span>
+            <span className="font-bold text-primary text-xl leading-none tracking-tight">
+              Confiden<span className="text-[#949492]">See</span>
             </span>
-            <span className="font-medium text-[10px] text-gray-400 uppercase tracking-widest">
+            <span className="font-medium text-[10px] text-secondary uppercase tracking-widest">
               Interview Prep
             </span>
           </div>
@@ -71,7 +71,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
 
       {/* Center Navigation */}
       <div className="hidden lg:flex items-center">
-        <div className="flex items-center gap-2 bg-slate-800 px-3 py-2 border border-slate-600 rounded-full">
+        <div className="flex items-center gap-2 bg-[#ffffff] px-3 py-2 border border-[#949492]/50 rounded-full">
           {["Features", "How It Works", "Testimonials"].map((item, i) => (
             <motion.a
               key={item}
@@ -79,7 +79,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 + 0.2 }}
-              className="relative hover:bg-amber-400 px-5 py-2 rounded-full font-semibold text-amber-400 hover:text-slate-900 text-sm transition-all duration-300"
+              className="relative hover:bg-[#1d2846] px-5 py-2 rounded-full font-semibold text-[#949492] hover:text-white text-sm transition-all duration-300"
             >
               {item}
             </motion.a>
@@ -96,7 +96,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
         >
           <a
             href="/dashboard"
-            className="flex items-center gap-2 font-medium text-amber-400 hover:text-amber-300 text-sm transition-all duration-300"
+            className="flex items-center gap-2 font-medium text-[#949492] hover:text-[#1d2846] text-sm transition-all duration-300"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -113,7 +113,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
             href="/register"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="group inline-flex relative items-center gap-2 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl px-6 py-2.5 rounded-full font-semibold text-white text-sm transition-all duration-300"
+            className="group inline-flex relative items-center gap-2 bg-[#1d2846] hover:bg-[#151d33] shadow-lg hover:shadow-xl px-6 py-2.5 rounded-full font-semibold text-white text-sm transition-all duration-300"
           >
             Get Started
             <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,7 +125,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
 
       {/* Mobile Menu Button */}
       <button
-        className="lg:hidden z-50 flex flex-col gap-1.5 hover:bg-white/5 p-2.5 rounded-lg transition-colors"
+        className="lg:hidden z-50 flex flex-col gap-1.5 hover:bg-accent/30 p-2.5 rounded-lg transition-colors"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <motion.div
@@ -151,7 +151,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
         opacity: isMenuOpen ? 1 : 0
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="lg:hidden bg-[#060d18]/98 backdrop-blur-2xl border-white/5 border-t overflow-hidden"
+      className="lg:hidden bg-[#ffffff]/98 backdrop-blur-2xl border-white/5 border-t overflow-hidden"
     >
       {isMenuOpen && (
         <div className="flex flex-col items-center gap-2 px-6 py-6">
@@ -160,7 +160,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="hover:bg-white/5 py-3 rounded-xl w-full font-medium text-gray-300 hover:text-white text-center transition-all"
+            className="hover:bg-accent/30 py-3 rounded-xl w-full font-medium text-secondary hover:text-primary text-center transition-all"
           >
             Features
           </motion.a>
@@ -169,7 +169,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.15 }}
-            className="hover:bg-white/5 py-3 rounded-xl w-full font-medium text-gray-300 hover:text-white text-center transition-all"
+            className="hover:bg-accent/30 py-3 rounded-xl w-full font-medium text-secondary hover:text-primary text-center transition-all"
           >
             Testimonials
           </motion.a>
@@ -178,7 +178,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="hover:bg-white/5 py-3 rounded-xl w-full font-medium text-gray-300 hover:text-white text-center transition-all"
+            className="hover:bg-accent/30 py-3 rounded-xl w-full font-medium text-secondary hover:text-primary text-center transition-all"
           >
             Sign In
           </motion.a>
@@ -189,7 +189,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
             transition={{ delay: 0.25 }}
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl mt-2 py-3 rounded-xl w-full font-semibold text-white text-center transition-all duration-300"
+            className="bg-[#1d2846] hover:bg-[#151d33] shadow-lg hover:shadow-xl mt-2 py-3 rounded-xl w-full font-semibold text-white text-center transition-all duration-300"
           >
             Get Started
           </motion.a>
@@ -201,7 +201,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, isScrolled }) => (
 
 const Hero = () => {
   return (
-    <section className="relative flex items-center bg-gradient-to-br from-gray-50 to-gray-100 px-6 sm:px-8 min-h-screen overflow-hidden">
+    <section className="relative flex items-center bg-gradient-to-br from-[#f3f4f5] to-[#ffffff] px-6 sm:px-8 min-h-screen overflow-hidden">>
       <div className="-z-10 absolute inset-0">
         <motion.div
           animate={{
@@ -281,7 +281,7 @@ const Hero = () => {
             href="/register"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl px-10 py-4 rounded-full font-semibold text-white text-lg transition-all duration-300"
+            className="inline-flex justify-center items-center gap-2 bg-[#1d2846] hover:bg-[#151d33] shadow-lg hover:shadow-xl px-10 py-4 rounded-xl font-semibold text-white text-lg transition-all duration-300"
           >
             Start Practicing Free
             <svg className="w-5 h-5 transition-transform group-hover:translate-x-0.5 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -575,7 +575,7 @@ const HowItWorks = () => {
                       className="relative flex justify-center items-center bg-white shadow-xl border border-gray-200 group-hover:border-primary/30 rounded-full w-[88px] h-[88px] transition-all duration-500"
                     >
                       {/* Icon container */}
-                      <div className="flex justify-center items-center bg-gradient-to-br from-primary to-primary/80 shadow-lg group-hover:shadow-primary/20 rounded-xl w-12 h-12 text-white transition-shadow duration-500">
+                      <div className="flex justify-center items-center bg-gradient-to-br from-primary to-primary/80 shadow-lg group-hover:shadow-primary/20 rounded-xl w-12 h-12 text-primary transition-shadow duration-500">
                         {step.icon}
                       </div>
 
@@ -775,7 +775,7 @@ const Pricing = () => {
                 }`}
             >
               {plan.popular && (
-                <div className="top-0 right-0 absolute bg-gradient-to-r from-primary to-secondary px-3 py-1 rounded-bl-lg font-bold text-white text-xs">
+                <div className="top-0 right-0 absolute bg-gradient-to-r from-primary to-secondary px-3 py-1 rounded-bl-lg font-bold text-primary text-xs">
                   Most Popular
                 </div>
               )}
@@ -797,7 +797,7 @@ const Pricing = () => {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex justify-center items-center gap-2 bg-gradient-to-r from-primary to-secondary shadow-lg hover:shadow-xl py-3 rounded-full w-full font-semibold text-white transition-all duration-300"
+                className="flex justify-center items-center gap-2 bg-[#1d2846] hover:bg-[#1d2846]/90 shadow-lg hover:shadow-xl py-3 rounded-xl w-full font-semibold text-white transition-all duration-300"
               >
                 Get Started
                 <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -821,7 +821,7 @@ const Footer = () => {
             <div className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-4 font-bold text-transparent text-2xl">
               CareerEdge
             </div>
-            <p className="mb-6 max-w-xs text-gray-400">
+            <p className="mb-6 max-w-xs text-secondary">
               Master your interview skills with AI-powered practice and
               feedback.
             </p>
@@ -832,7 +832,7 @@ const Footer = () => {
                     key={social}
                     href="#"
                     whileHover={{ y: -3, scale: 1.1 }}
-                    className="flex justify-center items-center bg-primary/10 hover:bg-gradient-to-r hover:from-primary hover:to-secondary rounded-full w-10 h-10 text-primary hover:text-white transition-all duration-300"
+                    className="flex justify-center items-center bg-primary/10 hover:bg-gradient-to-r hover:from-primary hover:to-secondary rounded-full w-10 h-10 text-primary hover:text-primary transition-all duration-300"
                   >
                     <span className="text-sm">🔗</span>
                   </motion.a>
@@ -842,14 +842,14 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="after:bottom-0 after:left-0 after:absolute relative after:bg-gradient-to-r after:from-primary after:to-secondary mb-6 pb-2 after:w-8 after:h-0.5 font-semibold text-white text-lg">
+            <h4 className="after:bottom-0 after:left-0 after:absolute relative after:bg-gradient-to-r after:from-primary after:to-secondary mb-6 pb-2 after:w-8 after:h-0.5 font-semibold text-primary text-lg">
               Product
             </h4>
             {["Features", "Testimonials"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="block mb-3 text-gray-400 hover:text-primary transition-all hover:translate-x-1 duration-300"
+                className="block mb-3 text-secondary hover:text-primary transition-all hover:translate-x-1 duration-300"
               >
                 {item}
               </a>
@@ -857,14 +857,14 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="after:bottom-0 after:left-0 after:absolute relative after:bg-gradient-to-r after:from-primary after:to-secondary mb-6 pb-2 after:w-8 after:h-0.5 font-semibold text-white text-lg">
+            <h4 className="after:bottom-0 after:left-0 after:absolute relative after:bg-gradient-to-r after:from-primary after:to-secondary mb-6 pb-2 after:w-8 after:h-0.5 font-semibold text-primary text-lg">
               Resources
             </h4>
             {["Blog", "Help Center"].map((item) => (
               <a
                 key={item}
                 href="#"
-                className="block mb-3 text-gray-400 hover:text-primary transition-all hover:translate-x-1 duration-300"
+                className="block mb-3 text-secondary hover:text-primary transition-all hover:translate-x-1 duration-300"
               >
                 {item}
               </a>
@@ -872,14 +872,14 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="after:bottom-0 after:left-0 after:absolute relative after:bg-gradient-to-r after:from-primary after:to-secondary mb-6 pb-2 after:w-8 after:h-0.5 font-semibold text-white text-lg">
+            <h4 className="after:bottom-0 after:left-0 after:absolute relative after:bg-gradient-to-r after:from-primary after:to-secondary mb-6 pb-2 after:w-8 after:h-0.5 font-semibold text-primary text-lg">
               Company
             </h4>
             {["About Us", "Privacy Policy", "Terms of Service"].map((item) => (
               <a
                 key={item}
                 href="#"
-                className="block mb-3 text-gray-400 hover:text-primary transition-all hover:translate-x-1 duration-300"
+                className="block mb-3 text-secondary hover:text-primary transition-all hover:translate-x-1 duration-300"
               >
                 {item}
               </a>
@@ -888,7 +888,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-gray-800 border-t text-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-secondary text-sm">
             &copy; {new Date().getFullYear()} CareerEdge. All rights reserved.
           </p>
         </div>

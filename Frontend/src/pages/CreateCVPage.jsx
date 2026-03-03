@@ -55,21 +55,21 @@ const CreateCVPage = () => {
       name: 'Modern Professional',
       description: 'Clean and professional design with a modern layout',
       icon: FaFileAlt,
-      color: 'from-primary to-secondary'
+      color: 'bg-primary'
     },
     {
       id: 'executive',
       name: 'Executive',
       description: 'Bold and authoritative design for leadership positions',
       icon: FaBriefcase,
-      color: 'from-purple-500 to-pink-500'
+      color: 'bg-primary'
     },
     {
       id: 'creative',
       name: 'Creative',
       description: 'Modern two-column layout perfect for creative professionals',
       icon: FaPalette,
-      color: 'from-orange-500 to-red-500'
+      color: 'bg-primary'
     }
   ];
 
@@ -152,7 +152,7 @@ const CreateCVPage = () => {
 
   const showNotification = (message) => {
     const notification = document.createElement("div");
-    notification.className = "fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 transform translate-y-0 z-50";
+    notification.className = "fixed bottom-4 right-4 bg-[#1d2846] text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300 transform translate-y-0 z-50";
     notification.textContent = message;
     document.body.appendChild(notification);
 
@@ -180,10 +180,10 @@ const CreateCVPage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="mb-6">
-              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
+              <h2 className="mb-2 font-bold text-primary text-2xl">
                 Choose Your Template
               </h2>
-              <p className="text-text-gray">Select a template that best represents your professional style</p>
+              <p className="text-secondary">Select a template that best represents your professional style</p>
             </div>
             <div className="gap-6 grid grid-cols-1 md:grid-cols-3">
               {templates.map((template) => (
@@ -191,17 +191,17 @@ const CreateCVPage = () => {
                   key={template.id}
                   whileHover={{ scale: 1.02, y: -5 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`bg-white/90 p-6 rounded-2xl border-2 cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl ${selectedTemplate === template.id
-                      ? 'border-primary ring-4 ring-primary/20'
-                      : 'border-gray-100 hover:border-primary/50'
+                  className={`bg-white p-6 rounded-2xl border-2 cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl ${selectedTemplate === template.id
+                    ? 'border-primary ring-4 ring-primary/20'
+                    : 'border-accent hover:border-primary/50'
                     }`}
                   onClick={() => setSelectedTemplate(template.id)}
                 >
-                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${template.color} flex items-center justify-center mb-4`}>
+                  <div className={`w-16 h-16 rounded-xl ${template.color} flex items-center justify-center mb-4`}>
                     <template.icon className="text-white text-2xl" />
                   </div>
-                  <h3 className="mb-2 font-bold text-lg">{template.name}</h3>
-                  <p className="text-text-gray text-sm">{template.description}</p>
+                  <h3 className="mb-2 font-bold text-primary text-lg">{template.name}</h3>
+                  <p className="text-secondary text-sm">{template.description}</p>
                   {selectedTemplate === template.id && (
                     <div className="flex items-center mt-4 font-medium text-primary">
                       <FaCheckCircle className="mr-2" />
@@ -222,91 +222,91 @@ const CreateCVPage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="mb-6">
-              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
+              <h2 className="mb-2 font-bold text-primary text-2xl">
                 Personal Information
               </h2>
-              <p className="text-text-gray">Tell us about yourself</p>
+              <p className="text-secondary">Tell us about yourself</p>
             </div>
-            <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
+            <div className="bg-white shadow-lg p-6 border border-accent rounded-2xl">
               <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
                 <div>
-                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                  <label className="block mb-2 font-medium text-primary text-sm">
                     <FaUser className="mr-2 text-primary" />Full Name *
                   </label>
                   <input
                     type="text"
-                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                    className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                     value={formData.fullName}
                     onChange={(e) => handleInputChange(e, 'fullName')}
                     placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                  <label className="block mb-2 font-medium text-primary text-sm">
                     <FaBriefcase className="mr-2 text-primary" />Job Title *
                   </label>
                   <input
                     type="text"
-                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                    className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                     value={formData.jobTitle}
                     onChange={(e) => handleInputChange(e, 'jobTitle')}
                     placeholder="Software Engineer"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                  <label className="block mb-2 font-medium text-primary text-sm">
                     <FaEnvelope className="mr-2 text-primary" />Email *
                   </label>
                   <input
                     type="email"
-                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                    className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                     value={formData.email}
                     onChange={(e) => handleInputChange(e, 'email')}
                     placeholder="john.doe@example.com"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                  <label className="block mb-2 font-medium text-primary text-sm">
                     <FaPhone className="mr-2 text-primary" />Phone
                   </label>
                   <input
                     type="tel"
-                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                    className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                     value={formData.phone}
                     onChange={(e) => handleInputChange(e, 'phone')}
                     placeholder="+1 (555) 123-4567"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                  <label className="block mb-2 font-medium text-primary text-sm">
                     <FaMapMarkerAlt className="mr-2 text-primary" />Location
                   </label>
                   <input
                     type="text"
-                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                    className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                     value={formData.location}
                     onChange={(e) => handleInputChange(e, 'location')}
                     placeholder="New York, NY"
                   />
                 </div>
                 <div>
-                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                  <label className="block mb-2 font-medium text-primary text-sm">
                     <FaLinkedin className="mr-2 text-primary" />LinkedIn Profile
                   </label>
                   <input
                     type="url"
-                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                    className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                     value={formData.linkedinProfile}
                     onChange={(e) => handleInputChange(e, 'linkedinProfile')}
                     placeholder="linkedin.com/in/johndoe"
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block mb-2 font-medium text-gray-700 text-sm">
+                  <label className="block mb-2 font-medium text-primary text-sm">
                     <FaAlignLeft className="mr-2 text-primary" />Professional Summary
                   </label>
                   <textarea
-                    className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all resize-none"
+                    className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all resize-none placeholder-secondary"
                     rows="4"
                     value={formData.professionalSummary}
                     onChange={(e) => handleInputChange(e, 'professionalSummary')}
@@ -327,14 +327,14 @@ const CreateCVPage = () => {
           >
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
+                <h2 className="mb-2 font-bold text-primary text-2xl">
                   Work Experience
                 </h2>
-                <p className="text-text-gray">Add your professional experience</p>
+                <p className="text-secondary">Add your professional experience</p>
               </div>
               <button
                 onClick={addExperience}
-                className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2 rounded-lg font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
+                className="flex items-center gap-2 bg-primary hover:bg-primary-dark hover:shadow-lg px-4 py-2 rounded-xl font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
                 <FaPlus />
                 Add Experience
@@ -346,19 +346,19 @@ const CreateCVPage = () => {
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl"
+                  className="bg-white shadow-lg p-6 border border-accent rounded-2xl"
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
+                      <div className="flex justify-center items-center bg-primary rounded-lg w-10 h-10">
                         <FaBuilding className="text-white" />
                       </div>
-                      <h3 className="font-bold text-lg">Experience {index + 1}</h3>
+                      <h3 className="font-bold text-primary text-lg">Experience {index + 1}</h3>
                     </div>
                     {formData.experiences.length > 1 && (
                       <button
                         onClick={() => removeExperience(index)}
-                        className="hover:bg-red-50 p-2 rounded-lg text-red-500 hover:text-red-700 transition-all"
+                        className="hover:bg-[#d6d6d5]/50 p-2 rounded-xl text-[#949492] hover:text-[#1d2846] transition-all"
                       >
                         <FaTrash />
                       </button>
@@ -366,10 +366,10 @@ const CreateCVPage = () => {
                   </div>
                   <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
                     <div>
-                      <label className="block mb-2 font-medium text-gray-700 text-sm">Job Title</label>
+                      <label className="block mb-2 font-medium text-primary text-sm">Job Title</label>
                       <input
                         type="text"
-                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                        className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                         value={exp.jobTitle}
                         onChange={(e) => {
                           const newExperiences = [...formData.experiences];
@@ -380,10 +380,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 font-medium text-gray-700 text-sm">Company</label>
+                      <label className="block mb-2 font-medium text-primary text-sm">Company</label>
                       <input
                         type="text"
-                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                        className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                         value={exp.company}
                         onChange={(e) => {
                           const newExperiences = [...formData.experiences];
@@ -394,10 +394,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 font-medium text-gray-700 text-sm">Start Date</label>
+                      <label className="block mb-2 font-medium text-primary text-sm">Start Date</label>
                       <input
                         type="month"
-                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all"
+                        className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all"
                         value={exp.startDate}
                         onChange={(e) => {
                           const newExperiences = [...formData.experiences];
@@ -407,10 +407,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 font-medium text-gray-700 text-sm">End Date</label>
+                      <label className="block mb-2 font-medium text-primary text-sm">End Date</label>
                       <input
                         type="month"
-                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all"
+                        className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-text-dark transition-all"
                         value={exp.endDate}
                         onChange={(e) => {
                           const newExperiences = [...formData.experiences];
@@ -424,7 +424,7 @@ const CreateCVPage = () => {
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
                           type="checkbox"
-                          className="border-gray-300 rounded focus:ring-primary w-4 h-4 text-primary"
+                          className="border-accent rounded focus:ring-primary w-4 h-4 text-primary"
                           checked={exp.currentlyWorking}
                           onChange={(e) => {
                             const newExperiences = [...formData.experiences];
@@ -432,13 +432,13 @@ const CreateCVPage = () => {
                             setFormData({ ...formData, experiences: newExperiences });
                           }}
                         />
-                        <span className="text-gray-700 text-sm">I currently work here</span>
+                        <span className="text-primary text-sm">I currently work here</span>
                       </label>
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block mb-2 font-medium text-gray-700 text-sm">Description</label>
+                      <label className="block mb-2 font-medium text-primary text-sm">Description</label>
                       <textarea
-                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all resize-none"
+                        className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all resize-none placeholder-secondary"
                         rows="3"
                         value={exp.description}
                         onChange={(e) => {
@@ -465,14 +465,14 @@ const CreateCVPage = () => {
           >
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
+                <h2 className="mb-2 font-bold text-primary text-2xl">
                   Education
                 </h2>
-                <p className="text-text-gray">Add your educational background</p>
+                <p className="text-secondary">Add your educational background</p>
               </div>
               <button
                 onClick={addEducation}
-                className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-4 py-2 rounded-lg font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
+                className="flex items-center gap-2 bg-primary hover:bg-primary-dark hover:shadow-lg px-4 py-2 rounded-xl font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
                 <FaPlus />
                 Add Education
@@ -484,19 +484,19 @@ const CreateCVPage = () => {
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl"
+                  className="bg-white shadow-lg p-6 border border-accent rounded-2xl"
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="flex justify-center items-center bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg w-10 h-10">
+                      <div className="flex justify-center items-center bg-primary rounded-lg w-10 h-10">
                         <FaGraduationCap className="text-white" />
                       </div>
-                      <h3 className="font-bold text-lg">Education {index + 1}</h3>
+                      <h3 className="font-bold text-primary text-lg">Education {index + 1}</h3>
                     </div>
                     {formData.education.length > 1 && (
                       <button
                         onClick={() => removeEducation(index)}
-                        className="hover:bg-red-50 p-2 rounded-lg text-red-500 hover:text-red-700 transition-all"
+                        className="hover:bg-[#d6d6d5]/50 p-2 rounded-xl text-[#949492] hover:text-[#1d2846] transition-all"
                       >
                         <FaTrash />
                       </button>
@@ -504,10 +504,10 @@ const CreateCVPage = () => {
                   </div>
                   <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
                     <div>
-                      <label className="block mb-2 font-medium text-gray-700 text-sm">Degree</label>
+                      <label className="block mb-2 font-medium text-primary text-sm">Degree</label>
                       <input
                         type="text"
-                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                        className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                         value={edu.degree}
                         onChange={(e) => {
                           const newEducation = [...formData.education];
@@ -518,10 +518,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 font-medium text-gray-700 text-sm">Institution</label>
+                      <label className="block mb-2 font-medium text-primary text-sm">Institution</label>
                       <input
                         type="text"
-                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                        className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                         value={edu.institution}
                         onChange={(e) => {
                           const newEducation = [...formData.education];
@@ -532,10 +532,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 font-medium text-gray-700 text-sm">Location</label>
+                      <label className="block mb-2 font-medium text-primary text-sm">Location</label>
                       <input
                         type="text"
-                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                        className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                         value={edu.location}
                         onChange={(e) => {
                           const newEducation = [...formData.education];
@@ -546,10 +546,10 @@ const CreateCVPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block mb-2 font-medium text-gray-700 text-sm">Graduation Year</label>
+                      <label className="block mb-2 font-medium text-primary text-sm">Graduation Year</label>
                       <input
                         type="number"
-                        className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all"
+                        className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all placeholder-secondary"
                         value={edu.graduationYear}
                         onChange={(e) => {
                           const newEducation = [...formData.education];
@@ -574,37 +574,37 @@ const CreateCVPage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="mb-6">
-              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
+              <h2 className="mb-2 font-bold text-primary text-2xl">
                 Skills & Expertise
               </h2>
-              <p className="text-text-gray">Highlight your key skills and competencies</p>
+              <p className="text-secondary">Highlight your key skills and competencies</p>
             </div>
-            <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
+            <div className="bg-white shadow-lg p-6 border border-accent rounded-2xl">
               <div className="mb-6">
-                <label className="block mb-2 font-medium text-gray-700 text-sm">
+                <label className="block mb-2 font-medium text-primary text-sm">
                   <FaTools className="mr-2 text-primary" />Technical Skills
                 </label>
                 <textarea
-                  className="bg-white/70 px-4 py-3 border border-gray-200 focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full placeholder-text-gray text-text-dark transition-all resize-none"
+                  className="bg-light-bg px-4 py-3 border border-accent focus:border-primary rounded-lg focus:ring-2 focus:ring-primary/20 w-full text-primary transition-all resize-none placeholder-secondary"
                   rows="4"
                   value={formData.skills}
                   onChange={(e) => handleInputChange(e, 'skills')}
                   placeholder="JavaScript, Python, React, Node.js, SQL, Git, AWS..."
                 />
-                <p className="mt-2 text-text-gray text-sm">
+                <p className="mt-2 text-secondary text-sm">
                   <FaInfoCircle className="mr-1" />
                   Separate skills with commas for best formatting
                 </p>
               </div>
 
-              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 p-4 border border-primary/20 rounded-xl">
+              <div className="bg-accent/30 p-4 border border-accent rounded-xl">
                 <div className="flex items-start gap-3">
-                  <div className="flex flex-shrink-0 justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
+                  <div className="flex flex-shrink-0 justify-center items-center bg-primary rounded-lg w-10 h-10">
                     <FaLightbulb className="text-white" />
                   </div>
                   <div>
-                    <h4 className="mb-1 font-bold text-gray-800">Pro Tips for Skills</h4>
-                    <ul className="space-y-1 text-text-gray text-sm">
+                    <h4 className="mb-1 font-bold text-primary">Pro Tips for Skills</h4>
+                    <ul className="space-y-1 text-secondary text-sm">
                       <li>• Include both technical and soft skills</li>
                       <li>• Match skills with the job description you're targeting</li>
                       <li>• Order skills by proficiency level</li>
@@ -625,75 +625,75 @@ const CreateCVPage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="mb-6">
-              <h2 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-2xl">
+              <h2 className="mb-2 font-bold text-primary text-2xl">
                 Preview & Download
               </h2>
-              <p className="text-text-gray">Review your CV before downloading</p>
+              <p className="text-secondary">Review your CV before downloading</p>
             </div>
 
             <div className="gap-6 grid lg:grid-cols-2">
               {/* Preview Card */}
-              <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
+              <div className="bg-white shadow-lg p-6 border border-accent rounded-2xl">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="flex justify-center items-center bg-gradient-to-r from-primary to-secondary rounded-lg w-10 h-10">
+                  <div className="flex justify-center items-center bg-primary rounded-lg w-10 h-10">
                     <FaEye className="text-white" />
                   </div>
-                  <h3 className="font-bold text-lg">CV Summary</h3>
+                  <h3 className="font-bold text-primary text-lg">CV Summary</h3>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                  <div className="flex items-center gap-3 bg-light-bg p-3 rounded-lg">
                     <FaUser className="text-primary" />
                     <div>
-                      <p className="text-text-gray text-sm">Name</p>
-                      <p className="font-medium">{formData.fullName || 'Not provided'}</p>
+                      <p className="text-secondary text-sm">Name</p>
+                      <p className="font-medium text-primary">{formData.fullName || 'Not provided'}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                  <div className="flex items-center gap-3 bg-light-bg p-3 rounded-lg">
                     <FaBriefcase className="text-primary" />
                     <div>
-                      <p className="text-text-gray text-sm">Job Title</p>
-                      <p className="font-medium">{formData.jobTitle || 'Not provided'}</p>
+                      <p className="text-secondary text-sm">Job Title</p>
+                      <p className="font-medium text-primary">{formData.jobTitle || 'Not provided'}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                  <div className="flex items-center gap-3 bg-light-bg p-3 rounded-lg">
                     <FaEnvelope className="text-primary" />
                     <div>
-                      <p className="text-text-gray text-sm">Email</p>
-                      <p className="font-medium">{formData.email || 'Not provided'}</p>
+                      <p className="text-secondary text-sm">Email</p>
+                      <p className="font-medium text-primary">{formData.email || 'Not provided'}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                  <div className="flex items-center gap-3 bg-light-bg p-3 rounded-lg">
                     <FaBuilding className="text-primary" />
                     <div>
-                      <p className="text-text-gray text-sm">Experience</p>
-                      <p className="font-medium">{formData.experiences.length} position(s)</p>
+                      <p className="text-secondary text-sm">Experience</p>
+                      <p className="font-medium text-primary">{formData.experiences.length} position(s)</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                  <div className="flex items-center gap-3 bg-light-bg p-3 rounded-lg">
                     <FaGraduationCap className="text-primary" />
                     <div>
-                      <p className="text-text-gray text-sm">Education</p>
-                      <p className="font-medium">{formData.education.length} degree(s)</p>
+                      <p className="text-secondary text-sm">Education</p>
+                      <p className="font-medium text-primary">{formData.education.length} degree(s)</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Download Options */}
-              <div className="bg-white/90 shadow-lg p-6 border border-gray-100 rounded-2xl">
+              <div className="bg-white shadow-lg p-6 border border-accent rounded-2xl">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="flex justify-center items-center bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg w-10 h-10">
+                  <div className="flex justify-center items-center bg-primary rounded-lg w-10 h-10">
                     <FaDownload className="text-white" />
                   </div>
-                  <h3 className="font-bold text-lg">Download Options</h3>
+                  <h3 className="font-bold text-primary text-lg">Download Options</h3>
                 </div>
 
                 <div className="space-y-4">
                   <button
                     onClick={handleGenerateCV}
                     disabled={isGenerating}
-                    className="flex justify-center items-center gap-3 bg-gradient-to-r from-primary to-secondary disabled:opacity-50 hover:shadow-lg px-6 py-4 rounded-xl w-full font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer disabled:cursor-not-allowed"
+                    className="flex justify-center items-center gap-3 bg-primary hover:bg-primary-dark disabled:opacity-50 hover:shadow-lg px-6 py-4 rounded-xl w-full font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer disabled:cursor-not-allowed"
                   >
                     {isGenerating ? (
                       <>
@@ -717,12 +717,12 @@ const CreateCVPage = () => {
                   </button>
                 </div>
 
-                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 mt-6 p-4 border border-yellow-200 rounded-xl">
+                <div className="bg-accent/30 mt-6 p-4 border border-accent rounded-xl">
                   <div className="flex items-start gap-3">
-                    <FaStar className="mt-1 text-yellow-500" />
+                    <FaStar className="mt-1 text-primary" />
                     <div>
-                      <h4 className="mb-1 font-bold text-gray-800">Pro Tip</h4>
-                      <p className="text-text-gray text-sm">
+                      <h4 className="mb-1 font-bold text-primary">Pro Tip</h4>
+                      <p className="text-secondary text-sm">
                         Always save your CV in PDF format to preserve formatting across different devices and systems.
                       </p>
                     </div>
@@ -742,22 +742,22 @@ const CreateCVPage = () => {
     <div className="flex bg-light-bg min-h-screen">
       <div className="flex flex-col flex-1">
         {/* Header */}
-        <div className="flex items-center gap-6 bg-white/95 backdrop-blur-lg p-6 border-gray-200 border-b">
+        <div className="flex items-center gap-6 bg-white p-6 border-accent border-b">
           <button
             onClick={toggleSidebar}
-            className="lg:hidden bg-none border-none text-text-gray"
+            className="lg:hidden bg-none border-none text-secondary"
           >
             <FaBars />
           </button>
           <div className="relative flex-1 max-w-md">
-            <FaSearch className="top-1/2 left-3.5 absolute text-text-gray -translate-y-1/2" />
+            <FaSearch className="top-1/2 left-3.5 absolute text-secondary -translate-y-1/2" />
             <input
               placeholder="Search..."
-              className="bg-white/70 py-3 pr-4 pl-11 border border-gray-200 rounded-lg w-full placeholder-text-gray text-text-dark"
+              className="bg-light-bg py-3 pr-4 pl-11 border border-accent rounded-lg w-full text-primary placeholder-secondary"
             />
           </div>
           <div className="flex items-center gap-4">
-            <button className="relative bg-none border-none text-text-gray text-2xl cursor-pointer">
+            <button className="relative bg-none border-none text-secondary text-2xl cursor-pointer">
               <FaBell />
             </button>
             <button className="bg-none border-none">
@@ -773,40 +773,40 @@ const CreateCVPage = () => {
         {/* Main Content */}
         <div className="flex-1 p-6 overflow-y-auto">
           {/* Page Header */}
-          <div className="flex justify-between items-center gap-4 bg-white/90 shadow-lg backdrop-blur-lg mb-6 p-6 border border-gray-100 rounded-2xl">
+          <div className="flex justify-between items-center gap-4 bg-white shadow-lg mb-6 p-6 border border-accent rounded-2xl">
             <div>
-              <h1 className="bg-clip-text bg-gradient-to-r from-primary to-secondary mb-2 font-bold text-transparent text-3xl">
+              <h1 className="mb-2 font-bold text-primary text-3xl">
                 Create Your Professional CV
               </h1>
-              <p className="text-text-gray">
+              <p className="text-secondary">
                 Build a stunning CV in minutes with our easy-to-use builder
               </p>
             </div>
-            <div className="hidden md:flex items-center gap-2 text-text-gray">
+            <div className="hidden md:flex items-center gap-2 text-secondary">
               <FaFileAlt className="text-primary text-2xl" />
             </div>
           </div>
 
           {/* Progress Steps */}
-          <div className="bg-white/90 shadow-lg mb-6 p-4 border border-gray-100 rounded-2xl overflow-x-auto">
+          <div className="bg-white shadow-lg mb-6 p-4 border border-accent rounded-2xl overflow-x-auto">
             <div className="flex justify-between items-center min-w-max">
               {steps.map((step, index) => (
                 <React.Fragment key={step.id}>
                   <div
                     className={`flex flex-col items-center cursor-pointer transition-all ${currentStep === step.id
-                        ? 'text-primary'
-                        : currentStep > step.id
-                          ? 'text-green-500'
-                          : 'text-gray-400'
+                      ? 'text-primary'
+                      : currentStep > step.id
+                        ? 'text-secondary'
+                        : 'text-accent'
                       }`}
                     onClick={() => setCurrentStep(step.id)}
                   >
                     <div
                       className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 transition-all ${currentStep === step.id
-                          ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
-                          : currentStep > step.id
-                            ? 'bg-green-500 text-white'
-                            : 'bg-gray-200 text-gray-500'
+                        ? 'bg-primary text-white shadow-lg'
+                        : currentStep > step.id
+                          ? 'bg-primary text-white'
+                          : 'bg-accent text-secondary'
                         }`}
                     >
                       {currentStep > step.id ? (
@@ -819,7 +819,7 @@ const CreateCVPage = () => {
                   </div>
                   {index < steps.length - 1 && (
                     <div
-                      className={`flex-1 h-1 mx-2 rounded ${currentStep > step.id ? 'bg-green-500' : 'bg-gray-200'
+                      className={`flex-1 h-1 mx-2 rounded ${currentStep > step.id ? 'bg-primary' : 'bg-accent'
                         }`}
                     />
                   )}
@@ -839,8 +839,8 @@ const CreateCVPage = () => {
               onClick={prevStep}
               disabled={currentStep === 1}
               className={`py-3 px-6 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 ${currentStep === 1
-                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                  : 'bg-white border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:-translate-y-0.5'
+                ? 'bg-accent text-secondary cursor-not-allowed'
+                : 'bg-white border-2 border-accent text-primary hover:bg-light-bg hover:-translate-y-0.5'
                 }`}
             >
               <FaArrowLeft />
@@ -850,7 +850,7 @@ const CreateCVPage = () => {
             {currentStep < 6 ? (
               <button
                 onClick={nextStep}
-                className="flex items-center gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg px-6 py-3 rounded-xl font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
+                className="flex items-center gap-2 bg-primary hover:bg-primary-dark hover:shadow-lg px-6 py-3 rounded-xl font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
                 Next
                 <FaArrowRight />
@@ -859,7 +859,7 @@ const CreateCVPage = () => {
               <button
                 onClick={handleGenerateCV}
                 disabled={isGenerating}
-                className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 disabled:opacity-50 hover:shadow-lg px-6 py-3 rounded-xl font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
+                className="flex items-center gap-2 bg-primary hover:bg-primary-dark disabled:opacity-50 hover:shadow-lg px-6 py-3 rounded-xl font-bold text-white transition-all hover:-translate-y-0.5 duration-300 cursor-pointer"
               >
                 {isGenerating ? (
                   <>

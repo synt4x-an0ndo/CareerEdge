@@ -9,7 +9,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
-        background: 'linear-gradient(180deg, #0a1628 0%, #0d1e36 50%, #0a1628 100%)',
+        background: '#f3f4f5',
     },
     header: {
         display: 'flex',
@@ -48,7 +48,7 @@ const styles = {
         gap: '8px',
         padding: '8px 16px',
         borderRadius: '8px',
-        color: '#9ca3af',
+        color: '#949492',
         fontSize: '14px',
         fontWeight: '500',
         transition: 'all 0.2s ease',
@@ -68,16 +68,16 @@ const styles = {
         margin: '0 auto',
         padding: '32px 40px',
         borderRadius: '20px',
-        background: 'linear-gradient(145deg, rgba(30, 58, 95, 0.4) 0%, rgba(13, 30, 54, 0.8) 100%)',
-        border: '1px solid rgba(59, 130, 246, 0.2)',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+        background: '#ffffff',
+        border: '1px solid #d6d6d5',
+        boxShadow: '0 8px 32px rgba(29, 40, 70, 0.1)',
         backdropFilter: 'blur(16px)',
     },
     questionText: {
         fontSize: '20px',
         lineHeight: '1.7',
         fontWeight: '500',
-        color: '#f8fafc',
+        color: '#1d2846',
         textAlign: 'center',
         marginBottom: '0',
     },
@@ -95,7 +95,7 @@ const styles = {
     },
     timerLabel: {
         fontSize: '13px',
-        color: '#64748b',
+        color: '#949492',
         textTransform: 'uppercase',
         letterSpacing: '1.5px',
     },
@@ -111,12 +111,12 @@ const styles = {
         transition: 'all 0.3s ease',
     },
     recordButtonIdle: {
-        background: 'linear-gradient(145deg, #3d1a2a 0%, #2a1219 100%)',
-        boxShadow: '0 4px 20px rgba(239, 68, 68, 0.2)',
+        background: '#1d2846',
+        boxShadow: '0 4px 20px rgba(29, 40, 70, 0.2)',
     },
     recordButtonActive: {
-        background: 'linear-gradient(145deg, #ef4444 0%, #dc2626 100%)',
-        boxShadow: '0 4px 30px rgba(239, 68, 68, 0.5)',
+        background: '#1d2846',
+        boxShadow: '0 4px 30px rgba(29, 40, 70, 0.5)',
         animation: 'pulse 1.5s infinite',
     },
     typeAnswerButton: {
@@ -125,9 +125,9 @@ const styles = {
         gap: '8px',
         padding: '12px 24px',
         borderRadius: '12px',
-        backgroundColor: 'rgba(251, 191, 36, 0.1)',
-        border: '1px solid rgba(251, 191, 36, 0.3)',
-        color: '#fbbf24',
+        backgroundColor: 'rgba(29, 40, 70, 0.1)',
+        border: '1px solid #d6d6d5',
+        color: '#949492',
         fontSize: '14px',
         fontWeight: '500',
         cursor: 'pointer',
@@ -380,30 +380,30 @@ const InterviewPage = () => {
                             initial={{ opacity: 0, scale: 0.95, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                            className="bg-[#0d1e36] shadow-2xl p-6 border border-[#1e3a5f] rounded-2xl w-full max-w-md"
+                            className="bg-[#f3f4f5] shadow-2xl p-6 border border-[#d6d6d5] rounded-2xl w-full max-w-md"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex justify-center mb-4">
-                                <div className="flex justify-center items-center bg-red-500/10 rounded-full w-14 h-14">
-                                    <FaExclamationCircle className="text-red-400 text-2xl" />
+                                <div className="flex justify-center items-center bg-[#1d2846]/10 rounded-full w-14 h-14">
+                                    <FaExclamationCircle className="text-[#1d2846] text-2xl" />
                                 </div>
                             </div>
-                            <h3 className="mb-2 font-bold text-white text-xl text-center">
+                            <h3 className="mb-2 font-bold text-[#1d2846] text-xl text-center">
                                 Return to question generation
                             </h3>
-                            <p className="mb-6 text-gray-400 text-center">
+                            <p className="mb-6 text-[#949492] text-center">
                                 Are you sure you want to exit this interview and restart at the question generation step? You will not be able to continue the interview.
                             </p>
                             <div className="flex justify-center gap-4">
                                 <button
                                     onClick={cancelBack}
-                                    className="bg-[#1e3a5f]/50 hover:bg-[#1e3a5f] px-6 py-2.5 border border-[#1e3a5f] rounded-full font-medium text-gray-300 transition-colors"
+                                    className="bg-white hover:bg-[#f3f4f5] px-6 py-2.5 border border-[#d6d6d5] rounded-xl font-semibold text-[#1d2846] transition-all"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={confirmBack}
-                                    className="bg-red-500/20 hover:bg-red-500/30 px-6 py-2.5 border border-red-500/30 rounded-full font-medium text-red-400 transition-colors"
+                                    className="bg-[#1d2846] hover:bg-[#1d2846]/90 px-6 py-2.5 rounded-xl font-semibold text-white transition-all"
                                 >
                                     Confirm
                                 </button>
@@ -440,24 +440,24 @@ const InterviewPage = () => {
                         <button
                             onClick={handlePrevQuestion}
                             disabled={currentQuestion === 0}
-                            className="hover:bg-[#1e3a5f]/50 disabled:opacity-30 p-2 rounded-lg text-gray-400 hover:text-white transition-all disabled:cursor-not-allowed"
+                            className="hover:bg-[#d6d6d5]/50 disabled:opacity-30 p-2 rounded-xl text-[#949492] hover:text-[#1d2846] transition-all disabled:cursor-not-allowed"
                         >
                             <FaChevronLeft />
                         </button>
-                        <div className="bg-[#0a1628] px-4 py-2 border border-[#1e3a5f] rounded-full font-medium text-gray-300 text-sm">
+                        <div className="bg-[#f3f4f5] px-4 py-2 border border-[#d6d6d5] rounded-full font-medium text-[#1d2846] text-sm">
                             {currentQuestion + 1} / {questions.length}
                         </div>
                         <button
                             onClick={handleNextQuestion}
                             disabled={currentQuestion === questions.length - 1}
-                            className="hover:bg-[#1e3a5f]/50 disabled:opacity-30 p-2 rounded-lg text-gray-400 hover:text-white transition-all disabled:cursor-not-allowed"
+                            className="hover:bg-[#d6d6d5]/50 disabled:opacity-30 p-2 rounded-xl text-[#949492] hover:text-[#1d2846] transition-all disabled:cursor-not-allowed"
                         >
                             <FaChevronRight />
                         </button>
                     </div>
                     <button
                         onClick={handleEndReview}
-                        className="hidden sm:block bg-gradient-to-r from-amber-500/20 hover:from-amber-500/30 to-orange-500/20 hover:to-orange-500/30 ml-4 px-5 py-2 border border-amber-500/30 rounded-full font-medium text-amber-400 text-sm transition-all"
+                        className="hidden sm:block bg-[#1d2846] hover:bg-[#1d2846]/90 ml-4 px-5 py-2.5 rounded-xl font-semibold text-white text-sm transition-all"
                     >
                         End & Review
                     </button>
@@ -485,7 +485,7 @@ const InterviewPage = () => {
                     {/* Timer Section */}
                     <div style={styles.timerContainer}>
                         <div style={styles.timerDisplay} className="timer-display-responsive">
-                            <span className={isRecording ? 'text-amber-400' : 'text-gray-400'}>
+                            <span className={isRecording ? 'text-[#1d2846]' : 'text-[#949492]'}>
                                 {formatTime(timeElapsed)}
                             </span>
                             <span className="text-gray-600"> / {formatTime(maxTime)}</span>
@@ -510,7 +510,7 @@ const InterviewPage = () => {
                             {isRecording ? (
                                 <FaStop className="text-white text-2xl" />
                             ) : (
-                                <FaMicrophone className="text-red-400 text-2xl" />
+                                <FaMicrophone className="text-white text-2xl" />
                             )}
                         </motion.button>
                     </div>
@@ -538,7 +538,7 @@ const InterviewPage = () => {
                                         value={typedAnswer}
                                         onChange={(e) => setTypedAnswer(e.target.value)}
                                         placeholder="Type your answer here..."
-                                        className="bg-[#0a1628]/80 p-5 border border-[#1e3a5f] focus:border-amber-400/50 rounded-xl outline-none focus:ring-2 focus:ring-amber-400/20 w-full min-h-[180px] text-gray-200 text-base leading-relaxed transition-all resize-none placeholder-gray-500"
+                                        className="bg-[#f3f4f5]/80 p-5 border border-[#d6d6d5] focus:border-[#1d2846]/50 rounded-xl outline-none focus:ring-[#1d2846]/20 focus:ring-2 w-full min-h-[180px] text-[#1d2846] text-base leading-relaxed transition-all resize-none placeholder-gray-500"
                                     />
                                     <div className="flex justify-end mt-4">
                                         <motion.button
@@ -546,7 +546,7 @@ const InterviewPage = () => {
                                             whileTap={{ scale: 0.98 }}
                                             onClick={handleSubmitTypedAnswer}
                                             disabled={!typedAnswer.trim()}
-                                            className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 disabled:opacity-50 shadow-lg hover:shadow-amber-500/25 px-6 py-3 rounded-full font-medium text-white transition-all duration-300 disabled:cursor-not-allowed"
+                                            className="flex items-center gap-2 bg-[#1d2846] hover:bg-[#1d2846]/90 disabled:opacity-50 shadow-lg hover:shadow-[#1d2846]/25 px-6 py-3 rounded-xl font-medium text-white transition-all duration-300 disabled:cursor-not-allowed"
                                         >
                                             Submit Answer
                                             <FaArrowRight />
@@ -572,10 +572,10 @@ const InterviewPage = () => {
                                     setSampleResponseOpen(false);
                                 }}
                                 className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentQuestion
-                                    ? 'bg-amber-400 scale-150 shadow-lg shadow-amber-400/30'
+                                    ? 'bg-[#1d2846] scale-150 shadow-lg shadow-[#1d2846]/30'
                                     : answers[index]
-                                        ? 'bg-green-400 hover:scale-125'
-                                        : 'bg-gray-600 hover:bg-gray-500 hover:scale-110'
+                                        ? 'bg-[#1d2846]/60 hover:scale-125'
+                                        : 'bg-[#949492] hover:bg-[#949492]/80 hover:scale-110'
                                     }`}
                                 title={`Question ${index + 1}`}
                             />
@@ -585,10 +585,10 @@ const InterviewPage = () => {
                     {/* Collapsible Sections - Feedback & Sample Response */}
                     <div className="space-y-3 mt-4">
                         {/* Feedback Section */}
-                        <div className="bg-[#0d1e36]/80 backdrop-blur-sm border border-[#1e3a5f] rounded-xl overflow-hidden">
+                        <div className="bg-[#f3f4f5]/80 backdrop-blur-sm border border-[#d6d6d5] rounded-xl overflow-hidden">
                             <button
                                 onClick={() => setFeedbackOpen(!feedbackOpen)}
-                                className="flex justify-between items-center hover:bg-[#1e3a5f]/30 px-6 py-4 w-full text-gray-300 transition-colors"
+                                className="flex justify-between items-center hover:bg-[#d6d6d5]/30 px-6 py-4 w-full text-[#1d2846] transition-colors"
                             >
                                 <span className="font-medium">Feedback</span>
                                 <FaChevronRight className={`transition-transform duration-200 ${feedbackOpen ? 'rotate-90' : ''}`} />
@@ -599,9 +599,9 @@ const InterviewPage = () => {
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: 'auto', opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
-                                        className="border-[#1e3a5f] border-t"
+                                        className="border-[#d6d6d5] border-t"
                                     >
-                                        <div className="p-6 text-gray-400">
+                                        <div className="p-6 text-[#949492]">
                                             <p className="text-sm italic leading-relaxed">
                                                 Complete your answer to receive AI-powered feedback on your response.
                                             </p>
@@ -612,10 +612,10 @@ const InterviewPage = () => {
                         </div>
 
                         {/* Sample Response Section */}
-                        <div className="bg-[#0d1e36]/80 backdrop-blur-sm border border-[#1e3a5f] rounded-xl overflow-hidden">
+                        <div className="bg-[#f3f4f5]/80 backdrop-blur-sm border border-[#d6d6d5] rounded-xl overflow-hidden">
                             <button
                                 onClick={() => setSampleResponseOpen(!sampleResponseOpen)}
-                                className="flex justify-between items-center hover:bg-[#1e3a5f]/30 px-6 py-4 w-full text-gray-300 transition-colors"
+                                className="flex justify-between items-center hover:bg-[#d6d6d5]/30 px-6 py-4 w-full text-[#1d2846] transition-colors"
                             >
                                 <span className="font-medium">Sample Response</span>
                                 <FaChevronRight className={`transition-transform duration-200 ${sampleResponseOpen ? 'rotate-90' : ''}`} />
@@ -626,9 +626,9 @@ const InterviewPage = () => {
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: 'auto', opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
-                                        className="border-[#1e3a5f] border-t"
+                                        className="border-[#d6d6d5] border-t"
                                     >
-                                        <div className="p-6 text-gray-300">
+                                        <div className="p-6 text-[#1d2846]">
                                             <p className="text-sm leading-relaxed">
                                                 {currentSampleResponses[currentQuestion] || currentSampleResponses[0]}
                                             </p>
@@ -643,7 +643,7 @@ const InterviewPage = () => {
                     <div className="sm:hidden flex justify-center mt-4">
                         <button
                             onClick={handleEndReview}
-                            className="bg-gradient-to-r from-amber-500/20 hover:from-amber-500/30 to-orange-500/20 hover:to-orange-500/30 px-6 py-3 border border-amber-500/30 rounded-full font-medium text-amber-400 transition-all"
+                            className="bg-[#1d2846] hover:bg-[#1d2846]/90 px-6 py-3 rounded-xl font-semibold text-white transition-all"
                         >
                             End & Review
                         </button>
